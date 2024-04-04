@@ -176,18 +176,18 @@
     }
   }
 </style>
-
-<div NgIf="data">
+<div>
+  <h1>El Loco Lector</h1>
+  <p>¡Bienvenido a El Loco Lector!</p>
+</div>
+<div ngIf="data">
   <h2>Datos:</h2>
-  
-    <ng-template NgFor let-libro [NgForOf] = "data" >
-      <div>
-        {{libro.id}} - {{libro.titulo}} - {{libro.autor}} - {{libro.cantidad}}
-      </div>
-      
-    </ng-template>
+  @for (libro of data; track $index) {
+    <li>{{ libro.titulo }} - {{ libro.autor }} - {{libro.categoria}} - {{libro.cantidad}}</li>
+  }
   
 </div>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->

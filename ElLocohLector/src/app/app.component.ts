@@ -12,7 +12,7 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'ElLocohLector';
 
-  data: any;
+  data: any = [];
   apiUrl = 'http://localhost:8080/libros'; // URL de tu API
 
   constructor(private http: HttpClient) { }
@@ -24,8 +24,7 @@ export class AppComponent implements OnInit{
         console.log(libro.titulo);
       }
     });
-    
-    
+
   }
   llamarApi(): Promise<void> {
     return new Promise((resolve, reject) => {
