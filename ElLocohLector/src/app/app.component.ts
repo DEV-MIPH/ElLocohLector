@@ -18,18 +18,29 @@ export class AppComponent implements OnInit{
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    console.log("Aqui llegue")
-    this.http.get<any>(this.apiUrl).subscribe(
-      response => {
-        this.data = response;
-      },
-      error => {
-        console.error('Error al obtener datos:', error);
+    
+    this.llamarApi().then(() => {
+      for (const libro of this.data) {
+        console.log(libro.titulo);
       }
-    );
-    console.log(this.data)
+    });
+    
+    
   }
-
+  llamarApi(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.apiUrl).subscribe(
+        response => {
+          this.data = response;
+          resolve();
+        },
+        error => {
+          console.error('Error al obtener datos:', error);
+          reject(error);
+        }
+      );
+    });
+  }
 }
 
 
