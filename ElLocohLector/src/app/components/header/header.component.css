@@ -1,0 +1,118 @@
+.header-grid {
+    border-radius: 0;
+    color: black;
+    padding: 20px;
+    height: 10vh;
+    background-color: #E4FFCE;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto; /* Cambiar a 'auto' para permitir que las filas se ajusten según el contenido */
+    grid-column-gap: 0px;
+    grid-row-gap: 10px; /* Añadir espacio entre filas */
+    
+}
+
+#logo {
+    
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    background: #36C8F6;
+    box-shadow: 5px 5px 10px #2ca4ca, -5px -5px 10px #40ecff;
+}
+
+#textCenter {
+   
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: center;
+}
+
+#title {
+    font-family: "Merriweather", serif;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+}
+
+#subtitle {
+    font-family: "Merriweather", serif;
+    font-size: 10px;
+    font-weight: 300;
+    font-style: italic;
+}
+
+#login {
+    margin-top: 5%;
+    margin-left: 60%; /* Mover el botón de ingresar al extremo derecho */
+    color: #fff;
+    background: #36C8F6;
+}
+
+/* Media query para dispositivos pequeños (320px y más pequeños) */
+@media only screen and (max-width: 320px) {
+    /* Ajustes para dispositivos pequeños */
+    #logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    #title {
+        font-size: 12px;
+    }
+
+    #subtitle {
+        font-size: 8px;
+    }
+
+    #login {
+        margin-left: 10%;
+        margin-top: 5%;
+        font-size: 8px;
+    }
+}
+
+/* Media query para dispositivos medianos (de 321px a 768px) */
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+    /* Ajustes para dispositivos medianos */
+    #logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    #title {
+        font-size: 14px;
+    }
+
+    #subtitle {
+        font-size: 10px;
+    }
+
+    #login {
+        margin-left: 30%;
+        margin-top: 10%;
+        font-size: 10px;
+    }
+}
+
+/* Media query para dispositivos grandes (de 769px en adelante) */
+@media only screen and (min-width: 769px) {
+    /* Ajustes para dispositivos grandes */
+    #logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    #title {
+        font-size: 20px;
+    }
+
+    #subtitle {
+        font-size: 12px;
+    }
+
+    #login {
+        margin-left: 60%;
+        margin-top: 5%;
+        font-size: 12px;
+    }
+}
