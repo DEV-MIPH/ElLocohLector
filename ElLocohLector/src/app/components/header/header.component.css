@@ -3,7 +3,7 @@
     color: black;
     padding: 20px;
     height: 10vh;
-    background-color: #E4FFCE;
+    background-color: #C3E2C2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto; /* Cambiar a 'auto' para permitir que las filas se ajusten según el contenido */
