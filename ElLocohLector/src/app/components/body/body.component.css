@@ -1,43 +1,120 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.bodyContenedor {
+    margin-bottom: 200vh; /* Ajusta según sea necesario */
+}
+
+/* Estilos para la portada */
 .portada {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Ocupa toda la altura de la ventana */
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
 }
+
 #textoContenedor {
-    display: flex;
-    flex-direction: column; /* Aplica un diseño de columna */
-    margin-right: 20px; /* Margen derecho para separar el texto de la imagen */
+    text-align: center;
+    margin-right: 20px;
 }
+
 #textoTitulo {
     font-family: "Merriweather", serif;
-    font-size: 5vh;
+    font-size: 3em;
     font-weight: 500;
     font-style: normal;
+    margin-bottom: 10px;
 }
+
 #textoSubtitulo {
     font-family: "Merriweather", serif;
     font-weight: 200;
     font-style: normal;
+    margin-bottom: 20px;
 }
+
 #imgportada {
-    max-width: 50%;
-    border-top-left-radius: 50%;
+    max-width: 30%;
+    border-radius: 50%;
 }
 
-
-.buttonPrincipales {
-    background-color: #C3E2C2;
-    margin-top: 20px; /* Agrega un margen superior para separarlo del footer */
-    padding: 10px; /* Agrega un poco de espacio interno */
+/* Estilos para el contenedor principal */
+.contenedorPrincipal {
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para los botones principales */
+.buttonPrincipales {
+    background-color: #ffffff;
+    margin-top: 20px;
+    padding: 10px;
+    display: inline-flex; /* Usar inline-flex para ajustarse al contenido en el eje x */
+    justify-content: center;
+    border-radius: 10px;
+    width: auto;
 }
 
 .buttonPrincipales button {
-    margin: 0 20px; /* Agrega un margen a los botones */
+    margin: 0 5px; /* Espacio entre los botones */
+    padding: 5px 10px;
+    border: none;
+    background-color: #77DD77;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.bodyContenedor {
-    margin-bottom: 200vh; /* Ajusta el valor según lo desees */
+
+
+
+/* Media queries para hacer el diseño responsive */
+
+/* Para dispositivos con una anchura máxima de 768px (tablets y dispositivos móviles) */
+@media only screen and (max-width: 768px) {
+    #textoTitulo {
+        font-size: 2em; /* Reducir el tamaño del título */
+    }
+
+    #textoSubtitulo {
+        font-size: 1em; /* Reducir el tamaño del subtitulo */
+    }
+
+    #imgportada {
+        max-width: 50%; /* Reducir el tamaño de la imagen */
+    }
+
+    .buttonPrincipales button {
+        margin: 0 5px; /* Reducir el espacio entre los botones */
+    }
+}
+
+/* Para dispositivos con una anchura máxima de 480px (dispositivos móviles) */
+@media only screen and (max-width: 480px) {
+    #textoTitulo {
+        font-size: 1.5em; /* Reducir aún más el tamaño del título */
+    }
+
+    #textoSubtitulo {
+        font-size: 0.8em; /* Reducir aún más el tamaño del subtitulo */
+    }
+
+    #imgportada {
+        max-width: 70%; /* Reducir aún más el tamaño de la imagen */
+    }
+
+    .buttonPrincipales {
+        flex-direction: column; /* Colocar los botones en columna en dispositivos muy pequeños */
+    }
+
+    .buttonPrincipales button {
+        margin: 5px 0; /* Añadir espacio entre los botones en dispositivos muy pequeños */
+    }
 }

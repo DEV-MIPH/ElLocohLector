@@ -9,5 +9,5 @@ import {MatCardModule} from '@angular/material/card';
   styleUrl: './puntodonacion.component.css'
 })
 export class PuntodonacionComponent {
-
+  
 }

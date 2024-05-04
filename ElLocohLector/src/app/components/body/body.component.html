@@ -4,18 +4,6 @@
     href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
 
-<body class="bodyContenedor">
-    <!-- @if(nosotros){
-        <ng-container >
-            <app-nosotros></app-nosotros>
-        </ng-container>
-    }
-    @if(colaboradores){
-        <ng-container >
-            <app-colaboradores></app-colaboradores>
-          </ng-container>
-    } -->
-
     <div class="portada">
         <div id="textoContenedor">
             <p id="textoTitulo">¿Donde puedo donar mis libros?</p>
@@ -25,24 +13,20 @@
         <img src="../../../assets/bodyImg/portada.jpg" alt="portada" id="imgportada">
     </div>
 
-    <div class="buttonPrincipales">
-        <button mat-button id="libros">Libros</button>
-        <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi institución</button>
-        <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
-        <button mat-button id="contacto">Contacto</button>
+    <div class="contenedorPrincipal">
+        <div class="buttonPrincipales">
+            <button mat-button id="libros">Libros</button>
+            <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi institución</button>
+            <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
+            <button mat-button id="contacto">Contacto</button>
+        </div>
     </div>
 
-
-    @if(mostrarFormularioRegistro){
-    <ng-container>
-        <app-formregistro></app-formregistro>
-    </ng-container>
-    }
-
-    @if(mostrarPuntos){
-    <ng-container>
-        <app-puntodonacion></app-puntodonacion>
-    </ng-container>
-    }
-
-</body>
+    <div>
+        @if(mostrarFormularioRegistro){
+            <app-formregistro></app-formregistro>
+        }
+        @if(mostrarPuntos){
+            <app-puntodonacion></app-puntodonacion>
+        }
+    </div>

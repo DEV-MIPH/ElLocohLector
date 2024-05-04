@@ -1,87 +1,60 @@
-
-
-.footer-upper{
-    height: 25vh;
+.footer-content {
     background-color: #CD8D7A;
+    padding: 20px 30%;
     display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 20px;
     align-items: center;
-    padding-left: 30%;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    }
-    
-#title { 
+}
+
+.footer-upper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    grid-gap: 20px;
+}
+
+#title {
     font-family: "Merriweather", serif;
     font-size: 20px;
     font-weight: 500;
     font-style: normal;
+}
 
-    grid-area: 1 / 1 / 2 / 2; }
-
-#text { 
+#text {
     line-height: 180%;
-    grid-area: 1 / 2 / 2 / 3; }
-
-.list {
-    text-decoration: none; /* Quita el subrayado */
-    color: #000000; /* Usa el color heredado del texto (negro) */
-}
-.list:hover {
-    text-decoration: underline; /* Subraya el enlace al pasar el mouse */
 }
 
-.footer-below{
-    
+.footer-below {
     background-color: #d7a394;
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
-    grid-template-columns: 1fr 1fr;
-    
 }
 
-#contact{
-    display: flex; 
-    justify-content: flex-end; 
+#contact {
+    display: flex;
+    align-items: center;
 }
 
-.imgFooter{
+.imgFooter {
     height: 5vh;
     width: 5vh;
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 
-/* Media query para dispositivos pequeños (320px y más pequeños) */
-@media only screen and (max-width: 320px) {
-    /* Ajustes para dispositivos pequeños */
-    .footer-upper {
-        height: auto; 
-        padding: 10px; 
-        grid-template-columns: 1fr; 
-        grid-template-rows: auto; 
-        text-align: center; 
-    }
-    
-    #title {
-        font-size: 18px; 
-    }
+.list {
+    text-decoration: none;
+    color: #000000;
 }
 
-/* Media query para dispositivos medianos (de 321px a 768px) */
-@media only screen and (min-width: 321px) and (max-width: 768px) {
-    /* Ajustes para dispositivos medianos */
-    .footer-upper {
-        padding-left: 10%; 
-        padding-right: 10%;
-    }
+.list:hover {
+    text-decoration: underline;
 }
-/* Media query para dispositivos grandes (de 769px en adelante) */
-@media only screen and (min-width: 769px) {
-    /* Ajustes para dispositivos grandes */
-    .footer-upper {
-        padding-left: 20%; 
-        padding-right: 20%; 
+
+@media only screen and (max-width: 768px) {
+    .footer-content {
+        padding: 20px 10%;
     }
 }

@@ -1,34 +1,31 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 <footer>
+    <div class="footer-content">
+        <div class="footer-upper">
+            <div>
+                <h1 id="title">eloKoLector</h1>
+            </div>
 
-    <div class="footer-upper">
-        <div>
-            <h1 id="title">eloKoLector</h1>
+            <div id="text">
+                <ul>
+                    <li><a (click)="mostrarNosotros()" class="list" href="javascript:void(0)">Sobre nosotros</a></li>
+                    <li><a (click)="mostrarColaboradores()" class="list" href="javascript:void(0)">Colaboradores</a></li>
+                    <li><a href="#" class="list">Preguntas frecuentes</a></li>
+                </ul>
+            </div>
         </div>
 
-        <div id="text">
-            <ul>
-                <li (click)="mostrarNosotros()"><a class="list">Sobre nosotros</a></li>
-                <li (click)="mostrarColaboradores()"><a class="list">Colaboradores</a></li>
-                <li><a href="#" class="list">Preguntas frecuentes</a></li>
-            </ul>
-        </div>
-    </div>
+        <div class="footer-below">
+            <div id="copyright"><p>©2024 elokolector.cl. Todos los derechos reservados</p></div>
 
-    <div class="footer-below">
-        <div id="copyright"><p>©2024 elokolector.cl . All rights reserved</p></div>
-
-        <div id="contact">
-            <a href="#">
-                <img class="imgFooter" src="../../../assets/footerImg/instagram.svg" alt="instagram">
-            </a>
-            
-            <a href="#">
-                <img class="imgFooter" src="../../../assets/footerImg/whatsapp.svg" alt="whatsapp">
-            </a>
-            
+            <div id="contact">
+                <a href="#">
+                    <img class="imgFooter" loading="lazy" src="../../../assets/footerImg/instagram.svg" alt="instagram">
+                </a>
+                
+                <a href="#">
+                    <img class="imgFooter" loading="lazy" src="../../../assets/footerImg/whatsapp.svg" alt="whatsapp">
+                </a>
+            </div>
         </div>
     </div>
 </footer>

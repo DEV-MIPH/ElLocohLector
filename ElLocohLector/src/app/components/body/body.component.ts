@@ -5,8 +5,8 @@ import { FormregistroComponent } from '../formregistro/formregistro.component';
 import { PuntodonacionComponent } from '../puntodonacion/puntodonacion.component';
 
 //Botones principales de la pagina web
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { NosotrosComponent } from '../nosotros/nosotros.component';
 import { ColaboradoresComponent } from '../colaboradores/colaboradores.component';
@@ -21,16 +21,19 @@ import { ColaboradoresComponent } from '../colaboradores/colaboradores.component
 export class BodyComponent {
 
   mostrarFormularioRegistro = false;
+
   mostrarFormulario() {
     console.log("llegue aqui")
     this.mostrarFormularioRegistro = true;
+    this.mostrarPuntos = false;
     console.log(this.mostrarFormularioRegistro)
   }
 
-  mostrarPuntos = false;
+  mostrarPuntos = true;
   mostrarPuntosDonacion() {
     console.log("llegue aqui")
     this.mostrarPuntos = true;
+    this.mostrarFormularioRegistro = false;
     console.log(this.mostrarPuntos)
   }
 
@@ -38,20 +41,20 @@ export class BodyComponent {
 
   colaboradores = false;
 
-  mostrarNosotros(){
+  mostrarNosotros() {
     console.log("llamando a nosotros")
     this.nosotros = true;
     this.colaboradores = false;
     console.log(this.nosotros)
   }
-  mostrarColaboradores(){
+  mostrarColaboradores() {
     console.log("llamando a colaboradores")
     this.colaboradores = true;
     this.nosotros = false;
     console.log(this.nosotros)
   }
 
-  
+
 
 
 
