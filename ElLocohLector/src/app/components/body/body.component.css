@@ -1,0 +1,43 @@
+.portada {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+#textoContenedor {
+    display: flex;
+    flex-direction: column; /* Aplica un diseño de columna */
+    margin-right: 20px; /* Margen derecho para separar el texto de la imagen */
+}
+#textoTitulo {
+    font-family: "Merriweather", serif;
+    font-size: 5vh;
+    font-weight: 500;
+    font-style: normal;
+}
+#textoSubtitulo {
+    font-family: "Merriweather", serif;
+    font-weight: 200;
+    font-style: normal;
+}
+#imgportada {
+    max-width: 50%;
+    border-top-left-radius: 50%;
+}
+
+
+.buttonPrincipales {
+    background-color: #C3E2C2;
+    margin-top: 20px; /* Agrega un margen superior para separarlo del footer */
+    padding: 10px; /* Agrega un poco de espacio interno */
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+}
+
+.buttonPrincipales button {
+    margin: 0 20px; /* Agrega un margen a los botones */
+}
+
+.bodyContenedor {
+    margin-bottom: 200vh; /* Ajusta el valor según lo desees */
+}

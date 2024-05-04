@@ -1,5 +1,11 @@
-<body>
-    @if(nosotros){
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+<body class="bodyContenedor">
+    <!-- @if(nosotros){
         <ng-container >
             <app-nosotros></app-nosotros>
         </ng-container>
@@ -8,13 +14,35 @@
         <ng-container >
             <app-colaboradores></app-colaboradores>
           </ng-container>
+    } -->
+
+    <div class="portada">
+        <div id="textoContenedor">
+            <p id="textoTitulo">¿Donde puedo donar mis libros?</p>
+            <p id="textoSubtitulo">Te invitamos a donar un libro en nuestros puntos de donación asignados</p>
+        </div>
+
+        <img src="../../../assets/bodyImg/portada.jpg" alt="portada" id="imgportada">
+    </div>
+
+    <div class="buttonPrincipales">
+        <button mat-button id="libros">Libros</button>
+        <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi institución</button>
+        <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
+        <button mat-button id="contacto">Contacto</button>
+    </div>
+
+
+    @if(mostrarFormularioRegistro){
+    <ng-container>
+        <app-formregistro></app-formregistro>
+    </ng-container>
     }
-    
-      
-      
-      
-   
-    <!-- <div id="puntosDonacion">
-        <h3>Conoce nuestros puntos de donación</h3>
-    </div> -->
+
+    @if(mostrarPuntos){
+    <ng-container>
+        <app-puntodonacion></app-puntodonacion>
+    </ng-container>
+    }
+
 </body>

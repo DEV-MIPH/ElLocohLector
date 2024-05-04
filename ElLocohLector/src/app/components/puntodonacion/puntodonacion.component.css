@@ -1,0 +1,15 @@
+.puntosDonacion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 0px;
+}
+
+.duocvinna {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.duocvalpo {
+    grid-area: 1 / 2 / 2 / 3;
+}
