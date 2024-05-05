@@ -1,20 +1,18 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./components/header/header.component";
-import { BodyComponent } from "./components/body/body.component";
-import { FooterComponent } from "./components/footer/footer.component";
+import { LobbyModule } from './modules/lobby/lobby.module';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, HttpClientModule, HeaderComponent, BodyComponent, FooterComponent]
+    imports: [RouterOutlet, HttpClientModule,LobbyModule]
+
 })
 export class AppComponent {
   title = 'ElLocohLector';
-
 }
 
 

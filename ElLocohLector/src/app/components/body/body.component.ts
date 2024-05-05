@@ -10,11 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NosotrosComponent } from '../nosotros/nosotros.component';
 import { ColaboradoresComponent } from '../colaboradores/colaboradores.component';
+import { BooksComponent } from '../books/books.component';
 
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [ColaboradoresComponent, NosotrosComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent],
+  imports: [ColaboradoresComponent, NosotrosComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent],
   templateUrl: './body.component.html',
   styleUrl: './body.component.css'
 })
@@ -26,6 +27,7 @@ export class BodyComponent {
     console.log("llegue aqui")
     this.mostrarFormularioRegistro = true;
     this.mostrarPuntos = false;
+    this.mostrarBooks = false;
     console.log(this.mostrarFormularioRegistro)
   }
 
@@ -34,7 +36,16 @@ export class BodyComponent {
     console.log("llegue aqui")
     this.mostrarPuntos = true;
     this.mostrarFormularioRegistro = false;
+    this.mostrarBooks = false;
     console.log(this.mostrarPuntos)
+  }
+  mostrarBooks = false;
+  mostrarBooksDonacion() {
+    console.log("llegue aqui")
+    this.mostrarBooks = true;
+    this.mostrarFormularioRegistro = false;
+    this.mostrarPuntos = false;
+    console.log(this.mostrarBooks)
   }
 
   nosotros = false;

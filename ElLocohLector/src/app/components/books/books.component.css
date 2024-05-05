@@ -1,0 +1,79 @@
+
+/* Contenedor principal */
+.books-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-container label {
+    margin-right: 10px;
+}
+
+.search-container input {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+/* Lista de libros */
+.books-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Tarjeta de libro */
+.book-card {
+    width: calc(50% - 20px); /* Dos tarjetas por fila en dispositivos más pequeños */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.mat-card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    background-color: #0080ff; /* Color de fondo */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Centrar contenido */
+    font-size: 14px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+}
+
+.mat-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mat-card-footer {
+    padding-top: 5px;
+}
+
+/* Botón */
+button {
+    padding: 8px 16px;
+    background-color: #0056b3; /* Color de fondo del botón */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita para los botones */
+}
+
+button:hover {
+    background-color: #004080; /* Color de fondo al pasar el mouse */
+}
+
+/* Media query para dispositivos de pantalla más grandes */
+@media only screen and (min-width: 768px) {
+    .book-card {
+        width: calc(33.33% - 20px); /* Tres tarjetas por fila en dispositivos de pantalla grande */
+    }
+}
+

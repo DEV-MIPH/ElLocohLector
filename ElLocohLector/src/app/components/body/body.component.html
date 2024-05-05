@@ -15,7 +15,7 @@
 
     <div class="contenedorPrincipal">
         <div class="buttonPrincipales">
-            <button mat-button id="libros">Libros</button>
+            <button mat-button id="libros" (click)="mostrarBooksDonacion()">Libros</button>
             <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi institución</button>
             <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
             <button mat-button id="contacto">Contacto</button>
@@ -28,5 +28,8 @@
         }
         @if(mostrarPuntos){
             <app-puntodonacion></app-puntodonacion>
+        }
+        @if(mostrarBooks){
+            <app-books></app-books>
         }
     </div>

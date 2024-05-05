@@ -1,0 +1,35 @@
+<div class="books-container">
+    <h2>Libros Disponibles</h2>
+
+    <div class="search-container">
+        <label for="author">Autor:</label>
+        <input type="text" id="author" name="author" placeholder="Buscar por autor">
+
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" placeholder="Buscar por título">
+
+        <button (click)="searchBooks()">Buscar</button>
+    </div>
+
+    <div class="books-list">
+            @for (book of libros; track $index) {
+                <mat-card class="book-item">
+                    <mat-card-header>
+                        <mat-card-title>{{ book.titulo }}</mat-card-title>
+                        <mat-card-subtitle>{{ book.Autor }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{ book.Editorial }}</p>
+                        <p>{{ book.Categoria }}</p>
+                        <p>{{ book.edicion }}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button>Reservar</button>
+                    </mat-card-actions>
+                    <mat-card-footer>
+                        <p>Cantidad Disponible:{{ book.cantidad }}</p>
+                    </mat-card-footer>
+                </mat-card>
+            }
+    </div>
+</div>
