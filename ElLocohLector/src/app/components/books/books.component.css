@@ -1,4 +1,3 @@
-
 /* Contenedor principal */
 .books-container {
     max-width: 800px;
@@ -27,53 +26,82 @@
     justify-content: space-around;
 }
 
-/* Tarjeta de libro */
-.book-card {
-    width: calc(50% - 20px); /* Dos tarjetas por fila en dispositivos más pequeños */
+/* Botón de expansión */
+.expand-button {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.expand-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.search-container {
     margin-bottom: 20px;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-.mat-card {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-    background-color: #0080ff; /* Color de fondo */
-    padding: 15px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    text-align: center; /* Centrar contenido */
-    font-size: 14px; /* Tamaño de fuente */
-    color: #333; /* Color del texto */
+/* Estilos para las etiquetas de búsqueda */
+.search-container label {
+    margin-right: 10px;
+    font-weight: bold;
 }
 
-.mat-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Estilos para los inputs de búsqueda */
+.search-container input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
 }
 
-.mat-card-footer {
-    padding-top: 5px;
-}
-
-/* Botón */
-button {
+/* Estilos para el botón de búsqueda */
+.search-container button {
     padding: 8px 16px;
-    background-color: #0056b3; /* Color de fondo del botón */
+    background-color: #0056b3;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
-    font-size: 14px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita para los botones */
 }
 
-button:hover {
-    background-color: #004080; /* Color de fondo al pasar el mouse */
+.search-container button:hover {
+    background-color: #004080;
+}
+table {
+    width: 100%;
+    border-collapse: collapse; /* Colapsar los bordes de la tabla */
+    background-color: #ffffff;
 }
 
-/* Media query para dispositivos de pantalla más grandes */
-@media only screen and (min-width: 768px) {
-    .book-card {
-        width: calc(33.33% - 20px); /* Tres tarjetas por fila en dispositivos de pantalla grande */
-    }
+th {
+    background-color: #343a40; /* Cambiar el color de fondo del encabezado de la tabla */
+    color: #000000; /* Cambiar el color del texto del encabezado de la tabla */
+    border-bottom: 1px solid #000000; /* Agregar una línea en la parte inferior */
 }
 
+td {
+    text-align: left; /* Alinear el texto a la izquierda */
+    color: #343a40; /* Color de texto */
+    border-bottom: 1px solid #f8f9fa; /* Línea para separar las filas */
+}
+h2 {
+    color: #343a40; /* Color del texto */
+    font-size: 24px; /* Tamaño de la fuente */
+    margin-bottom: 20px; /* Espacio inferior */
+    border-bottom: 2px solid #343a40; /* Línea decorativa */
+    padding-bottom: 5px; /* Espacio inferior interno */
+    text-align: center; /* Centrar el texto horizontalmente */
+}
