@@ -12,6 +12,8 @@ import { NosotrosComponent } from '../nosotros/nosotros.component';
 import { ColaboradoresComponent } from '../colaboradores/colaboradores.component';
 import { BooksComponent } from '../books/books.component';
 
+
+
 @Component({
   selector: 'app-body',
   standalone: true,
