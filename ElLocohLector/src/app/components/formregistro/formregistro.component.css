@@ -79,3 +79,35 @@ label, input, textarea {
     font-size: 12px;
 }
 
+@media only screen and (max-width: 480px) {
+    /* Ajustes para pantallas pequeñas */
+    .contenedorRegistro {
+        background-size: contain; /* La imagen de fondo se ajustará para contener todo el contenedor */
+        background-position: center center; /* La imagen se posicionará en el centro */
+    }
+    
+    /* Ajustes para pantallas pequeñas */
+    .contenedorform {
+        padding-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* Ajustes para pantallas de tamaño medio */
+    .contenedorRegistro {
+        background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+        background-position: center center; /* La imagen se posicionará en el centro */
+    }
+
+    .contenedorform {
+        padding-top: 50px;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    /* Ajustes para pantallas más grandes que 1024px */
+    .contenedorRegistro {
+        background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
+        background-position: center center; /* La imagen se posicionará en el centro */
+    }
+}

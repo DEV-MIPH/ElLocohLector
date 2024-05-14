@@ -29,16 +29,36 @@ div {
     gap: 20px; /* Espacio entre los elementos */
 }
 
-/* Estilos para cada punto de donación */
+/* Estilos para cada punto de donación sede Duoc Viña y Duoc Valpo*/
 .duocvinna mat-card, .duocvalpo mat-card {
     background-color: rgba(139, 139, 5, 0.467); /* Color amarillo */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     transition: transform 0.3s ease; /* Transición al hacer hover */
+    height: 100%; /* Establece una altura fija para todas las tarjetas */
+    display: flex; /* Usa un contenedor flexible para centrar contenido verticalmente */
+    flex-direction: column; /* Alinea el contenido verticalmente */
+}
+/* Estilos para ajusta contenedor mapas de ambas sedes */
+.mapaDuocvalpo, .mapaDuocvinna {
+    background-color: rgba(139, 139, 5, 0.467); /* Color amarillo */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: transform 0.3s ease; /* Transición al hacer hover */
+    display: flex; /* Usa un contenedor flexible para centrar contenido verticalmente */
+    flex-direction: column; /* Alinea el contenido verticalmente */
+    margin-bottom: 20px; /* Agrega espacio inferior */
 }
 
+
+
+.mat-card-content {
+    flex-grow: 1; /* Permite que el contenido ocupe todo el espacio vertical disponible */
+}
 .duocvinna mat-card:hover, .duocvalpo mat-card:hover {
     transform: translateY(-5px); /* Efecto de elevación al hacer hover */
+}
+.mapaDuocvalpo:hover, .mapaDuocvinna:hover{
+    transform: translateY(-5px);
 }
 
 .duocvinna, .duocvalpo {
@@ -55,3 +75,32 @@ div {
     font-size: 1.1em;
     color: #888; /* Color de texto gris claro */
 }
+
+
+@media only screen and (max-width: 320px) {
+    .puntosDonacion {
+        display: inline-block;
+        gap: 20px; /* Espacio entre los elementos */
+    }
+
+    /* Oculta los mapas en pantalla pequeña */
+    .mapaDuocvalpo, .mapaDuocvinna {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+    .puntosDonacion {
+        display: inline-block;
+        gap: 20px; /* Espacio entre los elementos */
+    }
+    
+    /* Oculta los mapas en pantalla pequeña */
+    .mapaDuocvalpo, .mapaDuocvinna {
+        display: none;
+    }
+}
+
+
+
+
