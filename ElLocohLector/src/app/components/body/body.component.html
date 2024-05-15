@@ -18,7 +18,7 @@
             <button mat-button id="libros" (click)="mostrarBooksDonacion()">Libros</button>
             <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi institución</button>
             <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
-            <button mat-button id="contacto">Contacto</button>
+            <button mat-button id="contacto" (click)="mostrarContactoDonacion()">Contacto</button>
         </div>
     </div>
 
@@ -31,5 +31,8 @@
         }
         @if(mostrarBooks){
             <app-books></app-books>
+        }
+        @if(mostrarContacto){
+            <app-contacto></app-contacto>
         }
     </div>

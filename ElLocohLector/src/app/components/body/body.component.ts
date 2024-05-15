@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 //import de componentes utilizados
 import { FormregistroComponent } from '../formregistro/formregistro.component';
 import { PuntodonacionComponent } from '../puntodonacion/puntodonacion.component';
+import { ContactoComponent } from '../contacto/contacto.component';
 
 //Botones principales de la pagina web
 import { MatButtonModule } from '@angular/material/button';
@@ -15,11 +16,11 @@ import { BooksComponent } from '../books/books.component';
 
 
 @Component({
-  selector: 'app-body',
-  standalone: true,
-  imports: [ColaboradoresComponent, NosotrosComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent],
-  templateUrl: './body.component.html',
-  styleUrl: './body.component.css'
+    selector: 'app-body',
+    standalone: true,
+    templateUrl: './body.component.html',
+    styleUrl: './body.component.css',
+    imports: [ColaboradoresComponent, NosotrosComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent, ContactoComponent]
 })
 export class BodyComponent {
 
@@ -30,6 +31,7 @@ export class BodyComponent {
     this.mostrarFormularioRegistro = true;
     this.mostrarPuntos = false;
     this.mostrarBooks = false;
+    this.mostrarContacto = false;
     console.log(this.mostrarFormularioRegistro)
   }
 
@@ -39,6 +41,7 @@ export class BodyComponent {
     this.mostrarPuntos = true;
     this.mostrarFormularioRegistro = false;
     this.mostrarBooks = false;
+    this.mostrarContacto = false;
     console.log(this.mostrarPuntos)
   }
   mostrarBooks = false;
@@ -47,7 +50,18 @@ export class BodyComponent {
     this.mostrarBooks = true;
     this.mostrarFormularioRegistro = false;
     this.mostrarPuntos = false;
+    this.mostrarContacto = false;
     console.log(this.mostrarBooks)
+  }
+
+  mostrarContacto = false;
+  mostrarContactoDonacion(){
+    console.log("llegue aqui")
+    this.mostrarContacto = true;
+    this.mostrarFormularioRegistro = false;
+    this.mostrarPuntos = false;
+    this.mostrarBooks = false;
+    console.log(this.mostrarContacto)
   }
 
   nosotros = false;

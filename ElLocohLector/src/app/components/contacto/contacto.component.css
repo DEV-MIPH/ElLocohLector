@@ -1,0 +1,52 @@
+.contenedorContacto {
+    border: 2px solid #4CAF50;
+    border-radius: 10px; 
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    padding: 20px; 
+}
+.contenedorTexto {
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+.contenedorTexto h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333; /* Color de texto oscuro */
+}
+
+.contenedorIconos {
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgFooter {
+    height: 5vh;
+    width: 5vh;
+    margin-left: 10px;
+}
+
+/* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
+@media only screen and (max-width: 480px) {
+    .contenedorContacto {
+        width: 90%; /* Reducimos más el ancho en pantallas aún más pequeñas */
+    }
+
+    .contenedorTexto {
+        font-size: 0.9em; /* Ajustamos el tamaño del texto */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .contenedorContacto {
+        width: 80%; /* Reducimos un poco el ancho en pantallas más pequeñas */
+    }
+}
+

@@ -16,6 +16,7 @@
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    font-size: 1.5em;
     font-family: Roboto, sans-serif;
 }
 
@@ -32,6 +33,7 @@
 
 label, input, textarea {
     display: block;
+    font-size: 1.0em;
     margin-bottom: 10px;
 }
 #enviar {
@@ -82,6 +84,7 @@ label, input, textarea {
 @media only screen and (max-width: 480px) {
     /* Ajustes para pantallas pequeñas */
     .contenedorRegistro {
+        background-image: url('../../../assets/bodyImg/registroMQuery.png');
         background-size: contain; /* La imagen de fondo se ajustará para contener todo el contenedor */
         background-position: center center; /* La imagen se posicionará en el centro */
     }
@@ -90,11 +93,22 @@ label, input, textarea {
     .contenedorform {
         padding-top: 20px;
     }
+    #titulo{
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 1.2em;
+        font-family: Roboto, sans-serif;
+    }
+    #registroForm {
+        width: 180px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
     /* Ajustes para pantallas de tamaño medio */
     .contenedorRegistro {
+        background-image: url('../../../assets/bodyImg/registroMQuery.png');
         background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
         background-position: center center; /* La imagen se posicionará en el centro */
     }
@@ -102,12 +116,36 @@ label, input, textarea {
     .contenedorform {
         padding-top: 50px;
     }
+    #titulo{
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 1.2em;
+        font-family: Roboto, sans-serif;
+    }
+    #registroForm {
+        width: 300px;
+    }
 }
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (max-width: 1025px) {
     /* Ajustes para pantallas más grandes que 1024px */
     .contenedorRegistro {
+        background-image: url('../../../assets/bodyImg/registroMQuery.png');
         background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
         background-position: center center; /* La imagen se posicionará en el centro */
+    }
+    .contenedorform {
+        padding-top: 50px;
+    }
+    #titulo{
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 1.2em;
+        font-family: Roboto, sans-serif;
+    }
+    #registroForm {
+        width: 300px;
     }
 }
