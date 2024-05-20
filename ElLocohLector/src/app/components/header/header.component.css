@@ -1,3 +1,11 @@
+/* Header fijo y con ancho completo */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Asegura que el header quede por encima de otros elementos */
+}
 .header-grid {
     border-radius: 0;
     color: black;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit  } from '@angular/core';
 
 //import de componentes utilizados
 import { FormregistroComponent } from '../formregistro/formregistro.component';
@@ -22,7 +22,7 @@ import { BooksComponent } from '../books/books.component';
     styleUrl: './body.component.css',
     imports: [ColaboradoresComponent, NosotrosComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent, ContactoComponent]
 })
-export class BodyComponent {
+export class BodyComponent implements AfterViewInit {
 
   mostrarFormularioRegistro = false;
 
@@ -81,7 +81,23 @@ export class BodyComponent {
     console.log(this.nosotros)
   }
 
+  ngAfterViewInit() {
+    const cards = document.querySelectorAll('.card');
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+}
 
 
 
