@@ -3,13 +3,16 @@ import { LobbyComponent } from './pages/lobby/lobby.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 export const routes: Routes = [
     { path: 'lobby', component: LobbyComponent },
     { path: 'login', component: LoginComponent},
+    { path: 'perfil', component: PerfilComponent},
     { path: '', redirectTo: '/lobby', pathMatch: 'full' },
     { path: '**', redirectTo: '/lobby' }
 ];
+
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]

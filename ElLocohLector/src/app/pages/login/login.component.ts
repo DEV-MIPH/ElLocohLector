@@ -10,7 +10,5 @@ import { FooterComponent } from '../../components/footer/footer.component';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor() {
-    console.log('LoginComponent created');
-  }
+  
 }
