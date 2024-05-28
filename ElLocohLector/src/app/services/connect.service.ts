@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ConnectService {
 
   data: any = [];
-  apiUrl = 'http://localhost:3000/libros'; // URL de tu API
+  apiUrl = 'http://localhost:3000/libros';
 
   constructor(private http: HttpClient) { }
 

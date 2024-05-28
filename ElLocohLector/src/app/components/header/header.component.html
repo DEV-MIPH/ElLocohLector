@@ -3,8 +3,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 <header >
     <div class="header-grid">
-        <div>
-            <img src="../../../assets/headerImg/logo.jpg" alt="logo" id="logo">
+        <div> <a href="">
+            <img routerLink="/lobby" src="../../../assets/headerImg/logo.jpg" alt="logo" id="logo">
+
+        </a>
         </div>
 
         <div id="textCenter">
@@ -15,8 +17,9 @@
         </div>
 
         <div >
-            <button mat-flat-button id="login">Ingresar</button>
+            <button routerLink="/login" mat-flat-button id="login">Ingresar</button>
         </div>
-
     </div>
 </header>
+
+<router-outlet></router-outlet>

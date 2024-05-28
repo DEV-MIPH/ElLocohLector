@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ConnectService } from '../../modules/lobby/services/connect.service';
+import { ConnectService } from '../../services/connect.service';
 import { Subscription } from 'rxjs';
 import { OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
@@ -63,7 +63,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
       return book.Autor.toLowerCase().includes(this.searchAuthor.toLowerCase()) && book.titulo.toLowerCase().includes(this.searchTitle.toLowerCase());
     });
     console.log('Libros filtrados:', this.librosFiltrados);
-    this.dataSource.data = this.librosFiltrados; // Actualizar dataSource
+    this.dataSource.data = this.librosFiltrados;
     this.cdr.detectChanges();
   }
 
