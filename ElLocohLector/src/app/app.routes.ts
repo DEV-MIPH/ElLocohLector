@@ -1,3 +1,13 @@
 import { Routes } from '@angular/router';
+import { LobbyComponent } from './pages/lobby/lobby.component';
+import { LoginComponent } from './pages/login/login.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [ 
+    /*cuando alguien entra a lobby estará cargado lobby component */
+    {path: 'lobby', component: LobbyComponent},
+    {path: 'login', component: LoginComponent},
+    /*path vacio manda a home (lobby) */
+    { path: '', redirectTo: '/lobby', pathMatch: 'full' }, 
+    /*path ** envés de mandar page 404 envía a lobby */
+    { path: '**', redirectTo: '/lobby' }
+];
