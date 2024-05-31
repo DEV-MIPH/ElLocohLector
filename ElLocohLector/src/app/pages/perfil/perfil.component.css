@@ -1,0 +1,144 @@
+
+/* Contenedor principal contenedorPrincipalPerfil*/
+/* Contenedor principal contenedorPrincipalPerfil*/
+
+.contenedorPrincipalPerfil {
+    display: grid;
+    margin-top: 30vh;
+    margin-bottom: 20vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+/* Primer Div contenedorImagenNombreButton */
+/* Primer Div contenedorImagenNombreButton */
+
+.contenedorImagenNombreButton {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+.contenedorDatosInstitucion {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.imgInstitucion {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    border-color: #17a2b8;
+    border-style: solid;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden; /* Asegura que la imagen no se salga del contenedor */
+    background: #ffffff;
+}
+
+.imgInstitucion img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    height: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    border-radius: 50%; /* Mantiene los bordes redondeados */
+}
+
+.contenedorBtns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Añade un espacio entre los botones */
+}
+
+#btns {
+    margin: 5px 0; /* Opcional: Espaciado adicional */
+    color: white; /* Color del texto */
+    background: #17a2b8; /* Color de fondo */
+    
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    border-width: 2px; /* Grosor del borde */
+    border-style: solid; /* Estilo del borde */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+#btns:hover {
+    background-color: #36C8F6; /* Color de fondo al pasar el cursor */
+    
+    transform: scale(1.1);
+}
+
+/* Segundo Div contenedorDatosInstitucion */
+/* Segundo Div contenedorDatosInstitucion */
+
+.ContenedorIcono {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el SVG y el texto */
+}
+
+.ContenedorIcono h2 {
+    margin: 0;
+}
+
+.contenedorFormField {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Añade un espacio entre los botones */
+
+    margin: 5px 0; /* Opcional: Espaciado adicional */
+    color: white; /* Color del texto */
+    background: #E0E0E0; /* Color de fondo */
+    
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    border-width: 2px; /* Grosor del borde */
+    border-style: solid; /* Estilo del borde */
+    font-size: 16px; /* Tamaño del texto */
+}
+
+label {
+    color:black;
+}
+
+#btnActualizar {
+    margin: 5px 0; /* Opcional: Espaciado adicional */
+    color: white; /* Color del texto */
+    background: #17a2b8; /* Color de fondo */
+    
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    border-width: 2px; /* Grosor del borde */
+    border-style: solid; /* Estilo del borde */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+#btnActualizar:hover {
+    background-color: #36C8F6; /* Color de fondo al pasar el cursor */
+}
+
+.error_message {
+    color: red; /* Cambia 'red' por el color que desees */
+    font-size: 0.9em; /* Ajusta el tamaño de la fuente si es necesario */
+    margin-top: 5px; /* Añade algo de margen superior para separar del input */
+}
+
+.form_error_message{
+    color: red; /* Cambia 'red' por el color que desees */
+    font-size: 1em; /* Ajusta el tamaño de la fuente si es necesario */
+    margin-top: 10px; /* Añade algo de margen superior para separar del formulario */
+}
+
+.form_success_message {
+    color: green; /* Cambia 'green' por el color que desees */
+    font-size: 1em; /* Ajusta el tamaño de la fuente si es necesario */
+    margin-top: 10px; /* Añade algo de margen superior para separar del formulario */
+}
