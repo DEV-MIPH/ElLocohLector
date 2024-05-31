@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div class="contenedorPrincipalPerfil">
+
+    <div class="contenedorImagenNombreButton">
+        <div class="imgInstitucion">
+            <img src="../../../assets/perfil_img/logoDuoc.png" alt="logoDuocUC">
+        </div>
+        <h2>Duoc UC</h2>
+        <div class="contenedorBtns">
+            <button mat-flat-button id="btns">Cambiar Contraseña</button>
+            <button mat-flat-button id="btns">Borrar Cuenta</button>
+        </div>
+    </div>
+
+    <div class="contenedorDatosInstitucion">
+        <div class="ContenedorIcono">
+            <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24">
+                <path fill="#17a2b8"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20" />
+            </svg>
+            <h2>Cuenta Institucional</h2>
+        </div>
+
+        <form [formGroup]="institucion" class="contenedorFormField" (ngSubmit)="onSubmit()">
+            <label for="rut">Rut Institución: </label>
+            <input id="rut" type="text" formControlName="rut">  
+            <span *ngIf="institucion.get('rut')?.invalid && (institucion.get('rut')?.dirty || institucion.get('rut')?.touched)" class="error_message">
+                Rut es requerido.
+            </span>
+
+            <label for="nombre">Nombre Institución: </label>
+            <input id="nombre" type="text" formControlName="nombre">  
+            <span *ngIf="institucion.get('nombre')?.invalid && (institucion.get('nombre')?.dirty || institucion.get('nombre')?.touched)" class="error_message">
+                Nombre es requerido.
+            </span>
+
+            <label for="direccion">Dirección Institución: </label>
+            <input id="direccion" type="text" formControlName="direccion"> 
+            <span *ngIf="institucion.get('direccion')?.invalid && (institucion.get('direccion')?.dirty || institucion.get('direccion')?.touched)" class="error_message">
+                Dirección es requerida.
+            </span>
+
+            <label for="email">Email Institución:</label>
+            <input placeholder="ejemplo@ejemplo.com" type="email" id="email" formControlName="email" required>
+            <span *ngIf="institucion.get('email')?.invalid && (institucion.get('email')?.dirty || institucion.get('email')?.touched)" class="error_message">
+                {{ getEmailErrorMessage() }}
+            </span>
+
+            <!-- Button actualizar y men sajes -->
+            <!-- Button actualizar y men sajes -->
+            
+            <button mat-flat-button id="btnActualizar" (click)="onSubmit()">Actualizar</button>
+
+            <div *ngIf="showError" class="form_error_message">
+                Por favor, corrija los errores en el formulario antes de continuar.
+            </div>
+
+            <div *ngIf="showSuccess" class="form_success_message">
+                El formulario se ha actualizado correctamente.
+            </div>
+
+        </form>
+    </div>
+
+    
+</div>
+
+<app-footer></app-footer>

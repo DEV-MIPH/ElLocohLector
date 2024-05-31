@@ -1,6 +1,6 @@
 .contenedorRegistro{
 /* Fondo de la imagen */
-    background-image: url('../../../assets/bodyImg/registro.png');
+    background-image: url('../../../assets/body_img/registro.png');
     background-size: 100% auto; 
     height: 900px;
     margin-top: 20px;
@@ -84,7 +84,7 @@ label, input, textarea {
 @media only screen and (max-width: 480px) {
     /* Ajustes para pantallas pequeñas */
     .contenedorRegistro {
-        background-image: url('../../../assets/bodyImg/registroMQuery.png');
+        background-image: url('../../../assets/body_img/registroMQuery.png');
         background-size: contain; /* La imagen de fondo se ajustará para contener todo el contenedor */
         background-position: center center; /* La imagen se posicionará en el centro */
     }
@@ -108,7 +108,7 @@ label, input, textarea {
 @media only screen and (max-width: 768px) {
     /* Ajustes para pantallas de tamaño medio */
     .contenedorRegistro {
-        background-image: url('../../../assets/bodyImg/registroMQuery.png');
+        background-image: url('../../../assets/body_img/registroMQuery.png');
         background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
         background-position: center center; /* La imagen se posicionará en el centro */
     }
@@ -131,7 +131,7 @@ label, input, textarea {
 @media only screen and (max-width: 1025px) {
     /* Ajustes para pantallas más grandes que 1024px */
     .contenedorRegistro {
-        background-image: url('../../../assets/bodyImg/registroMQuery.png');
+        background-image: url('../../../assets/body_img/registroMQuery.png');
         background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
         background-position: center center; /* La imagen se posicionará en el centro */
     }
