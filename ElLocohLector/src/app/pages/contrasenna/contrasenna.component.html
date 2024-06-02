@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="contenedorPrincipalPerfil">
+
+    <div class="contenedorImagenNombreButton">
+        <div class="imgInstitucion">
+            <img src="../../../assets/perfil_img/logoDuoc.png" alt="logoDuocUC">
+        </div>
+        <h2>Duoc UC</h2>
+        
+    </div>
+
+    <div class="contenedorDatosInstitucion">
+        <div class="ContenedorIcono">
+            <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24">
+                <path fill="#17a2b8"
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20" />
+            </svg>
+            <h2>Cambiar Contraseña</h2>
+        </div>
+
+        <form [formGroup]="contrasennaForm" class="contenedorPrincipalContrasenna" (ngSubmit)="onSubmit()">
+            <label for="nuevaContrasenna">Nueva Contraseña: </label>
+            <input id="nuevaContrasenna" type="password" formControlName="nuevaContrasenna">
+            <span *ngIf="nuevaContrasenna?.invalid && (nuevaContrasenna?.dirty || nuevaContrasenna?.touched)"
+                class="error-message">
+                La nueva contraseña es requerida y debe tener al menos 8 caracteres.
+            </span>
+
+            <label for="repetirContrasenna">Repetir Contraseña: </label>
+            <input id="repetirContrasenna" type="password" formControlName="repetirContrasenna">
+            <span *ngIf="repetirContrasenna?.invalid && (repetirContrasenna?.dirty || repetirContrasenna?.touched)"
+                class="error-message">
+                Debe repetir la contraseña.
+            </span>
+            <span *ngIf="repetirContrasenna?.hasError('mismatch')" class="error-message">
+                Las contraseñas no coinciden.
+            </span>
+
+            <div class="contenedorBtns">
+                <button mat-flat-button id="btnCancelar" (click)="cancelarContrasenna()">Cancelar y volver</button>
+                <button type="submit" id="btnConfirmar" mat-flat-button>Confirmar</button>
+            </div>
+            
+        </form>
+
+    </div>
+</div>
+
+<app-footer></app-footer>
