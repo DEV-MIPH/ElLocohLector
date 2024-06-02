@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FooterComponent } from "../../components/footer/footer.component";
 import { HeaderComponent } from "../../components/header/header.component";
 
@@ -30,7 +31,7 @@ export class PerfilComponent {
     showError: boolean = false;
     showSuccess: boolean = false;
 
-    constructor() {}
+    constructor(private router: Router) {}
 
     getEmailErrorMessage() {
         const emailControl = this.institucion.get('email');
@@ -55,6 +56,11 @@ export class PerfilComponent {
             this.showError = true;
             this.showSuccess = false;
         }
+    }
+
+    //Para navegar a componente Contrasenna al apretar el button de cambiar de contraseña
+    cambiarContrasenna() {
+        this.router.navigate(['/contrasenna']);
     }
 
 }
