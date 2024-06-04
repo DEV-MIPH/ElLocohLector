@@ -3,6 +3,8 @@ import { LobbyComponent } from './pages/lobby/lobby.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ContrasennaComponent } from './pages/contrasenna/contrasenna.component';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 export const routes: Routes = [ 
     /*cuando alguien entra a lobby estará cargado lobby component */
@@ -15,3 +17,9 @@ export const routes: Routes = [
     /*path ** envés de mandar page 404 envía a lobby */
     { path: '**', redirectTo: '/lobby' }
 ];
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+
+export class AppRoutingModule { }
