@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ConnectService {
 
   data: any = [];
-  apiUrl = 'http://44.203.69.173:3000/libros'; // URL de tu API
+  apiUrl = 'https://ellocohlector-connect.onrender.com:3000/libros'; // URL de tu API
 
   constructor(private http: HttpClient) { }
 
