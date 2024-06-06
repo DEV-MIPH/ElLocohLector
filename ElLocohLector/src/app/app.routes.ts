@@ -1,13 +1,14 @@
-import { Routes } from '@angular/router';
+import { Routes,RouterModule } from '@angular/router';
 import { LobbyComponent } from './pages/lobby/lobby.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ContrasennaComponent } from './pages/contrasenna/contrasenna.component';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [ 
     /*cuando alguien entra a lobby estará cargado lobby component */
+    {path: 'admin', component: AdminComponent},
     {path: 'lobby', component: LobbyComponent},
     {path: 'login', component: LoginComponent},
     {path: 'perfil', component: PerfilComponent},
