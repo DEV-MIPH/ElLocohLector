@@ -1,0 +1,80 @@
+<!--LIBROS DE BASE DE DATOS - SOLO ADMINISTRADOR-->
+<!--LIBROS DE BASE DE DATOS - SOLO ADMINISTRADOR-->
+
+<div class="books-container">
+    <h2>Libros Disponibles</h2>
+
+
+    <div class="search-container">
+        <label for="title">Título:</label>
+        <input [(ngModel)]="searchTitle" (ngModelChange)="filtrarLibros()" placeholder="Buscar título">
+        <label for="author">Autor:</label>
+        <input [(ngModel)]="searchAuthor" (ngModelChange)="filtrarLibros()" placeholder="Buscar autor">
+
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Título Column -->
+        <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef> Título </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.titulo}} </td>
+        </ng-container>
+
+        <!-- Autor Column -->
+        <ng-container matColumnDef="autor">
+            <th mat-header-cell *matHeaderCellDef> Autor </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.Autor}} </td>
+        </ng-container>
+
+        <!-- Editorial Column -->
+        <ng-container matColumnDef="editorial">
+            <th mat-header-cell *matHeaderCellDef> Editorial </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.Editorial}} </td>
+        </ng-container>
+
+        <!-- Categoría Column -->
+        <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef> Categoría </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.Categoria}} </td>
+        </ng-container>
+
+        <!-- Edición Column -->
+        <ng-container matColumnDef="edicion">
+            <th mat-header-cell *matHeaderCellDef> Edición </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.edicion}} </td>
+        </ng-container>
+
+        <!-- Cantidad Column -->
+        <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.cantidad}} </td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let libro">
+
+                <div class="btnEditarEliminar">
+                <button mat-flat-button (click)="editarLibro(libro)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+                        <path fill="#17a2b8" d="m14.06 9l.94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/>
+                    </svg>
+                    Editar
+                </button>
+                <button mat-flat-button (click)="eliminarLibro(libro)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+                        <path fill="#17a2b8" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"/>
+                    </svg>
+                    Eliminar
+                </button>
+            </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10]"></mat-paginator>
+</div>

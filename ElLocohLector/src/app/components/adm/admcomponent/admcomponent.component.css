@@ -1,0 +1,75 @@
+/* Contenedor Principal */
+.contenedorAdmin {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+  padding-top: 64px; /* Espacio para la toolbar fija */
+}
+
+/* Toolbar Material Angular */
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20vh;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  }
+  
+  #tituloToolbar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-color: #ffff;
+    border-style: solid;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    color: white;
+    font-size: 16px;
+  }
+  
+  
+/* Contenedor de button */  
+
+  .contenedorBtnAgregar {
+    margin-top: 5vh; /* Espacio entre la toolbar y el botón */
+    margin-bottom: 10vh;
+  }
+  
+  #buttonAgregar{
+    
+    background-color: #17a2b8;
+    color: #fff;
+
+    cursor: pointer;
+    transition: all 0.5s;
+    font-size: medium;
+  }
+
+  #buttonAgregar:hover {
+    transform: scale(1.1);
+  }

@@ -21,4 +21,9 @@ export class ConnectService {
     return this.http.get<any>(this.apiUrl);
   }
 
+  agregarLibro(libro: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, libro); // La URL ya contiene 'libros'
+  }
+  
+
 }

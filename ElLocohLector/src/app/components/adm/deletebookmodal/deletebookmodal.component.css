@@ -1,0 +1,26 @@
+.modal-content {
+    background-color: #EEEEEE;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  .mat-dialog-actions {
+    display: flex;
+    margin-top: 5vh;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  #btnCancelar{
+    background-color: #ccc;
+    color: black;
+  }
+
+  #btnEliminar {
+    background-color: #f44336; /* Color rojo para resaltar el botón de eliminación */
+    color: white;
+  }
