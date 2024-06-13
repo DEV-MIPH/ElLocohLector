@@ -24,6 +24,13 @@ export class ConnectService {
   agregarLibro(libro: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, libro); // La URL ya contiene 'libros'
   }
+
+  login(email: string, password: string) {
+    console.log('Iniciando usuario:', email);
+    const url = 'http://localhost:3001/login';
+    const body = { email, password };
+    return this.http.post(url, body);
+  }
   
 
 }

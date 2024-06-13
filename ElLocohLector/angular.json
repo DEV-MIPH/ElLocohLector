@@ -90,6 +90,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/el-locoh-lector",
+            "netlifyToken": "",
+            "siteId": ""
+          }
         }
       }
     }
