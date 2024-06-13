@@ -27,11 +27,6 @@
             <input type="text" id="edicion" name="edicion" [(ngModel)]="libro.edicion" required>
         </div>
 
-        <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" name="cantidad" [(ngModel)]="libro.cantidad" required>
-        </div>
-
         <div class="mat-dialog-actions">
             <button mat-button id="btnCancelar" type="button" (click)="closeDialog()">Cancelar</button>
             <button mat-button id="btnGuardar" type="submit" [disabled]="!bookForm.form.valid">Guardar</button>

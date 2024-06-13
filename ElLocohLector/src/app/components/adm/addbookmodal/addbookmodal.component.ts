@@ -21,7 +21,6 @@ export class AddbookmodalComponent {
     editorial: '',
     categoria: '',
     edicion: '',
-    cantidad: 0
   };
 
   /*Constructor de modal*/

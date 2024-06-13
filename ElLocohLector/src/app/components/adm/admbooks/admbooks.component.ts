@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 import { EditbookmodalComponent } from '../editbookmodal/editbookmodal.component';
 import { DeletebookmodalComponent } from '../deletebookmodal/deletebookmodal.component';
@@ -18,7 +19,7 @@ import { DeletebookmodalComponent } from '../deletebookmodal/deletebookmodal.com
 @Component({
   selector: 'app-admbooks',
   standalone: true,
-  imports: [FormsModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,EditbookmodalComponent],
+  imports: [FormsModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,EditbookmodalComponent],
   templateUrl: './admbooks.component.html',
   styleUrl: './admbooks.component.css'
 })
@@ -34,7 +35,7 @@ export class AdmbooksComponent implements OnInit, AfterViewInit, OnDestroy  {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
+  constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.librosSubscription = this.connectService.getLibros().subscribe(
@@ -46,7 +47,10 @@ export class AdmbooksComponent implements OnInit, AfterViewInit, OnDestroy  {
       },
       error => {
         console.error('Error al obtener datos:', error);
-      }
+        this.snackBar.open('Error al cargar los libros. Inténtelo nuevamente.', 'Cerrar', {
+          duration: 3000,
+        });
+        }
     );
   }
 

@@ -20,7 +20,6 @@ export class EditbookmodalComponent {
     editorial: '',
     categoria: '',
     edicion: '',
-    cantidad: 0
   };
 
   constructor(public dialogRef: MatDialogRef<EditbookmodalComponent>) {}
