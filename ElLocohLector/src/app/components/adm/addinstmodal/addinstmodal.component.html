@@ -1,0 +1,22 @@
+<div class="modalAddInst">
+    <h2 mat-dialog-title>Registrar una Institución</h2>
+    <form (ngSubmit)="onSubmit()" #instForm="ngForm" class="formContenido">
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" [(ngModel)]="nuevaInstitucion.email" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" [(ngModel)]="nuevaInstitucion.password" required>
+      </div>
+  
+      <div class="mat-dialog-actions">
+        <button mat-button id="btnCancelar" type="button" (click)="closeDialog()">Cancelar</button>
+        <button mat-button id="btnAnnadir" type="submit" [disabled]="!instForm.form.valid">Añadir</button>
+      </div>
+  
+    </form>
+  </div>
+  

@@ -21,7 +21,14 @@
 
         <div>
             <!-- routerlink actua como href en este caso redirige a login -->
-            <button routerLink="/login" mat-flat-button id="login">Ingresar</button>
+            <button *ngIf="!isLoggedIn" routerLink="/login" mat-flat-button id="login">Ingresar</button>
+
+            <button *ngIf="isLoggedIn" id="profile" mat-button [matMenuTriggerFor]="menu" >Mi Perfil</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
+                <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+            </mat-menu>
+
         </div>
 
     </div>

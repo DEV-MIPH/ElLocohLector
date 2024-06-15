@@ -4,7 +4,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { ConnectService } from '../../modules/lobby/services/connect.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../../auth.service';
 
 
 
@@ -21,19 +21,22 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private connectService: ConnectService, private router:Router) { }
+  constructor(private connectService: ConnectService, private router:Router, private authService: AuthService) { }
 
   onSubmit() {
-    this.connectService.login(this.email, this.password)
-      .subscribe(
-        (response) => {
+    this.authService.login(this.email, this.password).subscribe(
+      (response) => {
+        if (response) {
           console.log('Usuario iniciado:', response);
           this.router.navigate(['/lobby']);
-        },
-        (error) => {
-          console.error('Error al iniciar usuario:', error);
+        } else {
+          console.error('Credenciales inválidas');
         }
-      );
+      },
+      (error) => {
+        console.error('Error al iniciar usuario:', error);
+      }
+    );
   }
 
 }

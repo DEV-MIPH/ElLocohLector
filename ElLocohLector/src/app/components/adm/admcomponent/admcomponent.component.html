@@ -2,37 +2,44 @@
 <!--COMPONENTE PRINCIPAL QUE RECOPILA LOS OTROS COMPONENTES DE ESTA CARPETA, SE DESPLIEGA EN PAGE ADMIN-->
 
 <div class="contenedorAdmin">
-    <mat-toolbar color="primary" id="toolbar">
-      <span id="tituloToolbar">Portal Registro de libros</span>
-      <span class="spacer"></span>
-      <div class="user-info">
-        <!-- Modificar aqui para actualizarlo con imagen admin -->
-        <img class="user-avatar" src="../../../assets/perfil_img/logoDuoc.png" alt="User Avatar">
-        <!-- Modificar aqui para actualizarlo con nombre admin -->
-        <span class="user-name">DUOC UC</span>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="navegarPerfil()">Perfil</button>
-          <button mat-menu-item>Cerrar sesión</button>
-        </mat-menu>
-      </div>
-    </mat-toolbar>
-    
-
-    <!--SE TRAE COMPONENTE DE LIBROS-->
-    <!--SE TRAE COMPONENTE DE LIBROS-->
-    <app-admbooks></app-admbooks>
+  <mat-toolbar color="primary" id="toolbar">
+    <span id="tituloToolbar">Portal Registro de libros</span>
+    <span class="spacer"></span>
+    <div class="user-info">
+      <!-- Modificar aqui para actualizarlo con imagen admin -->
+      <img class="user-avatar" src="../../../assets/perfil_img/logoDuoc.png" alt="User Avatar">
+      <!-- Modificar aqui para actualizarlo con nombre admin -->
+      <span class="user-name">DUOC UC</span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="navegarPerfil()">Perfil</button>
+        <button mat-menu-item>Cerrar sesión</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
 
 
-    <!--BUTTON QUE DESPLIEGA MODAL DE AGREGAR LIBRO-->
-    <div class="contenedorBtnAgregar">
-      <button mat-flat-button color="primary" id=buttonAgregar matTooltip="Haz click para añadir un libro"
-        matTooltipPosition="right" (click)="openDialog()">
+  <!--SE TRAE COMPONENTE DE LIBROS-->
+  <!--SE TRAE COMPONENTE DE LIBROS-->
+  <app-admbooks></app-admbooks>
+
+
+  <!--BUTTON QUE DESPLIEGA MODAL DE AGREGAR LIBRO Y AGREGAR INSTITUCION-->
+  <div class="contenedorBtnAgregar">
+    <div class="btn-group">
+      <button mat-flat-button color="primary" id="buttonAgregar" matTooltip="Haz click para añadir un libro"
+        matTooltipPosition="below" (click)="openDialog()">
         Añadir un libro
       </button>
-    </div>
 
-    
+      <button mat-flat-button color="primary" id="buttonAgregar" matTooltip="Haz click para añadir una institución"
+        matTooltipPosition="below" (click)="openDialogInst()">
+        Añadir Institución
+      </button>
+    </div>
   </div>
+
+
+</div>

@@ -1,23 +1,45 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject,Observable  } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  // private loggedIn = false; // Simula el estado de autenticación
+  private isLoggedInSubject: BehaviorSubject<boolean>;
 
-  // constructor() {}
+  public isLoggedIn: Observable<boolean>;
 
-  // login() {
-  //   this.loggedIn = true;
-  // }
+  constructor() {
+    const savedLoginStatus = localStorage.getItem('isLoggedIn') === 'true';
+    this.isLoggedInSubject = new BehaviorSubject<boolean>(savedLoginStatus);
+    this.isLoggedIn = this.isLoggedInSubject.asObservable();
+   }
 
-  // logout() {
-  //   this.loggedIn = false;
-  // }
+  setLoggedIn(value: boolean) {
+    this.isLoggedInSubject.next(value);
+    localStorage.setItem('isLoggedIn', value.toString());
+  }
 
-  // isLoggedIn() {
-  //   return this.loggedIn;
-  // }
+  login(email: string, password: string): Observable<boolean> {
+    // Aquí deberías implementar la lógica de autenticación
+    // En este ejemplo, simulamos una autenticación exitosa con credenciales fijas
+    if (email === 'admin@admin.cl' && password === 'admin1234') {
+      this.setLoggedIn(true);
+      return new Observable<boolean>(observer => {
+        observer.next(true);
+        observer.complete();
+      });
+    } else {
+      return new Observable<boolean>(observer => {
+        observer.next(false);
+        observer.complete();
+      });
+    }
+  }
+
+  logout() {
+    this.setLoggedIn(false); // Cambia el estado de isLoggedIn a false
+    localStorage.removeItem('isLoggedIn');
+  }
 }

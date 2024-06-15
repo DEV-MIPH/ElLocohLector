@@ -10,7 +10,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AfterViewInit } from '@angular/core';
-import { AuthService } from '../../auth.service';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -34,7 +33,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, private authService: AuthService, private snackBar: MatSnackBar) { }
+  constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.librosSubscription = this.connectService.getLibros().subscribe(
@@ -73,9 +72,4 @@ export class BooksComponent implements OnInit, AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  solicitarLibro(libro: any): void {
-    console.log('Solicitando libro:', libro);
-    // Aquí implementas la lógica para solicitar el libro
-    // Por ejemplo, podrías llamar a un servicio que maneje las solicitudes
-  }
 }

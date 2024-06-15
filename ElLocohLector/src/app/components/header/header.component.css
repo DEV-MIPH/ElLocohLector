@@ -56,6 +56,20 @@ header {
     background: #36C8F6;
 }
 
+#profile{
+    margin-top: 5%;
+    margin-left: 60%; /* Mover el botón de ingresar al extremo derecho */
+    color: #fff;
+    background: #36C8F6;
+}
+
+#logout {
+    margin-top: 5%;
+    margin-left: 60%; /* Mover el botón de ingresar al extremo derecho */
+    color: #fff;
+    background: #36C8F6;
+}
+
 /* Media query para dispositivos pequeños (320px y más pequeños) */
 @media only screen and (max-width: 320px) {
     /* Ajustes para dispositivos pequeños */
@@ -73,6 +87,16 @@ header {
     }
 
     #login {
+        margin-left: 10%;
+        margin-top: 5%;
+        font-size: 8px;
+    }
+    #profile {
+        margin-left: 10%;
+        margin-top: 5%;
+        font-size: 8px;
+    }
+    #logout {
         margin-left: 10%;
         margin-top: 5%;
         font-size: 8px;
@@ -100,6 +124,16 @@ header {
         margin-top: 10%;
         font-size: 10px;
     }
+    #profile {
+        margin-left: 30%;
+        margin-top: 10%;
+        font-size: 10px;
+    }
+    #logout {
+        margin-left: 30%;
+        margin-top: 10%;
+        font-size: 10px;
+    }
 }
 
 /* Media query para dispositivos grandes (de 769px en adelante) */
@@ -119,6 +153,16 @@ header {
     }
 
     #login {
+        margin-left: 60%;
+        margin-top: 5%;
+        font-size: 12px;
+    }
+    #profile {
+        margin-left: 60%;
+        margin-top: 5%;
+        font-size: 12px;
+    }
+    #logout {
         margin-left: 60%;
         margin-top: 5%;
         font-size: 12px;

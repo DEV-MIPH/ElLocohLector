@@ -58,6 +58,13 @@
   .contenedorBtnAgregar {
     margin-top: 5vh; /* Espacio entre la toolbar y el botón */
     margin-bottom: 10vh;
+    display: flex;
+  justify-content: center;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
   }
   
   #buttonAgregar{
