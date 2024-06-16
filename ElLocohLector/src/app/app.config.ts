@@ -6,5 +6,5 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync()],
+  providers: [provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()],
 };

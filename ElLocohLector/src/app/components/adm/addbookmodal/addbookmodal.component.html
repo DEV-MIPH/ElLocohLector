@@ -1,37 +1,65 @@
 <div class="modalAddBook">
+  <h2 mat-dialog-title>Registrar un libro</h2>
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm" class="formContenido">
 
-    <h2 mat-dialog-title>Registrar un libro</h2>
-    <form (ngSubmit)="onSubmit()" #bookForm="ngForm" class="formContenido">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Título</mat-label>
+        <input type="text" matInput [(ngModel)]="nuevoLibro.titulo_libro" name="titulo" required>
+      </mat-form-field>
+    </div>
 
-      <div class="form-group">
-        <label for="titulo">Título</label>
-        <input type="text" id="titulo" name="titulo" [(ngModel)]="nuevoLibro.titulo" required>
-      </div>
-    
-      <div class="form-group">
-        <label for="autor">Autor</label>
-        <input type="text" id="autor" name="autor" [(ngModel)]="nuevoLibro.autor" required>
-      </div>
-    
-      <div class="form-group">
-        <label for="editorial">Editorial</label>
-        <input type="text" id="editorial" name="editorial" [(ngModel)]="nuevoLibro.editorial" required>
-      </div>
-    
-      <div class="form-group">
-        <label for="categoria">Categoría</label>
-        <input type="text" id="categoria" name="categoria" [(ngModel)]="nuevoLibro.categoria" required>
-      </div>
-    
-      <div class="form-group">
-        <label for="edicion">Edición</label>
-        <input type="text" id="edicion" name="edicion" [(ngModel)]="nuevoLibro.edicion" required>
-      </div>
-          
-        <div class="mat-dialog-actions">
-          <button mat-button id="btnCancelar" type="button" (click)="closeDialog()">Cancelar</button>
-          <button mat-button id="btnAnnadir" type="submit" [disabled]="!bookForm.form.valid">Añadir</button>
-        </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Autor</mat-label>
+        <input type="text" matInput [formControl]="autorControl" [matAutocomplete]="autoAutor">
+        <mat-autocomplete #autoAutor="matAutocomplete">
+          <mat-option *ngFor="let option of filteredAutores | async" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
-      </form>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Editorial</mat-label>
+        <input type="text" matInput [formControl]="editorialControl" [matAutocomplete]="autoEditorial">
+        <mat-autocomplete #autoEditorial="matAutocomplete">
+          <mat-option *ngFor="let option of filteredEditoriales | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Categoría</mat-label>
+        <input type="text" matInput [formControl]="categoriaControl" [matAutocomplete]="autoCategoria">
+        <mat-autocomplete #autoCategoria="matAutocomplete">
+          <mat-option *ngFor="let option of filteredCategorias | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Edición</mat-label>
+        <input type="text" matInput [formControl]="edicionControl" [matAutocomplete]="autoEdicion">
+        <mat-autocomplete #autoEdicion="matAutocomplete">
+          <mat-option *ngFor="let option of filteredEdiciones | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="mat-dialog-actions">
+      <button mat-button id="btnCancelar" type="button" (click)="closeDialog()">Cancelar</button>
+      <button mat-button id="btnAnnadir" type="submit" [disabled]="!bookForm.form.valid">Añadir</button>
+    </div>
+  </form>
 </div>
