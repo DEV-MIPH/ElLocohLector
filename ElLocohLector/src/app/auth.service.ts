@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject,Observable  } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getAuth,signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 
 
 @Injectable({
@@ -22,19 +22,18 @@ export class AuthService {
     const savedLoginStatus = localStorage.getItem('isLoggedIn') === 'true';
     this.isLoggedInSubject = new BehaviorSubject<boolean>(savedLoginStatus);
     this.isLoggedIn = this.isLoggedInSubject.asObservable();
-   }
+  }
 
-   getAuth() {
+  getAuth() {
     return getAuth();
-   }
+  }
 
-  setLoggedIn(value: boolean,email?: string) {
+  setLoggedIn(value: boolean, email?: string) {
     this.isLoggedInSubject.next(value);
     localStorage.setItem('isLoggedIn', value.toString());
-    if(email){
+    if (email) {
       localStorage.setItem('email', email);
     }
-   
   }
 
   // login(email: string, password: string): Observable<boolean> {
@@ -56,12 +55,12 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      const result = await signInWithEmailAndPassword(getAuth(),email, password);
-      if(result.user != null) {
+      const result = await signInWithEmailAndPassword(getAuth(), email, password);
+      if (result.user != null) {
         console.log('Usuario autenticado:', result.user);
-        this.setLoggedIn(true,email);
+        this.setLoggedIn(true, email);
         return true;
-      }else {
+      } else {
         return false;
       }
     } catch (error) {
@@ -69,8 +68,33 @@ export class AuthService {
     }
   }
 
+  async register(email: string, password: string) {
+    try {
+      const result = createUserWithEmailAndPassword(getAuth(),email, password);
+      console.log('Usuario registrado:', result);
+      if((await result).user != null) {
+        return true;
+      }else{
+        return false;
+      }
+    }catch (error) {
+      console.error('Error al registrar:', error);
+      return false;
+    }
+  }
+
+  async forgetPassword(email: string) {
+    try {
+      sendPasswordResetEmail(getAuth(),email);
+      return true;
+    } catch (error) {
+      console.error('Error al restablecer contraseña:', error);
+      return false;
+    }
+  }
+
   logout() {
-    this.setLoggedIn(false,undefined); // Cambia el estado de isLoggedIn a false
+    this.setLoggedIn(false, undefined); // Cambia el estado de isLoggedIn a false
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('email');
   }

@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ForgetPasswordComponent } from '../../components/forget-password/forget-password.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent,FooterComponent,FormsModule],
+  imports: [HeaderComponent,FooterComponent,FormsModule,ForgetPasswordComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,7 +24,7 @@ export class LoginComponent {
   password: string = '';
   
 
-  constructor(private router:Router, private authService: AuthService,private snackBar: MatSnackBar) { }
+  constructor(private router:Router, private authService: AuthService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   async onSubmit() {
     try {
@@ -40,5 +42,16 @@ export class LoginComponent {
       console.error('Error al autenticar:', error);
     }
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ForgetPasswordComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El modal ha sido cerrado');
+    });
+  }
+
+  
 
 }
