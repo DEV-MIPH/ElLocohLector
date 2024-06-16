@@ -9,6 +9,10 @@ export class ConnectService {
 
   data: any = [];
   apiUrl = 'http://localhost:3000/libros'; // URL de tu API
+  apiUrlAutores = 'http://localhost:3000/autores';
+  apiUrlCategorias = 'http://localhost:3000/categorias';
+  apiUrlEditoriales = 'http://localhost:3000/editoriales';
+  apiUrlEdiciones = 'http://localhost:3000/ediciones';
 
   constructor(private http: HttpClient) { }
 
@@ -16,9 +20,21 @@ export class ConnectService {
 
   }
   
-  
+  //funciones get para obtener url
   getLibros(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
+  }
+  getAutores(): Observable<any> {
+    return this.http.get<any>(this.apiUrlAutores);
+  }
+  getCategorias(): Observable<any> {
+    return this.http.get<any>(this.apiUrlCategorias);
+  }
+  getEditoriales(): Observable<any> {
+    return this.http.get<any>(this.apiUrlEditoriales);
+  }
+  getEdiciones(): Observable<any> {
+    return this.http.get<any>(this.apiUrlEdiciones);
   }
 
   agregarLibro(libro: any): Observable<any> {
