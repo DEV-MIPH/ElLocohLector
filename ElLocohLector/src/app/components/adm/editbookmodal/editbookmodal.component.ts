@@ -39,7 +39,7 @@ export class EditbookmodalComponent implements OnInit {
   allAutores?: Subscription;
   nombreAutores: any = [];
   listaAutores: any = [];
-  
+
   allEditoriales: string[] = ['Editorial1', 'Editorial2', 'Editorial3'];
   allCategorias: string[] = ['Categoria1', 'Categoria2', 'Categoria3'];
   allEdiciones: string[] = ['Edicion1', 'Edicion2', 'Edicion3'];
@@ -62,14 +62,13 @@ export class EditbookmodalComponent implements OnInit {
       response => {
         console.log('Datos obtenidos:', response);
         this.listaAutores = response;
+        this.getNombresAutores();
+        console.log('Autores:', this.nombreAutores);
       },
       error => {
         console.error('Error al obtener datos:', error);
       }
     );
-
-    this.getNombresAutores();
-    console.log(this.nombreAutores);
 
     // Initialize filtered options for each control
     this.filteredTitulos = this.tituloControl.valueChanges.pipe(
@@ -93,10 +92,12 @@ export class EditbookmodalComponent implements OnInit {
       map(value => this._filter(value, this.allEdiciones))
     );
   }
+
   private _filter(value: string, options: string[]): string[] {
     const filterValue = value.toLowerCase();
     return options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
   closeDialog(): void {
     this.dialogRef.close();
   }
@@ -111,9 +112,15 @@ export class EditbookmodalComponent implements OnInit {
     console.log('Libro editado:', this.libro);
     this.dialogRef.close(this.libro);
   }
-  getNombresAutores() : void{
-    for(let autor of this.listaAutores){
-      this.nombreAutores.push(autor.nombre_autor)
+
+  getNombresAutores(): void {
+    for (let autor of this.listaAutores) {
+      if(autor.apellido_autor == null){
+        this.nombreAutores.push(autor.nombre_autor)
+      }else{
+        this.nombreAutores.push(autor.nombre_autor + " " + autor.apellido_autor)
+      }
+     
     }
   };
 }
