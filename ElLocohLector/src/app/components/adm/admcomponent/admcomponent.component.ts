@@ -17,14 +17,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admcomponent',
   standalone: true,
-  imports: [MatCardModule,MatIconModule,MatButtonModule,MatToolbarModule,MatMenuModule,MatTooltipModule,AdmbooksComponent,
-    MatFormFieldModule,MatInputModule,FormsModule,MatDialogModule,AddbookmodalComponent,AddinstmodalComponent],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, MatToolbarModule, MatMenuModule, MatTooltipModule, AdmbooksComponent,
+    MatFormFieldModule, MatInputModule, FormsModule, MatDialogModule, AddbookmodalComponent, AddinstmodalComponent],
   templateUrl: './admcomponent.component.html',
   styleUrl: './admcomponent.component.css'
 })
 export class AdmcomponentComponent {
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(public dialog: MatDialog, private router: Router) { }
 
   /*Agregar libro*/
   openDialog(): void {
@@ -54,7 +54,7 @@ export class AdmcomponentComponent {
   navegarPerfil() {
     console.log('llegue aqui')
     this.router.navigate(['/perfil']);
-}
+  }
 
-  
+
 }

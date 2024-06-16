@@ -7,24 +7,28 @@
                 <div class="form-container">
                     <form (ngSubmit)="onSubmit()">
                         <h3 class="form-title">Login</h3>
-                    
+
                         <div class="form-group">
-                            <input type="email" id="email" class="form-control" required [(ngModel)]="email" name="email" />
+                            <input type="email" id="email" class="form-control" required [(ngModel)]="email"
+                                name="email" />
                             <label for="email" class="form-label">Usuario</label>
                         </div>
-                    
+
                         <div class="form-group">
-                            <input type="password" id="password" class="form-control" required [(ngModel)]="password" name="password" />
+                            <input type="password" id="password" class="form-control" required [(ngModel)]="password"
+                                name="password" />
                             <label for="password" class="form-label">Contraseña</label>
                         </div>
-                    
+
                         <div class="form-actions">
                             <button type="submit" class="btn">Ingresar</button>
                         </div>
-                    
-                        <p class="forgot-password"><a href="#!">¿Olvidaste la contraseña?</a></p>
+
+                        <div matTooltip="Recuperar Contraseña" matTooltipPosition="below" (click)="openDialog()">
+                            <a class="forget-password">¿Olvidaste tu contraseña?</a>
+                        </div>
                     </form>
-                    
+
                 </div>
 
             </div>

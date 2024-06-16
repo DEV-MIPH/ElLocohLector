@@ -11,5 +11,5 @@ import { FooterComponent } from '../../components/footer/footer.component';
   styleUrl: './lobby.component.css'
 })
 export class LobbyComponent {
-
+  
 }
