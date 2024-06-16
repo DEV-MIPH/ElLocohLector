@@ -42,7 +42,23 @@ export class ConnectService {
   }
 
   agregarLibro(libro: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, libro); // La URL ya contiene 'libros'
+    return this.http.post<any>(this.apiUrl, libro);
+  }
+
+  agregarAutor(autor: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlAutores, autor);
+  }
+
+  agregarCategoria(categoria: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlCategorias, categoria);
+  }
+
+  agregarEditorial(editorial: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlEditoriales, editorial);
+  }
+
+  agregarEdicion(edicion: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlEdiciones, edicion);
   }
 
   login(email: string, password: string) {
