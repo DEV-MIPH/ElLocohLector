@@ -1,0 +1,39 @@
+.contenedorTitulo {
+    text-align: center;
+    margin-top: 20vh;
+  }
+  
+  .contenedorPrincipalPedidos {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .imagen { 
+    flex: 1 1 40%; /* Crece y se encoge para ocupar el 40% del contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imagen img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .tabla {
+    flex: 1 1 55%; /* Crece y se encoge para ocupar el 55% del contenedor */
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+  }
+  
