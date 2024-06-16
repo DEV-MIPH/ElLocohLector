@@ -68,8 +68,54 @@ export class EditbookmodalComponent implements OnInit {
     this.categoriaControl.setValue(this.libro.categoria);
     this.edicionControl.setValue(this.libro.edicion);
 
+    // Initialize filtered options for each control
+    this.filteredTitulos = this.tituloControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value, this.nombreTitulos))
+    );
+    this.filteredAutores = this.autorControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value, this.nombreAutores))
+    );
+    this.filteredEditoriales = this.editorialControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value, this.nombreEditoriales))
+    );
+    this.filteredCategorias = this.categoriaControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value, this.nombreCategorias))
+    );
+    this.filteredEdiciones = this.edicionControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value, this.nombreEdiciones))
+    );
 
-    //Suscribe de autores
+    this.getAllDataForAutcomplete();
+  }
+
+  private _filter(value: string, options: string[]): string[] {
+    const filterValue = value.toLowerCase();
+    return options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  onSubmit(): void {
+    this.libro.titulo = this.tituloControl.value;
+    this.libro.autor = this.autorControl.value;
+    this.libro.editorial = this.editorialControl.value;
+    this.libro.categoria = this.categoriaControl.value;
+    this.libro.edicion = this.edicionControl.value;
+
+    console.log('Libro editado:', this.libro);
+    this.dialogRef.close(this.libro);
+  }
+
+  //funcion para autores
+
+  getAllDataForAutcomplete(): void { 
     this.allAutores = this.connectService.getAutores().subscribe(
       response => {
         console.log('Datos obtenidos:', response);
@@ -121,51 +167,8 @@ export class EditbookmodalComponent implements OnInit {
       }
     );
 
-
-    // Initialize filtered options for each control
-    this.filteredTitulos = this.tituloControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value, this.nombreTitulos))
-    );
-    this.filteredAutores = this.autorControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value, this.nombreAutores))
-    );
-    this.filteredEditoriales = this.editorialControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value, this.nombreEditoriales))
-    );
-    this.filteredCategorias = this.categoriaControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value, this.nombreCategorias))
-    );
-    this.filteredEdiciones = this.edicionControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value, this.nombreEdiciones))
-    );
   }
 
-  private _filter(value: string, options: string[]): string[] {
-    const filterValue = value.toLowerCase();
-    return options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
-  onSubmit(): void {
-    this.libro.titulo = this.tituloControl.value;
-    this.libro.autor = this.autorControl.value;
-    this.libro.editorial = this.editorialControl.value;
-    this.libro.categoria = this.categoriaControl.value;
-    this.libro.edicion = this.edicionControl.value;
-
-    console.log('Libro editado:', this.libro);
-    this.dialogRef.close(this.libro);
-  }
-
-  //funcion para autores
   getNombresAutores(): void {
     for (let autor of this.listaAutores) {
       if(autor.apellido_autor == null){
