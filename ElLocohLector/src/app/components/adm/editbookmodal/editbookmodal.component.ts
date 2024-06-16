@@ -34,15 +34,25 @@ export class EditbookmodalComponent implements OnInit {
   filteredEdiciones!: Observable<string[]>;
 
   // Example data for autocomplete. Replace with actual data.
-  allTitulos: string[] = ['Titulo1', 'Titulo2', 'Titulo3'];
+  allTitulos?: Subscription;
+  nombreTitulos: any = [];
+  listaTitulos: any = [];
 
   allAutores?: Subscription;
   nombreAutores: any = [];
   listaAutores: any = [];
 
-  allEditoriales: string[] = ['Editorial1', 'Editorial2', 'Editorial3'];
-  allCategorias: string[] = ['Categoria1', 'Categoria2', 'Categoria3'];
-  allEdiciones: string[] = ['Edicion1', 'Edicion2', 'Edicion3'];
+  allEditoriales?: Subscription;
+  nombreEditoriales: any = [];
+  listaEditoriales: any = [];
+
+  allCategorias?: Subscription;
+  nombreCategorias: any = [];
+  listaCategorias: any = [];
+
+  allEdiciones?: Subscription;
+  nombreEdiciones: any = [];
+  listaEdiciones: any = [];
 
   constructor(
     private connectService: ConnectService, public dialogRef: MatDialogRef<EditbookmodalComponent>,
@@ -58,6 +68,8 @@ export class EditbookmodalComponent implements OnInit {
     this.categoriaControl.setValue(this.libro.categoria);
     this.edicionControl.setValue(this.libro.edicion);
 
+
+    //Suscribe de autores
     this.allAutores = this.connectService.getAutores().subscribe(
       response => {
         console.log('Datos obtenidos:', response);
@@ -70,10 +82,50 @@ export class EditbookmodalComponent implements OnInit {
       }
     );
 
+    //Suscribe de editoriales
+    this.allEditoriales = this.connectService.getEditoriales().subscribe(
+      response => {
+        console.log('Datos obtenidos:', response);
+        this.listaEditoriales = response;
+        this.getNombresEditoriales();
+        console.log('Editoriales:', this.nombreEditoriales);
+      },
+      error => {
+        console.error('Error al obtener datos:', error);
+      }
+    );
+
+    //Suscribe de categorias
+    this.allCategorias = this.connectService.getCategorias().subscribe(
+      response => {
+        console.log('Datos obtenidos:', response);
+        this.listaCategorias = response;
+        this.getNombresCategorias();
+        console.log('Categorias:', this.nombreCategorias);
+      },
+      error => {
+        console.error('Error al obtener datos:', error);
+      }
+    );
+
+    //Suscribe de ediciones
+    this.allEdiciones = this.connectService.getEdiciones().subscribe(
+      response => {
+        console.log('Datos obtenidos:', response);
+        this.listaEdiciones = response;
+        this.getNombresEdiciones();
+        console.log('Ediciones:', this.nombreEdiciones);
+      },
+      error => {
+        console.error('Error al obtener datos:', error);
+      }
+    );
+
+
     // Initialize filtered options for each control
     this.filteredTitulos = this.tituloControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.allTitulos))
+      map(value => this._filter(value, this.nombreTitulos))
     );
     this.filteredAutores = this.autorControl.valueChanges.pipe(
       startWith(''),
@@ -81,15 +133,15 @@ export class EditbookmodalComponent implements OnInit {
     );
     this.filteredEditoriales = this.editorialControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.allEditoriales))
+      map(value => this._filter(value, this.nombreEditoriales))
     );
     this.filteredCategorias = this.categoriaControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.allCategorias))
+      map(value => this._filter(value, this.nombreCategorias))
     );
     this.filteredEdiciones = this.edicionControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.allEdiciones))
+      map(value => this._filter(value, this.nombreEdiciones))
     );
   }
 
@@ -113,6 +165,7 @@ export class EditbookmodalComponent implements OnInit {
     this.dialogRef.close(this.libro);
   }
 
+  //funcion para autores
   getNombresAutores(): void {
     for (let autor of this.listaAutores) {
       if(autor.apellido_autor == null){
@@ -123,4 +176,25 @@ export class EditbookmodalComponent implements OnInit {
      
     }
   };
+
+  //funcion para editorial (columna nombre_editorial)
+  getNombresEditoriales(): void {
+    for (let editorial of this.listaEditoriales) {
+      this.nombreEditoriales.push(editorial.nombre_editorial);
+    }
+  }
+
+  //funcion para categorias (columna nombre_categoria)
+  getNombresCategorias(): void {
+    for (let categoria of this.listaCategorias) {
+      this.nombreCategorias.push(categoria.nombre_categoria);
+    }
+  }
+
+  //funcion para edicion (columna edicion)
+  getNombresEdiciones(): void {
+    for (let edicion of this.listaEdiciones) {
+      this.nombreEdiciones.push(edicion.edicion);
+    }
+  }
 }
