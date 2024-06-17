@@ -12,51 +12,60 @@ import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
 
-
 interface Autor {
+  id_autor: number;
   nombre_autor: string;
   apellido_autor: string;
 }
 
 interface Editorial {
+  id_editorial: number;
   nombre_editorial: string;
 }
 
 interface Categoria {
+  id_categoria: number;
   nombre_categoria: string;
 }
 
 interface Edicion {
+  id_edicion: number;
   edicion: string;
 }
 
 interface Libro {
   titulo_libro: string;
-  autor: number;
-  editorial: number;
-  categoria: number;
-  edicion: number;
+  autor: number | null;
+  editorial: number | null;
+  categoria: number | null;
+  edicion: number | null;
 }
-
 
 @Component({
   selector: 'app-addbookmodal',
   standalone: true,
-  imports: [MatFormFieldModule, MatTooltipModule, MatIcon, MatInputModule, FormsModule, ReactiveFormsModule, MatButtonModule, MatAutocompleteModule, CommonModule],
+  imports: [
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatIcon,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    CommonModule,
+  ],
   templateUrl: './addbookmodal.component.html',
-  styleUrl: './addbookmodal.component.css'
+  styleUrls: ['./addbookmodal.component.css'],
 })
 export class AddbookmodalComponent implements OnInit {
-
   nuevoLibro: Libro = {
     titulo_libro: '',
-    autor: 0,
-    editorial: 0,
-    categoria: 0,
-    edicion: 0
+    autor: null,
+    editorial: null,
+    categoria: null,
+    edicion: null,
   };
-
-
 
   autorControl = new FormControl();
   editorialControl = new FormControl();
@@ -68,13 +77,13 @@ export class AddbookmodalComponent implements OnInit {
   filteredCategorias!: Observable<string[]>;
   filteredEdiciones!: Observable<string[]>;
 
-  listaAutores: any = [];
+  listaAutores: Autor[] = [];
   nombreAutores: string[] = [];
-  listaEditoriales: any = [];
+  listaEditoriales: Editorial[] = [];
   nombreEditoriales: string[] = [];
-  listaCategorias: any = [];
+  listaCategorias: Categoria[] = [];
   nombreCategorias: string[] = [];
-  listaEdiciones: any = [];
+  listaEdiciones: Edicion[] = [];
   nombreEdiciones: string[] = [];
 
   nuevoAutor = false;
@@ -86,42 +95,51 @@ export class AddbookmodalComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AddbookmodalComponent>,
     private connectService: ConnectService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
-
-
     this.obtenerDatos();
 
     this.filteredAutores = this.autorControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.nombreAutores))
+      map((value) => this._filter(value, this.nombreAutores))
     );
     this.filteredEditoriales = this.editorialControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.nombreEditoriales))
+      map((value) => this._filter(value, this.nombreEditoriales))
     );
     this.filteredCategorias = this.categoriaControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.nombreCategorias))
+      map((value) => this._filter(value, this.nombreCategorias))
     );
     this.filteredEdiciones = this.edicionControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.nombreEdiciones))
+      map((value) => this._filter(value, this.nombreEdiciones))
     );
   }
 
   private _filter(value: string, options: string[]): string[] {
     const filterValue = value.toLowerCase();
-    return options.filter(option => option.toLowerCase().includes(filterValue));
+    return options.filter((option) => option.toLowerCase().includes(filterValue));
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
+    await this.validarTodos(
+      this.autorControl.value,
+      this.editorialControl.value,
+      this.categoriaControl.value,
+      this.edicionControl.value
+    );
 
-    const selectedEditorial = this.listaEditoriales.find((editorial: Editorial) => editorial.nombre_editorial === this.editorialControl.value);
-    const selectedCategoria = this.listaCategorias.find((categoria: Categoria) => categoria.nombre_categoria === this.categoriaControl.value);
-    const selectedEdicion = this.listaEdiciones.find((edicion: Edicion) => edicion.edicion === this.edicionControl.value);
+    const selectedEditorial = this.listaEditoriales.find(
+      (editorial: Editorial) => editorial.nombre_editorial === this.editorialControl.value
+    );
+    const selectedCategoria = this.listaCategorias.find(
+      (categoria: Categoria) => categoria.nombre_categoria === this.categoriaControl.value
+    );
+    const selectedEdicion = this.listaEdiciones.find(
+      (edicion: Edicion) => edicion.edicion === this.edicionControl.value
+    );
 
     const selectedAutor = this.listaAutores.find((autor: Autor) => {
       const nombreCompleto = autor.apellido_autor
@@ -135,19 +153,16 @@ export class AddbookmodalComponent implements OnInit {
     this.nuevoLibro.categoria = selectedCategoria ? selectedCategoria.id_categoria : null;
     this.nuevoLibro.edicion = selectedEdicion ? selectedEdicion.id_edicion : null;
 
-    this.validarTodo(this.autorControl.value, this.editorialControl.value, this.categoriaControl.value, this.edicionControl.value);
-
-
     this.submitBook();
-    console.log('Libro:', this.nuevoLibro);
   }
 
   submitBook(): void {
-    this.connectService.agregarLibro(this.nuevoLibro).subscribe(response => {
+    this.connectService.agregarLibro(this.nuevoLibro).subscribe((response) => {
       console.log('Libro añadido:', response);
       this.dialogRef.close();
     });
   }
+
   closeDialog(): void {
     this.dialogRef.close();
   }
@@ -157,207 +172,205 @@ export class AddbookmodalComponent implements OnInit {
       const nombreCompleto = autor.apellido_autor
         ? `${autor.nombre_autor} ${autor.apellido_autor}`
         : autor.nombre_autor;
-      console.log('Nombre completo del autor:', nombreCompleto);
       return nombreCompleto;
     });
   }
 
   getNombresEditoriales(): void {
-    this.nombreEditoriales = this.listaEditoriales.map((editorial: Editorial) => editorial.nombre_editorial);
+    this.nombreEditoriales = this.listaEditoriales.map(
+      (editorial: Editorial) => editorial.nombre_editorial
+    );
   }
 
   getNombresCategorias(): void {
-    this.nombreCategorias = this.listaCategorias.map((categoria: Categoria) => categoria.nombre_categoria);
+    this.nombreCategorias = this.listaCategorias.map(
+      (categoria: Categoria) => categoria.nombre_categoria
+    );
   }
 
   getNombresEdiciones(): void {
     this.nombreEdiciones = this.listaEdiciones.map((edicion: Edicion) => edicion.edicion);
   }
 
-  //Esta funcion toma solamente el nombre de la lista de autores y lo itera
   buscarAutores(nombreBuscado: string, apellidoBuscado: string | null): boolean {
-    // Iterar sobre la lista de autores
-    for (let autor of this.listaAutores) {
-      // Verificar si el nombre y apellido coinciden
-      if (autor.nombre_autor == nombreBuscado && autor.apellido_autor === apellidoBuscado) {
-        return true; // Retornar true si se encuentra una coincidencia exacta
-      }
-    }
-    return false; // Retornar false si no se encuentra ninguna coincidencia
+    return this.listaAutores.some(
+      (autor: Autor) =>
+        autor.nombre_autor === nombreBuscado && autor.apellido_autor === apellidoBuscado
+    );
   }
 
-  //Esta funcion toma solamente el nombre de la lista de categoria y lo itera
   buscarCategoria(categoriaBuscada: string): boolean {
-    for (let categoria of this.listaCategorias) {
-      if (categoria.nombre_categoria == categoriaBuscada) {
-        return true;
-      }
-    }
-    return false;
+    return this.listaCategorias.some(
+      (categoria: Categoria) => categoria.nombre_categoria === categoriaBuscada
+    );
   }
 
-  //Esta funcion toma solamente el nombre de la lista de editorial y lo itera
   buscarEditorial(editorialBuscada: string): boolean {
-    for (let editorial of this.listaEditoriales) {
-      if (editorial.nombre_editorial == editorialBuscada) {
-        return true;
-      }
-    }
-    return false;
+    return this.listaEditoriales.some(
+      (editorial: Editorial) => editorial.nombre_editorial === editorialBuscada
+    );
   }
 
-  //Esta funcion toma solamente el nombre de la lista de edicion y lo itera
   buscarEdicion(edicionBuscada: string): boolean {
-    for (let edicion of this.listaEdiciones) {
-      console.log('Edicion:', edicion.edicion + " EdicionBuscada: " + edicionBuscada);
-      if (edicion.edicion == edicionBuscada) {
-        console.log('edicion encontrada:', edicion.edicion);
-        return true;
-      }
-    }
-    console.log('edicion no encontrada:', edicionBuscada);
-    return false;
+    return this.listaEdiciones.some(
+      (edicion: Edicion) => edicion.edicion === edicionBuscada
+    );
   }
 
   async obtenerDatosAutor(): Promise<void> {
-    await this.connectService.getAutores().subscribe(response => {
+    this.connectService.getAutores().subscribe((response) => {
       this.listaAutores = response;
-      console.log('Autores:', this.listaAutores);  // Verifica aquí
       this.getNombresAutores();
     });
   }
 
   async obtenerDatosEditoriales(): Promise<void> {
-    await this.connectService.getEditoriales().subscribe(response => {
+    this.connectService.getEditoriales().subscribe((response) => {
       this.listaEditoriales = response;
       this.getNombresEditoriales();
     });
   }
 
   async obtenerDatosCategorias(): Promise<void> {
-    await this.connectService.getCategorias().subscribe(response => {
+    this.connectService.getCategorias().subscribe((response) => {
       this.listaCategorias = response;
       this.getNombresCategorias();
     });
   }
 
   async obtenerDatosEdiciones(): Promise<void> {
-    await this.connectService.getEdiciones().subscribe(response => {
+    this.connectService.getEdiciones().subscribe((response) => {
       this.listaEdiciones = response;
       this.getNombresEdiciones();
     });
   }
 
   async obtenerDatos(): Promise<void> {
-    this.obtenerDatosAutor();
-    this.obtenerDatosEditoriales();
-    this.obtenerDatosCategorias();
-    this.obtenerDatosEdiciones();
+    await this.obtenerDatosAutor();
+    await this.obtenerDatosEditoriales();
+    await this.obtenerDatosCategorias();
+    await this.obtenerDatosEdiciones();
   }
 
-  async validarTodo(autor: string, editorial: string, categoria: string, edicion: string): Promise<void> {
-
-    this.validarAutorSiExiste(autor);
-    this.validarEditorialSiExiste(editorial);
-    this.validarCategoriaSiExiste(categoria);
-    this.validarEdicionSiExiste(edicion);
-    
-    this.obtenerDatos();
-
-
-    const selectedEditorial2 = this.listaEditoriales.find((editorial: any) => editorial.nombre_editorial === this.editorialControl.value);
-    this.nuevoLibro.editorial = selectedEditorial2 ? selectedEditorial2.id_editorial : null;
-
-    const selectedCategoria2 = this.listaCategorias.find((categoria: any) => categoria.nombre_categoria === this.categoriaControl.value);
-    this.nuevoLibro.categoria = selectedCategoria2 ? selectedCategoria2.id_categoria : null;
-
-    const selectedEdicion2 = this.listaEdiciones.find((edicion: any) => edicion.edicion === this.edicionControl.value);
-    this.nuevoLibro.edicion = selectedEdicion2 ? selectedEdicion2.id_edicion : null;
+  async validarTodos(
+    autor: string,
+    editorial: string,
+    categoria: string,
+    edicion: string
+  ): Promise<void> {
+    await Promise.all([
+      this.validarAutorSiExiste(autor),
+      this.validarEditorialSiExiste(editorial),
+      this.validarCategoriaSiExiste(categoria),
+      this.validarEdicionSiExiste(edicion),
+    ]);
   }
 
-  validarAutorSiExiste(autor: any): void {
+  async validarAutorSiExiste(autor: string): Promise<void> {
+    if (autor !== '') {
+      const [nombreAutor, apellidoAutor] = autor.split(' ');
+      const autorNuevo = !this.buscarAutores(nombreAutor, apellidoAutor);
 
+      this.nuevoAutor = autorNuevo;
+
+      if (this.nuevoAutor) {
+        const autorNuevo: Autor = {
+          id_autor: 0,
+          nombre_autor: nombreAutor,
+          apellido_autor: apellidoAutor,
+        };
+        await new Promise<void>((resolve, reject) => {
+          this.connectService.agregarAutor(autorNuevo).subscribe(
+            (response) => {
+              console.log('Autor añadido:', response);
+              this.obtenerDatosAutor();
+              resolve();
+            },
+            (error) => {
+              console.error('Error al añadir autor:', error);
+              reject();
+            }
+          );
+        });
+      }
+    }
   }
 
   async validarEditorialSiExiste(editorial: string): Promise<void> {
     if (editorial !== '') {
-      const editorialNombre = this.editorialControl.value;
-      const editorialNueva: Editorial = {
-        nombre_editorial: editorialNombre
-      };
+      this.nuevaEditorial = !this.buscarEditorial(editorial);
 
-      if (!this.buscarEditorial(editorialNueva.nombre_editorial)) {
-        console.log('Editorial no encontrada:', editorialNueva.nombre_editorial);
-
-        try {
-          // Agregar la nueva editorial y esperar a que se complete
-          this.connectService.agregarEditorial(editorialNueva).subscribe(async (response) => {
-            console.log('Editorial añadida:', response);
-            console.log('Editorial añadida:', editorialNueva);
-
-            // Obtener los datos actualizados de las editoriales y esperar a que se complete
-            await this.obtenerDatosEditoriales();
-
-            // Buscar la editorial en la lista actualizada
-            
-            console.log('Editorial nueva:', this.nuevoLibro.editorial);
-          });
-
-        } catch (error) {
-          console.error('Error al agregar la editorial:', error);
-        }
+      if (this.nuevaEditorial) {
+        const editorialNueva: Editorial = {
+          id_editorial: 0,
+          nombre_editorial: editorial,
+        };
+        await new Promise<void>((resolve, reject) => {
+          this.connectService.agregarEditorial(editorialNueva).subscribe(
+            (response) => {
+              console.log('Editorial añadida:', response);
+              this.obtenerDatosEditoriales();
+              resolve();
+            },
+            (error) => {
+              console.error('Error al añadir editorial:', error);
+              reject();
+            }
+          );
+        });
       }
     }
   }
 
-
-
-
-  validarCategoriaSiExiste(categoria): void {
+  async validarCategoriaSiExiste(categoria: string): Promise<void> {
     if (categoria !== '') {
-      let categoria = this.categoriaControl.value;
-      const categoriaNueva: Categoria = {
-        nombre_categoria: categoria
-      }
-      if (!this.buscarCategoria(categoriaNueva.nombre_categoria)) {
-        console.log('Categoria no encontrada:', categoriaNueva);
-        this.connectService.agregarCategoria(categoriaNueva)
-          .subscribe(response => {
-            console.log('Categoría añadida:', response);
-          });
+      this.nuevaCategoria = !this.buscarCategoria(categoria);
 
-        this.obtenerDatosCategorias();
-        const selectedCategoria = this.listaCategorias.find((categoria: Categoria) => categoria.nombre_categoria === this.categoriaControl.value);
-        this.nuevoLibro.categoria = selectedCategoria ? selectedCategoria.id_categoria : null;
+      if (this.nuevaCategoria) {
+        const categoriaNueva: Categoria = {
+          id_categoria: 0,
+          nombre_categoria: categoria,
+        };
+        await new Promise<void>((resolve, reject) => {
+          this.connectService.agregarCategoria(categoriaNueva).subscribe(
+            (response) => {
+              console.log('Categoría añadida:', response);
+              this.obtenerDatosCategorias();
+              resolve();
+            },
+            (error) => {
+              console.error('Error al añadir categoría:', error);
+              reject();
+            }
+          );
+        });
       }
-      return;
     }
   }
 
-  validarEdicionSiExiste(edicion): void {
+  async validarEdicionSiExiste(edicion: string): Promise<void> {
     if (edicion !== '') {
-      let edicion = this.edicionControl.value;
-      const edicionNueva: Edicion = {
-        edicion: edicion
-      }
-      if (!this.buscarEdicion(edicionNueva.edicion)) {
-        console.log('Edición no encontrada:', edicionNueva);
-        this.connectService.agregarEdicion(edicionNueva)
-          .subscribe(response => {
-            console.log('Edición añadida:', response);
-          });
+      this.nuevaEdicion = !this.buscarEdicion(edicion);
 
-        this.obtenerDatosEdiciones();
-        const selectedEdicion = this.listaEdiciones.find((edicion: Edicion) => edicion.edicion === this.edicionControl.value);
-        this.nuevoLibro.edicion = selectedEdicion ? selectedEdicion.id_edicion : null;
-
+      if (this.nuevaEdicion) {
+        const edicionNueva: Edicion = {
+          id_edicion: 0,
+          edicion: edicion,
+        };
+        await new Promise<void>((resolve, reject) => {
+          this.connectService.agregarEdicion(edicionNueva).subscribe(
+            (response) => {
+              console.log('Edición añadida:', response);
+              this.obtenerDatosEdiciones();
+              resolve();
+            },
+            (error) => {
+              console.error('Error al añadir edición:', error);
+              reject();
+            }
+          );
+        });
       }
-      return;
     }
   }
-
-
-
-
-
 }

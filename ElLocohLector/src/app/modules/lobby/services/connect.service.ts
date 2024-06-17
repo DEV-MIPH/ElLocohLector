@@ -34,7 +34,7 @@ export class ConnectService {
   apiUrlCategorias = 'http://localhost:3000/categorias';
   apiUrlEditoriales = 'http://localhost:3000/editoriales';
   apiUrlEdiciones = 'http://localhost:3000/ediciones';
-  pedidosSubject = new BehaviorSubject<any[]>([]);
+
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
