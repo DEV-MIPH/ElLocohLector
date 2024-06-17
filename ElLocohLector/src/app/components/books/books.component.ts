@@ -74,7 +74,9 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy  {
   }
   solicitarLibro(libro: any): void {
     console.log('Libro solicitado:', libro);
-    // Aquí puedes agregar el código para manejar la solicitud del libro.
-    // Podrías llamar a un servicio que agregue el libro a una lista de pedidos o algo similar.
+    this.connectService.solicitarLibro(libro);
+    this.snackBar.open('Libro solicitado exitosamente.', 'Cerrar', {
+      duration: 3000,
+    });
   }
 }

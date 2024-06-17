@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ export class ConnectService {
 
   data: any = [];
   apiUrl = 'http://localhost:3000/libros'; // URL de tu API
+  pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
   apiUrlAllBooks = 'http://localhost:3000/all_libros';
   apiUrlAutores = 'http://localhost:3000/autores';
   apiUrlCategorias = 'http://localhost:3000/categorias';
@@ -59,6 +60,19 @@ export class ConnectService {
 
   agregarEdicion(edicion: any): Observable<any> {
     return this.http.post<any>(this.apiUrlEdiciones, edicion);
+  }
+
+    // Agregar un libro al pedido
+  solicitarLibro(libro: any): void {
+    console.log('Libro solicitado:', libro);
+    const pedidos = this.pedidosSubject.getValue();
+    pedidos.push(libro);
+    this.pedidosSubject.next(pedidos);
+  }
+
+   // Obtener los pedidos del usuario
+  getPedidos(): Observable<any[]> {
+    return this.pedidosSubject.asObservable();
   }
 
   login(email: string, password: string) {
