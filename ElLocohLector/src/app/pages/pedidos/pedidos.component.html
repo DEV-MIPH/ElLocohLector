@@ -34,6 +34,12 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
+    <!-- Botón para solicitar libros -->
+     <!-- SE DEBE HACER UN POST PARA ENVIAR LOS LIBROS SOLICITADOS -->
+    <button mat-raised-button color="primary" class="solicitarButton" matTooltip="Solicitar libros a administrador" >
+      Solicitar libros
+    </button>
   </div>
 </div>
 

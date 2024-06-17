@@ -62,12 +62,12 @@ export class ConnectService {
     return this.http.post<any>(this.apiUrlEdiciones, edicion);
   }
 
-    // Agregar un libro al pedido
+   // Función para agregar un libro al pedido
   solicitarLibro(libro: any): void {
     console.log('Libro solicitado:', libro);
-    const pedidos = this.pedidosSubject.getValue();
-    pedidos.push(libro);
-    this.pedidosSubject.next(pedidos);
+    const pedidos = this.pedidosSubject.getValue(); // Obtener los pedidos actuales del BehaviorSubject
+    pedidos.push(libro); // Agregar el nuevo libro al array de pedidos
+    this.pedidosSubject.next(pedidos); // Emitir el nuevo estado de pedidos a los suscriptores
   }
 
    // Obtener los pedidos del usuario

@@ -8,7 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatTooltip } from '@angular/material/tooltip';
 import { ConnectService } from '../../modules/lobby/services/connect.service';
 import { Subscription } from 'rxjs';
 
@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
     standalone: true,
     templateUrl: './pedidos.component.html',
     styleUrl: './pedidos.component.css',
-    imports: [MatSnackBarModule,MatButtonModule,MatTableModule, MatPaginatorModule, MatSortModule, HeaderComponent, FooterComponent]
+    imports: [MatSnackBarModule,MatButtonModule,MatTooltip,MatTableModule, MatPaginatorModule, MatSortModule, HeaderComponent, FooterComponent]
 })
 export class PedidosComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['titulo', 'autor', 'editorial'];
@@ -28,23 +28,27 @@ export class PedidosComponent implements OnInit, OnDestroy {
   private pedidosSubscription?: Subscription;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  pedidos: any[] = [];
   constructor(private connectService: ConnectService, private snackBar: MatSnackBar){}
 
   ngOnInit(): void {
     this.pedidosSubscription = this.connectService.getPedidos().subscribe(
       pedidos => {
         console.log('Pedidos obtenidos:', pedidos);
-        this.dataSource.data = pedidos;
+        this.pedidos = pedidos; // Actualiza el arreglo local de pedidos
+        this.dataSource.data = this.pedidos; // Actualiza la fuente de datos del MatTableDataSource
+        this.dataSource.paginator = this.paginator; // Asigna el paginador al MatTableDataSource
       },
       error => {
         console.error('Error al obtener pedidos:', error);
       }
     );
-    this.dataSource.paginator = this.paginator;
   }
 
   ngOnDestroy(): void {
-    this.pedidosSubscription?.unsubscribe();
+    if (this.pedidosSubscription) {
+      this.pedidosSubscription.unsubscribe(); // Desuscribe para evitar memory leaks
+    }
   }
 
   ngAfterViewInit(): void {
