@@ -5,6 +5,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ContrasennaComponent } from './pages/contrasenna/contrasenna.component';
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './pages/admin/admin.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 export const routes: Routes = [ 
     /*cuando alguien entra a lobby estará cargado lobby component */
@@ -12,6 +13,7 @@ export const routes: Routes = [
     {path: 'lobby', component: LobbyComponent},
     {path: 'login', component: LoginComponent},
     {path: 'perfil', component: PerfilComponent},
+    {path: 'pedidos', component: PedidosComponent},
     {path: 'contrasenna', component: ContrasennaComponent},
     /*path vacio manda a home (lobby) */
     { path: '', redirectTo: '/lobby', pathMatch: 'full' }, 

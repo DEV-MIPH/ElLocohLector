@@ -26,6 +26,7 @@
             <button *ngIf="isLoggedIn" id="profile" mat-button [matMenuTriggerFor]="menu" >Mi Perfil</button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
+                <button mat-menu-item routerLink="/pedidos">Mis pedidos</button>
                 <button mat-menu-item (click)="logout()">Cerrar sesión</button>
             </mat-menu>
 
