@@ -1,17 +1,7 @@
 <app-header></app-header>
 
 <div class="contenedorPrincipalPerfil">
-
     <div class="contenedorImagenNombreButton">
-        <!--ACTUALIZAR CON NOMBRE DE LA INSTITUCION {{INSTITUCION}} -->
-        <h2>Duoc UC</h2>
-        <div class="contenedorBtns">
-            <button mat-flat-button id="btns" (click)="cambiarContrasenna()">Cambiar Contraseña</button>
-            <button mat-flat-button id="btns">Borrar Cuenta</button>
-        </div>
-    </div>
-
-    <div class="contenedorDatosInstitucion">
         <div class="ContenedorIcono">
             <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24">
                 <path fill="#17a2b8"
@@ -20,6 +10,13 @@
             <h2>Cuenta Institucional</h2>
         </div>
 
+        <div class="contenedorBtns">
+            <button mat-flat-button id="btns" (click)="cambiarContrasenna()">Cambiar Contraseña</button>
+            <button mat-flat-button id="btns">Borrar Cuenta</button>
+        </div>
+    </div>
+
+    <div class="contenedorDatosInstitucion">
         <form [formGroup]="institucion" class="contenedorFormField" (ngSubmit)="onSubmit()">
             <label for="rut">Rut Institución: </label>
             <input id="rut" type="text" formControlName="rut">  
@@ -45,9 +42,6 @@
                 {{ getEmailErrorMessage() }}
             </span>
 
-            <!-- Button actualizar y men sajes -->
-            <!-- Button actualizar y men sajes -->
-            
             <button mat-flat-button id="btnActualizar" (click)="onSubmit()">Actualizar</button>
 
             <div *ngIf="showError" class="form_error_message">
@@ -57,11 +51,8 @@
             <div *ngIf="showSuccess" class="form_success_message">
                 El formulario se ha actualizado correctamente.
             </div>
-
         </form>
     </div>
-
-    
 </div>
 
 <app-footer></app-footer>

@@ -1,22 +1,46 @@
 <div class="contenedorContacto">
-    <div class="contenedorTexto">
-        <h3>Contacta con nosotros</h3>
-        <p>Conoce nuestras redes de contacto a través de Instagram, Whatsapp e Email</p>
+    <div class="divDatosContacto">
+        <div class="contenedorTexto">
+            <h3>Contacta con nosotros</h3>
+            <p>Conoce nuestras redes de contacto a través de Instagram, Whatsapp e Email</p>
+        </div>
+
+
+        <div class="contenedorIconos">
+            <a href="https://www.instagram.com/eloko_lector?igsh=ampsMnBrZ3BqeWE0">
+                <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/instagram.svg" alt="instagram">
+            </a>
+
+            <a href="#">
+                <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/whatsapp.svg" alt="whatsapp">
+            </a>
+
+            <a href="#">
+                <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/email.svg" alt="email">
+            </a>
+        </div>
     </div>
 
-    
-        <div class="contenedorIconos">
-        <a href="#">
-            <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/instagram.svg" alt="instagram">
-        </a>
-        
-        <a href="#">
-            <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/whatsapp.svg" alt="whatsapp">
-        </a>
+    <div class="divFormularioContacto">
+        <form id="contactoForm" (submit)="enviarFormulario($event)">
+            <div class="form-group">
+                <label for="nombreInstitucion">Nombre de la Institución</label>
+                <input type="text" id="nombreInstitucion" name="nombreInstitucion" required>
+            </div>
 
-        <a href="#">
-            <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/email.svg" alt="email">
-        </a>
-        </div>
-    
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="comentario">Comentario</label>
+                <textarea id="comentario" name="comentario" required></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="enviar">Enviar</button>
+            </div>
+        </form>
+    </div>
 </div>

@@ -31,7 +31,7 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy  {
   isUserLoggedIn: boolean = false; // Suponemos que esta variable se actualiza según el estado de autenticación
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
-  
+  isLoggedIn: boolean = false; // Variable para almacenar el estado de inicio de sesión
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar) { }
@@ -51,6 +51,13 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy  {
         });
       }
     );
+     // Suscripción para obtener el estado de inicio de sesión
+  this.connectService.isLoggedIn$.subscribe(isLoggedIn => {
+    this.isLoggedIn = isLoggedIn;
+    if (this.isLoggedIn) {
+      this.displayedColumns.push('solicitar');
+    }
+  });
   }
 
   ngAfterViewInit(): void {

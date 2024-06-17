@@ -28,6 +28,7 @@ export class ConnectService {
 
   data: any = [];
   apiUrl = 'http://localhost:3000/libros'; // URL de tu API
+  pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
   apiUrlAllBooks = 'http://localhost:3000/all_libros';
   apiUrlAutores = 'http://localhost:3000/autores';
   apiUrlCategorias = 'http://localhost:3000/categorias';
@@ -35,7 +36,15 @@ export class ConnectService {
   apiUrlEdiciones = 'http://localhost:3000/ediciones';
   pedidosSubject = new BehaviorSubject<any[]>([]);
 
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  
   constructor(private http: HttpClient) { }
+
+  // Método para actualizar el estado de inicio de sesión
+  updateLoginStatus(isLoggedIn: boolean) {
+    this.isLoggedInSubject.next(isLoggedIn);
+  }
 
   ngOnInit(): void {
 

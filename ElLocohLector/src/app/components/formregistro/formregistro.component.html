@@ -1,16 +1,11 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-    rel="stylesheet">
-
 <div class="contenedorRegistro">
     <div class="contenedorform">
-        <div id="titulo">
-            <h3>Solicitud de Registro</h3>
-        </div>
+
 
         <form id="registroForm" onsubmit="return validarFormulario()">
+            <div id="titulo">
+                <h2>Solicitud de Registro</h2>
+            </div>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             <span id="errorEmail" class="error"></span>
@@ -27,7 +22,9 @@
             <textarea id="comentario" name="comentario" required></textarea>
             <span id="errorComentario" class="error"></span>
 
-            <input id="enviar" type="submit" value="Enviar">
+            <div class="btnEnviar">
+                <button type="submit" id="enviar">Enviar</button>
+            </div>
         </form>
     </div>
 </div>
