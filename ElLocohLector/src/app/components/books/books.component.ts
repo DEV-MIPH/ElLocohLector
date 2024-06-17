@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { ConnectService } from '../../modules/lobby/services/connect.service';
 import { Subscription } from 'rxjs';
 import { OnInit } from '@angular/core';
@@ -11,22 +11,23 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AfterViewInit } from '@angular/core';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [FormsModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSortModule, MatSnackBarModule],
+  imports: [FormsModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSortModule, MatSnackBarModule,MatButtonModule],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
-export class BooksComponent implements OnInit, AfterViewInit {
+export class BooksComponent implements OnInit, AfterViewInit, OnDestroy  {
 
   libros: any = [];
   librosSubscription?: Subscription;
   librosFiltrados: any = [];
   searchAuthor: string = '';
   searchTitle: string = '';
-  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'cantidad'];
+  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'cantidad', 'solicitar'];
   isUserLoggedIn: boolean = false; // Suponemos que esta variable se actualiza según el estado de autenticación
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
@@ -71,5 +72,9 @@ export class BooksComponent implements OnInit, AfterViewInit {
     this.dataSource.data = this.librosFiltrados; // Actualizar dataSource
     this.cdr.detectChanges();
   }
-
+  solicitarLibro(libro: any): void {
+    console.log('Libro solicitado:', libro);
+    // Aquí puedes agregar el código para manejar la solicitud del libro.
+    // Podrías llamar a un servicio que agregue el libro a una lista de pedidos o algo similar.
+  }
 }
