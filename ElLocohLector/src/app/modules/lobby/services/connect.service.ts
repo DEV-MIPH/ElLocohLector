@@ -2,13 +2,32 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
+interface Editorial {
+  nombre_editorial: string;
+}
+
+interface Categoria {
+  nombre_categoria: string;
+}
+
+interface Edicion {
+  nombre_edicion: string;
+}
+
+interface Autor {
+  nombre_autor: string;
+  apellido_autor: string;
+
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ConnectService {
 
   data: any = [];
-  apiUrl = 'http://localhost:3000/libros'; // URL de tu API
+  apiUrl = 'http://localhost:3000/libros'; 
   apiUrlAllBooks = 'http://localhost:3000/all_libros';
   apiUrlAutores = 'http://localhost:3000/autores';
   apiUrlCategorias = 'http://localhost:3000/categorias';
@@ -49,11 +68,12 @@ export class ConnectService {
     return this.http.post<any>(this.apiUrlAutores, autor);
   }
 
-  agregarCategoria(categoria: any): Observable<any> {
+  agregarCategoria(categoria: Categoria): Observable<any> {
     return this.http.post<any>(this.apiUrlCategorias, categoria);
   }
 
-  agregarEditorial(editorial: any): Observable<any> {
+  agregarEditorial(editorial: Editorial): Observable<any> {
+    console.log('Agregando editorial connect service:', editorial);
     return this.http.post<any>(this.apiUrlEditoriales, editorial);
   }
 
