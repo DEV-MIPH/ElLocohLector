@@ -7,13 +7,13 @@ import { AuthService } from '../../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ForgetPasswordComponent } from '../../components/forget-password/forget-password.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { MatTooltip } from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent,FooterComponent,FormsModule,ForgetPasswordComponent],
+  imports: [HeaderComponent,FooterComponent,FormsModule,MatTooltip,ForgetPasswordComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -44,7 +44,7 @@ export class LoginComponent {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(ForgetPasswordComponent, {
-      width: '250px'
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

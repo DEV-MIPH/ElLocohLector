@@ -1,6 +1,7 @@
 .contenedorTitulo {
     text-align: center;
     margin-top: 20vh;
+    margin-bottom: 10px;
   }
   
   .contenedorPrincipalPedidos {
@@ -23,6 +24,7 @@
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    max-height: 500px;
   }
   
   .tabla {
