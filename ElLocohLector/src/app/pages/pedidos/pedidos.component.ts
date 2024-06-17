@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ConnectService } from '../../modules/lobby/services/connect.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -29,7 +30,7 @@ export class PedidosComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   pedidos: any[] = [];
-  constructor(private connectService: ConnectService, private snackBar: MatSnackBar){}
+  constructor(private connectService: ConnectService, private snackBar: MatSnackBar, private router: Router){}
 
   ngOnInit(): void {
     this.pedidosSubscription = this.connectService.getPedidos().subscribe(
@@ -58,8 +59,11 @@ export class PedidosComponent implements OnInit, OnDestroy {
   solicitarLibro(libro: any): void {
     console.log('Libro solicitado:', libro);
     this.connectService.solicitarLibro(libro);
-    this.snackBar.open('Libro solicitado exitosamente.', 'Cerrar', {
+    
+    this.snackBar.open('Pedido solicitado', 'Cerrar', {
       duration: 3000,
+    }).afterDismissed().subscribe(() => {
+      this.router.navigate(['/lobby']); // Redirige al componente principal /lobby
     });
   }
 }
