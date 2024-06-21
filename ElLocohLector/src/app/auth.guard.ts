@@ -2,7 +2,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment'; 
+import { environment } from '../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +17,17 @@ export class AuthGuard implements CanActivate {
 
     const email = localStorage.getItem('email');
 
+    // validador de email
+    const allowedEmails = environment.EMAILS;
+
+
+    
+
     if (!email) {
       this.router.navigate(['/login']);
       return false;
     }
-    //lista admin para recorrer environmets administradores
-    private listaAdmin = environment.EMAILS{};
-
-    for (let usuario in en ){
-
-    }
-    const allowedEmails = process.env.EMAILS.split(',');
+    
 
     if (next.routeConfig?.path === 'admin' && !allowedEmails.includes(email)) {
       // Si la ruta es 'admin' y el usuario no está en la lista de administradores, redirigir a lobby
