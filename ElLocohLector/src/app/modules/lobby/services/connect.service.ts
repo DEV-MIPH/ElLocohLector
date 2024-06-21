@@ -34,11 +34,12 @@ export class ConnectService {
   apiUrlCategorias = 'http://localhost:3000/categorias';
   apiUrlEditoriales = 'http://localhost:3000/editoriales';
   apiUrlEdiciones = 'http://localhost:3000/ediciones';
+  apiUrlSendMail = 'http://localhost:3000/send-email';
 
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
-  
+
   constructor(private http: HttpClient) { }
 
   // Método para actualizar el estado de inicio de sesión
@@ -49,7 +50,7 @@ export class ConnectService {
   ngOnInit(): void {
 
   }
-  
+
   //funciones get para obtener url
   getLibros(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
@@ -91,7 +92,7 @@ export class ConnectService {
     return this.http.post<any>(this.apiUrlEdiciones, edicion);
   }
 
-   // Función para agregar un libro al pedido
+  // Función para agregar un libro al pedido
   solicitarLibro(libro: any): void {
     console.log('Libro solicitado:', libro);
     const pedidos = this.pedidosSubject.getValue(); // Obtener los pedidos actuales del BehaviorSubject
@@ -99,17 +100,94 @@ export class ConnectService {
     this.pedidosSubject.next(pedidos); // Emitir el nuevo estado de pedidos a los suscriptores
   }
 
-   // Obtener los pedidos del usuario
+  // Obtener los pedidos del usuario
   getPedidos(): Observable<any[]> {
     return this.pedidosSubject.asObservable();
   }
 
-  login(email: string, password: string) {
-    console.log('Iniciando usuario:', email);
-    const url = 'http://localhost:3001/login';
-    const body = { email, password };
-    return this.http.post(url, body);
-  }
+  register(email: string, password: string) {
+    const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <img src="https://firebasestorage.googleapis.com/v0/b/lokolector-8f586.appspot.com/o/images%2FlokoLector.jpeg?alt=media&token=09037e1e-f020-4a3b-af40-3b6a04d7bab3" alt="Logo de eLoKolector" style="display: block; margin: 0 auto; max-width: 200px; margin-bottom: 20px;">
+      <h1 style="color: #333; text-align: center; margin-bottom: 20px;">¡Bienvenido a eLoKolector!</h1>
+      <p style="text-align: center; margin-bottom: 20px;">Te damos la bienvenida a nuestra comunidad de lectores. A continuación, encontrarás tus credenciales de acceso:</p>
+      <div style="background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+        <p><strong>Usuario:</strong> ${email}</p>
+        <p><strong>Contraseña:</strong> ${password}</p>
+      </div>
+      <p style="text-align: center;">Gracias por unirte a nosotros. ¡Ya puedes solicitar libros!</p>
+      <p style="text-align: center; margin-top: 20px;">Atentamente,<br>El equipo de eLoKolector</p>
+    </div>
+  `;
   
+
+    console.log('Registrando usuario:', email);
+    const to = email;
+    const subject = 'Bienvenido a eLokolector';
+    const text = 'Cuerpo del correo en texto plano';
+    const body = {
+      to: to,
+      subject: subject,
+      text: text,
+      html: html
+    };
+    console.log('Body service:', body);
+    this.http.post(this.apiUrlSendMail, body).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        // Realizar acciones adicionales si es necesario
+      },
+      (error) => {
+        console.error('Error al enviar el correo:', error);
+        // Manejar el error de manera adecuada
+      }
+    );
+
+  }
+
+  solicitudRegistro(email: string, Telefono: string, NombreInstitucion : String , Comentario: String) {
+    const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Solicitud de Registro</h1>
+        <p style="margin-bottom: 10px;">¡Hola!</p>
+        <p>Se ha recibido una nueva solicitud de registro con la siguiente información:</p>
+        <ul>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Teléfono:</strong> ${Telefono}</li>
+            <li><strong>Nombre de la Institución:</strong> ${NombreInstitucion}</li>
+            <li><strong>Comentario:</strong> ${Comentario}</li>
+        </ul>
+        <p>Por favor, revisa la solicitud y toma las acciones necesarias.</p>
+        <p>¡Gracias!</p>
+    </div>
+  `;
+    
+  
+
+    console.log('solicitud usuario:', email);
+    const to = "elokolector@gmail.com";
+    const subject = 'Bienvenido a eLokolector';
+    const text = 'Cuerpo del correo en texto plano';
+    const body = {
+      to: to,
+      subject: subject,
+      text: text,
+      html: html
+    };
+    console.log('Body service:', body);
+    this.http.post(this.apiUrlSendMail, body).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        // Realizar acciones adicionales si es necesario
+      },
+      (error) => {
+        console.error('Error al enviar el correo:', error);
+        // Manejar el error de manera adecuada
+      }
+    );
+    
+  }
+
+
 
 }

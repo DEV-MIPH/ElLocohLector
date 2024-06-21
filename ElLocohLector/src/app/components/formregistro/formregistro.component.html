@@ -1,30 +1,38 @@
 <div class="contenedorRegistro">
-    <div class="contenedorform">
-
-
-        <form id="registroForm" onsubmit="return validarFormulario()">
+    <div class="form-container">
+        <form id="registroForm" onsubmit="return validarFormulario()" (ngSubmit)="onSubmit()">
             <div id="titulo">
                 <h2>Solicitud de Registro</h2>
             </div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <span id="errorEmail" class="error"></span>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="form-control" required [(ngModel)]="email" name="email" />
+                <span id="errorEmail" class="error"></span>
+            </div>
 
-            <label for="telefono">Teléfono de Contacto:</label>
-            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" required>
-            <span id="errorTelefono" class="error"></span>
-
-            <label for="nombreInstitucion">Nombre de la Institución:</label>
-            <input type="text" id="nombreInstitucion" name="nombreInstitucion" required>
-            <span id="errorNombre" class="error"></span>
-
-            <label for="comentario">Comentario Adicional:</label>
-            <textarea id="comentario" name="comentario" required></textarea>
-            <span id="errorComentario" class="error"></span>
-
-            <div class="btnEnviar">
+            <div class="form-group">
+                <label for="telefono">Teléfono de Contacto:</label>
+                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" class="form-control" required
+                    [(ngModel)]="telefono">
+                <span id="errorTelefono" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="nombreInstitucion">Nombre de la Institución:</label>
+                <input type="text" id="nombreInstitucion" name="nombreInstitucion" required class="form-control"
+                    [(ngModel)]="institucion">
+                <span id="errorNombre" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="comentario">Comentario Adicional:</label>
+                <textarea id="comentario" name="comentario" required class="form-control"
+                    [(ngModel)]="comentario"></textarea>
+                <span id="errorComentario" class="error"></span>
+            </div>
+            <div class="form-actions">
                 <button type="submit" id="enviar">Enviar</button>
             </div>
         </form>
+
     </div>
 </div>

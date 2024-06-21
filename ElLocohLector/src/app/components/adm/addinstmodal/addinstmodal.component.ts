@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConnectService } from '../../../modules/lobby/services/connect.service';
 
 @Component({
   selector: 'app-addinstmodal',
@@ -18,7 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddinstmodalComponent {
   nuevaInstitucion = { email: '', password: '' };
 
-  constructor(public dialogRef: MatDialogRef<AddinstmodalComponent>,public auth: AuthService, private snackBar: MatSnackBar ) {}
+  constructor(public dialogRef: MatDialogRef<AddinstmodalComponent>,public auth: AuthService, private snackBar: MatSnackBar, private connectService: ConnectService  ) {}
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -29,6 +30,7 @@ export class AddinstmodalComponent {
     console.log('Nueva Institución:', this.nuevaInstitucion);
     const register = await this.auth.register(this.nuevaInstitucion.email, this.nuevaInstitucion.password);
     if(register) {
+      this.connectService.register(this.nuevaInstitucion.email, this.nuevaInstitucion.password);
       this.snackBar.open('Correo '+ this.nuevaInstitucion.email + ' agregado correctamente.', 'Cerrar', {
         duration: 3000,
       });
