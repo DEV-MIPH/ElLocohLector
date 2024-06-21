@@ -2,6 +2,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -20,25 +21,22 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
+    //lista admin para recorrer environmets administradores
+    private listaAdmin = environment.EMAILS{};
 
-    const isAdmin = email === 'admin@admin.cl';
+    for (let usuario in en ){
 
-    //descargar dot env
-    //guardar variable en env para seguridad
-    if (next.routeConfig?.path === 'admin' && !isAdmin) {
-      // Si la ruta es 'admin' y el usuario no es administrador, redirigir a lobby
+    }
+    const allowedEmails = process.env.EMAILS.split(',');
+
+    if (next.routeConfig?.path === 'admin' && !allowedEmails.includes(email)) {
+      // Si la ruta es 'admin' y el usuario no está en la lista de administradores, redirigir a lobby
       this.router.navigate(['/lobby']);
       return false;
     }
 
-    if (isAdmin) {
-      // Aquí se implementa una redirección o permitir el acceso basado en el rol de admin
-      console.log('Administrador ha entrado')
-      return true; // Permitir acceso
-    } else {
-      // Aquí se implementa una redirección o permitir el acceso basado en el rol de institución
-      console.log('Institución ha entrado')
-      return true; // Permitir acceso
-    }
+    console.log('Usuario ha entrado');
+
+    return true; // Permitir acceso
   }
 }
