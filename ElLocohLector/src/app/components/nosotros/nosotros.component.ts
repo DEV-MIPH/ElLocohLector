@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-nosotros',
   standalone: true,
-  imports: [MatGridListModule],
+  imports: [],
   templateUrl: './nosotros.component.html',
   styleUrl: './nosotros.component.css'
 })

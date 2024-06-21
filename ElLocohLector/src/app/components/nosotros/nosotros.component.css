@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+
+
+h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.hexagon-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.hexagon {
+    width: 300px; /* Aumentado para visualizar mejor el texto */
+    height: 346.41px; /* Aumentado para mantener la proporción */
+    position: relative;
+    margin: 173.205px 0; /* Ajustado según el nuevo tamaño */
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+}
+
+.hexagon:before {
+    border-bottom: 86.6025px solid #36C8F6; /* Ajustado según el nuevo tamaño */
+    top: -86.6025px; /* Ajustado según el nuevo tamaño */
+}
+
+.hexagon:after {
+    border-top: 86.6025px solid #36C8F6; /* Ajustado según el nuevo tamaño */
+    bottom: -86.6025px; /* Ajustado según el nuevo tamaño */
+}
+
+.hexagon-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border: 5px solid #36C8F6; /* Solo borde de color */
+    background-color: white; /* Fondo blanco para contenido legible */
+    box-sizing: border-box;
+}
+
+.hexagon-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hexagon-content h3 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.hexagon-content p {
+    font-size: 0.9em;
+}
