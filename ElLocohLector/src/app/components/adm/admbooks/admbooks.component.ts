@@ -38,7 +38,7 @@ export class AdmbooksComponent implements OnInit, AfterViewInit, OnDestroy  {
   constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.librosSubscription = this.connectService.getLibros().subscribe(
+    this.librosSubscription = this.connectService.getLibrosAdmin().subscribe(
       response => {
         console.log('Datos obtenidos:', response);
         this.libros = response;

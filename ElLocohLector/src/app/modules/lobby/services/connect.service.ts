@@ -35,6 +35,7 @@ export class ConnectService {
   apiUrlEditoriales = 'http://localhost:3000/editoriales';
   apiUrlEdiciones = 'http://localhost:3000/ediciones';
   apiUrlSendMail = 'http://localhost:3000/send-email';
+  apiUrlAdmin = 'http://localhost:3000/librosadmin';
 
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
@@ -50,6 +51,11 @@ export class ConnectService {
   ngOnInit(): void {
 
   }
+
+  getLibrosAdmin(): Observable<any> {
+    return this.http.get<any>(this.apiUrlAdmin);
+  }
+
 
   //funciones get para obtener url
   getLibros(): Observable<any> {
@@ -72,6 +78,7 @@ export class ConnectService {
   }
 
   agregarLibro(libro: any): Observable<any> {
+    console.log('Agregando libro connect service:', libro);
     return this.http.post<any>(this.apiUrl, libro);
   }
 

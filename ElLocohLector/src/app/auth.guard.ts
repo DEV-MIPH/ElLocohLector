@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     const email = localStorage.getItem('email');
 
     // validador de email
-    const allowedEmails = environment.EMAILS;
+    const allowedEmails = ["admin@admin.cl","migu.pereira@duocuc.cl"];
 
 
     

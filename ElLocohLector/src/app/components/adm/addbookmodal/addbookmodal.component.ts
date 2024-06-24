@@ -35,10 +35,10 @@ interface Edicion {
 
 interface Libro {
   titulo_libro: string;
-  autor: number | null;
-  editorial: number | null;
-  categoria: number | null;
-  edicion: number | null;
+  autor: string | null;
+  editorial: string | null;
+  categoria: string | null;
+  edicion: string | null;
 }
 
 @Component({
@@ -124,34 +124,11 @@ export class AddbookmodalComponent implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    await this.validarTodos(
-      this.autorControl.value,
-      this.editorialControl.value,
-      this.categoriaControl.value,
-      this.edicionControl.value
-    );
 
-    const selectedEditorial = this.listaEditoriales.find(
-      (editorial: Editorial) => editorial.nombre_editorial === this.editorialControl.value
-    );
-    const selectedCategoria = this.listaCategorias.find(
-      (categoria: Categoria) => categoria.nombre_categoria === this.categoriaControl.value
-    );
-    const selectedEdicion = this.listaEdiciones.find(
-      (edicion: Edicion) => edicion.edicion === this.edicionControl.value
-    );
-
-    const selectedAutor = this.listaAutores.find((autor: Autor) => {
-      const nombreCompleto = autor.apellido_autor
-        ? `${autor.nombre_autor} ${autor.apellido_autor}`
-        : autor.nombre_autor;
-      return nombreCompleto === this.autorControl.value;
-    });
-
-    this.nuevoLibro.autor = selectedAutor ? selectedAutor.id_autor : null;
-    this.nuevoLibro.editorial = selectedEditorial ? selectedEditorial.id_editorial : null;
-    this.nuevoLibro.categoria = selectedCategoria ? selectedCategoria.id_categoria : null;
-    this.nuevoLibro.edicion = selectedEdicion ? selectedEdicion.id_edicion : null;
+    this.nuevoLibro.autor = this.autorControl.value;
+    this.nuevoLibro.editorial = this.editorialControl.value;
+    this.nuevoLibro.categoria = this.categoriaControl.value;
+    this.nuevoLibro.edicion = this.edicionControl.value;
 
     this.submitBook();
   }
@@ -189,33 +166,11 @@ export class AddbookmodalComponent implements OnInit {
   }
 
   getNombresEdiciones(): void {
-    this.nombreEdiciones = this.listaEdiciones.map((edicion: Edicion) => edicion.edicion);
-  }
-
-  buscarAutores(nombreBuscado: string, apellidoBuscado: string | null): boolean {
-    return this.listaAutores.some(
-      (autor: Autor) =>
-        autor.nombre_autor === nombreBuscado && autor.apellido_autor === apellidoBuscado
+    this.nombreEdiciones = this.listaEdiciones.map(
+      (edicion: Edicion) => edicion.edicion
     );
   }
 
-  buscarCategoria(categoriaBuscada: string): boolean {
-    return this.listaCategorias.some(
-      (categoria: Categoria) => categoria.nombre_categoria === categoriaBuscada
-    );
-  }
-
-  buscarEditorial(editorialBuscada: string): boolean {
-    return this.listaEditoriales.some(
-      (editorial: Editorial) => editorial.nombre_editorial === editorialBuscada
-    );
-  }
-
-  buscarEdicion(edicionBuscada: string): boolean {
-    return this.listaEdiciones.some(
-      (edicion: Edicion) => edicion.edicion === edicionBuscada
-    );
-  }
 
   async obtenerDatosAutor(): Promise<void> {
     this.connectService.getAutores().subscribe((response) => {
@@ -252,125 +207,4 @@ export class AddbookmodalComponent implements OnInit {
     await this.obtenerDatosEdiciones();
   }
 
-  async validarTodos(
-    autor: string,
-    editorial: string,
-    categoria: string,
-    edicion: string
-  ): Promise<void> {
-    await Promise.all([
-      this.validarAutorSiExiste(autor),
-      this.validarEditorialSiExiste(editorial),
-      this.validarCategoriaSiExiste(categoria),
-      this.validarEdicionSiExiste(edicion),
-    ]);
-  }
-
-  async validarAutorSiExiste(autor: string): Promise<void> {
-    if (autor !== '') {
-      const [nombreAutor, apellidoAutor] = autor.split(' ');
-      const autorNuevo = !this.buscarAutores(nombreAutor, apellidoAutor);
-
-      this.nuevoAutor = autorNuevo;
-
-      if (this.nuevoAutor) {
-        const autorNuevo: Autor = {
-          id_autor: 0,
-          nombre_autor: nombreAutor,
-          apellido_autor: apellidoAutor,
-        };
-        await new Promise<void>((resolve, reject) => {
-          this.connectService.agregarAutor(autorNuevo).subscribe(
-            (response) => {
-              console.log('Autor añadido:', response);
-              this.obtenerDatosAutor();
-              resolve();
-            },
-            (error) => {
-              console.error('Error al añadir autor:', error);
-              reject();
-            }
-          );
-        });
-      }
-    }
-  }
-
-  async validarEditorialSiExiste(editorial: string): Promise<void> {
-    if (editorial !== '') {
-      this.nuevaEditorial = !this.buscarEditorial(editorial);
-
-      if (this.nuevaEditorial) {
-        const editorialNueva: Editorial = {
-          id_editorial: 0,
-          nombre_editorial: editorial,
-        };
-        await new Promise<void>((resolve, reject) => {
-          this.connectService.agregarEditorial(editorialNueva).subscribe(
-            (response) => {
-              console.log('Editorial añadida:', response);
-              this.obtenerDatosEditoriales();
-              resolve();
-            },
-            (error) => {
-              console.error('Error al añadir editorial:', error);
-              reject();
-            }
-          );
-        });
-      }
-    }
-  }
-
-  async validarCategoriaSiExiste(categoria: string): Promise<void> {
-    if (categoria !== '') {
-      this.nuevaCategoria = !this.buscarCategoria(categoria);
-
-      if (this.nuevaCategoria) {
-        const categoriaNueva: Categoria = {
-          id_categoria: 0,
-          nombre_categoria: categoria,
-        };
-        await new Promise<void>((resolve, reject) => {
-          this.connectService.agregarCategoria(categoriaNueva).subscribe(
-            (response) => {
-              console.log('Categoría añadida:', response);
-              this.obtenerDatosCategorias();
-              resolve();
-            },
-            (error) => {
-              console.error('Error al añadir categoría:', error);
-              reject();
-            }
-          );
-        });
-      }
-    }
-  }
-
-  async validarEdicionSiExiste(edicion: string): Promise<void> {
-    if (edicion !== '') {
-      this.nuevaEdicion = !this.buscarEdicion(edicion);
-
-      if (this.nuevaEdicion) {
-        const edicionNueva: Edicion = {
-          id_edicion: 0,
-          edicion: edicion,
-        };
-        await new Promise<void>((resolve, reject) => {
-          this.connectService.agregarEdicion(edicionNueva).subscribe(
-            (response) => {
-              console.log('Edición añadida:', response);
-              this.obtenerDatosEdiciones();
-              resolve();
-            },
-            (error) => {
-              console.error('Error al añadir edición:', error);
-              reject();
-            }
-          );
-        });
-      }
-    }
-  }
 }
