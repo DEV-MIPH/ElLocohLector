@@ -37,6 +37,7 @@ export class ConnectService {
   apiUrlSendMail = 'http://localhost:3000/send-email';
   apiUrlAdmin = 'http://localhost:3000/librosadmin';
   apiAddUser = 'http://localhost:3000/addUser';
+  apiGetAdmins = 'http://localhost:3000/getAdmins';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
@@ -75,6 +76,10 @@ export class ConnectService {
   }
   getEdiciones(): Observable<any> {
     return this.http.get<any>(this.apiUrlEdiciones);
+  }
+
+  getAdmins(): Observable<any> {
+    return this.http.get<any>(this.apiGetAdmins);
   }
 
   agregarLibro(libro: any): Observable<any> {
