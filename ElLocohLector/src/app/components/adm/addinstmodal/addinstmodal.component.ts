@@ -12,14 +12,16 @@ import { ConnectService } from '../../../modules/lobby/services/connect.service'
 @Component({
   selector: 'app-addinstmodal',
   standalone: true,
-  imports: [  FormsModule,NgIf,MatFormFieldModule,MatInputModule,MatButtonModule ],
+  imports: [FormsModule, NgIf, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './addinstmodal.component.html',
   styleUrl: './addinstmodal.component.css'
 })
-export class AddinstmodalComponent {
-  nuevaInstitucion = { email: '', password: '' };
 
-  constructor(public dialogRef: MatDialogRef<AddinstmodalComponent>,public auth: AuthService, private snackBar: MatSnackBar, private connectService: ConnectService  ) {}
+
+export class AddinstmodalComponent {
+  nuevaInstitucion = { email: '', password: '', nombre_usuario: '', fono_usuario: '', cel_usuario: '' };
+
+  constructor(public dialogRef: MatDialogRef<AddinstmodalComponent>, public auth: AuthService, private snackBar: MatSnackBar, private connectService: ConnectService) { }
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -29,12 +31,13 @@ export class AddinstmodalComponent {
     // Lógica para agregar la institución
     console.log('Nueva Institución:', this.nuevaInstitucion);
     const register = await this.auth.register(this.nuevaInstitucion.email, this.nuevaInstitucion.password);
-    if(register) {
+    if (register) {
       this.connectService.register(this.nuevaInstitucion.email, this.nuevaInstitucion.password);
-      this.snackBar.open('Correo '+ this.nuevaInstitucion.email + ' agregado correctamente.', 'Cerrar', {
+      this.connectService.registerInstitucion(this.nuevaInstitucion.nombre_usuario, this.nuevaInstitucion.email,this.nuevaInstitucion.fono_usuario, this.nuevaInstitucion.cel_usuario);
+      this.snackBar.open('Correo ' + this.nuevaInstitucion.email + ' agregado correctamente.', 'Cerrar', {
         duration: 3000,
       });
-    }else{
+    } else {
       this.snackBar.open('Error al agregar correo . Inténtelo nuevamente. Verifique Correo', 'Cerrar', {
         duration: 3000,
       });

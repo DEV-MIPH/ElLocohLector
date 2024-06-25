@@ -36,7 +36,7 @@ export class ConnectService {
   apiUrlEdiciones = 'http://localhost:3000/ediciones';
   apiUrlSendMail = 'http://localhost:3000/send-email';
   apiUrlAdmin = 'http://localhost:3000/librosadmin';
-
+  apiAddUser = 'http://localhost:3000/addUser';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
@@ -194,6 +194,28 @@ export class ConnectService {
     );
     
   }
+
+  registerInstitucion(nombre_usuario: any,email_usuario: any,fono_usuario: any,cel_usuario: any) {
+    
+    const body = {
+      nombre_usuario: nombre_usuario,
+      email_usuario: email_usuario,
+      fono_usuario: fono_usuario,
+      cel_usuario: cel_usuario,
+      id_tipo_usuario: 2
+    };
+    console.log('Body service:', body);
+    this.http.post(this.apiAddUser, body).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        console.log('Registrando usuario en bd:', email_usuario);
+      },
+      (error) => {
+        console.error('Error al enviar el correo:', error);
+      }
+    );
+    
+  } 
 
 
 
