@@ -15,6 +15,7 @@
   .contenedorform {
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 20px;
   }
   
   mat-card-header{
@@ -39,16 +40,16 @@
     
   }
   mat-form-field {
-    width: 100%; /* Hace que los campos ocupen el 100% del ancho del contenedor padre */
+    width: 100%; 
   }
 
   mat-form-field textarea {
-    height: auto; /* Permite ajustar la altura automáticamente si se especifican las filas */
-    min-height: 150px; /* Altura mínima para el textarea */
-    max-height: 300px; /* Altura máxima para el textarea */
-    overflow: auto; /* Añade scroll si el contenido supera la altura máxima */
+    height: auto; 
+    min-height: 150px; 
+    max-height: 250px; 
+    overflow: auto; 
   }
-  
+
   .form_btn {
     display: flex;
     justify-content: center;
@@ -76,24 +77,20 @@
     /* Ajustes para pantallas pequeñas */
     .contenedorRegistro {
         background-image: url('../../../assets/body_img/registroMQuery.png');
-        background-size: contain; /* La imagen de fondo se ajustará para contener todo el contenedor */
-        background-position: center center; /* La imagen se posicionará en el centro */
+        background-size: contain; 
+        background-position: center center; 
+        margin-top: 20px;
+        margin-bottom: 50px;
     }
     
     /* Ajustes para pantallas pequeñas */
     .contenedorform {
         padding-top: 20px;
     }
-    #titulo{
-        text-align: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 1.2em;
-        
-    }
+    
     #registroForm {
-        width: 180px;
-        background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.8); 
     }
 }
 
@@ -101,23 +98,19 @@
     /* Ajustes para pantallas de tamaño medio */
     .contenedorRegistro {
         background-image: url('../../../assets/body_img/registroMQuery.png');
-        background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
-        background-position: center center; /* La imagen se posicionará en el centro */
+        background-size: cover; 
+        background-position: center center;
+        margin-top: 20px;
+        margin-bottom: 50px;
     }
 
     .contenedorform {
         padding-top: 50px;
     }
-    #titulo{
-        text-align: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 1.2em;
-        
-    }
+
     #registroForm {
-        width: 300px;
-        background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+        width: 80%;
+        background-color: rgba(255, 255, 255, 0.8); 
     }
 }
 
@@ -125,21 +118,17 @@
     /* Ajustes para pantallas más grandes que 1024px */
     .contenedorRegistro {
         background-image: url('../../../assets/body_img/registroMQuery.png');
-        background-size: cover; /* La imagen de fondo cubrirá todo el contenedor */
-        background-position: center center; /* La imagen se posicionará en el centro */
+        background-size: cover; 
+        background-position: center center; 
+        margin-top: 20px;
+        margin-bottom: 50px;
     }
     .contenedorform {
         padding-top: 50px;
     }
-    #titulo{
-        text-align: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 1.2em;
-        
-    }
+
     #registroForm {
-        width: 300px;
-        background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+        width: 70%;
+        background-color: rgba(255, 255, 255, 0.8); 
     }
 }

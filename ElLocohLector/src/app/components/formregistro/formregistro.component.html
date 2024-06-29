@@ -5,8 +5,7 @@
       </mat-card-title>
     </mat-card-header>
     
-    <mat-card-content>
-        <div class="contenedorform">
+    <mat-card-content class="contenedorform">
       <form id="registroForm" (ngSubmit)="onSubmit()">
         <div class="form_group">
           <mat-form-field class="example-full-width">
@@ -24,10 +23,9 @@
   
         <div class="form_group">
           <mat-form-field class="example-full-width">
-            <mat-label>Teléfono de Contacto</mat-label>
+            <mat-label>Teléfono contacto</mat-label>
             <span matTextPrefix>+56 &nbsp;</span>
             <input type="tel" matInput [formControl]="telefonoFormControl" placeholder="912345678" maxlength="9" [(ngModel)]="telefono" name="telefono">
-            <mat-icon matSuffix>mode_edit</mat-icon>
             @if (telefonoFormControl.hasError('telefono') && !telefonoFormControl.hasError('required')) {
               <mat-error>Porfavor ingresa un número válido</mat-error>
             }
@@ -67,7 +65,7 @@
           <button mat-flat-button type="submit" value="Submit" id="enviar">Enviar</button>
         </div>
       </form>
-    </div>
+   
     </mat-card-content>
   </mat-card>
   
