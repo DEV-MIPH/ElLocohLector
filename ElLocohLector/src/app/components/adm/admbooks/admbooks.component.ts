@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 import { EditbookmodalComponent } from '../editbookmodal/editbookmodal.component';
-import { DeletebookmodalComponent } from '../deletebookmodal/deletebookmodal.component';
+
 
 @Component({
   selector: 'app-admbooks',
@@ -97,21 +97,5 @@ export class AdmbooksComponent implements OnInit, AfterViewInit, OnDestroy  {
     });
   }
 
-  /*Manejar MODAL EDITAR libro*/
-  /*Manejar MODAL EDITAR libro*/
-
-  eliminarLibro(libro: any): void {
-    const dialogRef = this.dialog.open(DeletebookmodalComponent, {
-      width: '400px',
-      data: libro
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // Confirmación de eliminación
-        this.libros = this.libros.filter((l: any) => l !== libro);
-        this.filtrarLibros(); // Volver a filtrar después de eliminar
-      }
-    });
-  }
+  
 }

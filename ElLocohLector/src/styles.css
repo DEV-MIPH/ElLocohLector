@@ -13,8 +13,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700; /* Negrita para los encabezados */
   }
   
-  /* Define estilos específicos para párrafos */
-  p {
+  /* Define estilos específicos para párrafos, label e input */
+  p, label, input, mat-label, textarea, mat-error {
     font-family: 'Poppins', sans-serif;
     font-weight: 400; /* Peso normal para párrafos */
   }
@@ -25,9 +25,4 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600; /* Negrita media para botones */
   }
   
-/* html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

@@ -1,38 +1,107 @@
-<div class="contenedorRegistro">
-    <div class="form-container">
-        <form id="registroForm" onsubmit="return validarFormulario()" (ngSubmit)="onSubmit()">
-            <div id="titulo">
-                <h2>Solicitud de Registro</h2>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" class="form-control" required [(ngModel)]="email" name="email" />
-                <span id="errorEmail" class="error"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="telefono">Teléfono de Contacto:</label>
-                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}" class="form-control" required
-                    [(ngModel)]="telefono">
-                <span id="errorTelefono" class="error"></span>
-            </div>
-            <div class="form-group">
-                <label for="nombreInstitucion">Nombre de la Institución:</label>
-                <input type="text" id="nombreInstitucion" name="nombreInstitucion" required class="form-control"
-                    [(ngModel)]="institucion">
-                <span id="errorNombre" class="error"></span>
-            </div>
-            <div class="form-group">
-                <label for="comentario">Comentario Adicional:</label>
-                <textarea id="comentario" name="comentario" required class="form-control"
-                    [(ngModel)]="comentario"></textarea>
-                <span id="errorComentario" class="error"></span>
-            </div>
-            <div class="form-actions">
-                <button type="submit" id="enviar">Enviar</button>
-            </div>
-        </form>
-
+<mat-card class="contenedorRegistro">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Solicitud de Registro</h2>
+      </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <div class="contenedorform">
+      <form id="registroForm" (ngSubmit)="onSubmit()">
+        <div class="form_group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                   placeholder="colegio@correo.cl" [(ngModel)]="email" name="email">
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+              <mat-error>Porfavor ingresa un correo válido</mat-error>
+            }
+            @if (emailFormControl.hasError('required')) {
+              <mat-error>Email es <strong>requerido</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+  
+        <div class="form_group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Teléfono de Contacto</mat-label>
+            <span matTextPrefix>+56 &nbsp;</span>
+            <input type="tel" matInput [formControl]="telefonoFormControl" placeholder="912345678" maxlength="9" [(ngModel)]="telefono" name="telefono">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            @if (telefonoFormControl.hasError('telefono') && !telefonoFormControl.hasError('required')) {
+              <mat-error>Porfavor ingresa un número válido</mat-error>
+            }
+            @if (telefonoFormControl.hasError('required')) {
+              <mat-error>Teléfono es <strong>requerido</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+  
+        <div class="form_group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre Institucional</mat-label>
+            <input type="text" matInput [formControl]="institucionFormControl" placeholder="Ej. Colegio Riquelme" [(ngModel)]="institucion" name="institucion">
+            @if (institucionFormControl.hasError('institucion') && !institucionFormControl.hasError('required')) {
+              <mat-error>Porfavor ingresa un nombre de institución válido</mat-error>
+            }
+            @if (institucionFormControl.hasError('required')) {
+              <mat-error>Institución es <strong>requerido</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+  
+        <div class="form_group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Comentarios</mat-label>
+            <textarea matInput [formControl]="comentarioFormControl" rows="5" [(ngModel)]="comentario" name="comentario"></textarea>
+            @if (comentarioFormControl.hasError('comentario') && !comentarioFormControl.hasError('required')) {
+              <mat-error>Porfavor ingresa un comentario</mat-error>
+            }
+            @if (comentarioFormControl.hasError('required')) {
+              <mat-error>Comentario es <strong>requerido</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+  
+        <div class="form_btn">
+          <button mat-flat-button type="submit" value="Submit" id="enviar">Enviar</button>
+        </div>
+      </form>
     </div>
+    </mat-card-content>
+  </mat-card>
+  
+
+  <!-- <mat-card-content>
+    <div class="contenedorform">
+  <form id="registroForm" (ngSubmit)="onSubmit()">
+    <div class="form_group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="colegio@correo.cl" class="form-control" required [(ngModel)]="email" name="email" />
+      <span id="errorEmail" class="error"></span>
+    </div>
+
+    <div class="form_group">
+      <label for="telefono">Teléfono de Contacto:</label>
+      <input type="tel" id="telefono" placeholder="912345678" name="telefono" pattern="[0-9]{9}" class="form-control" required [(ngModel)]="telefono">
+      <span id="errorTelefono" class="error"></span>
+    </div>
+
+    <div class="form_group">
+      <label for="nombreInstitucion">Nombre de la Institución:</label>
+      <input type="text" id="nombreInstitucion" placeholder="Nombre institución" name="nombreInstitucion" required class="form-control" [(ngModel)]="institucion">
+      <span id="errorNombre" class="error"></span>
+    </div>
+
+    <div class="form_group">
+      <label for="comentario">Comentario Adicional:</label>
+      <textarea id="comentario" name="comentario" required class="form-control" [(ngModel)]="comentario"></textarea>
+      <span id="errorComentario" class="error"></span>
+    </div>
+
+    <div class="form_btn">
+      <button mat-flat-button type="submit" value="Submit" id="enviar">Enviar</button>
+    </div>
+  </form>
 </div>
+</mat-card-content> -->
