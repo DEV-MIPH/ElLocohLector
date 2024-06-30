@@ -4,6 +4,7 @@ import { Component, AfterViewInit  } from '@angular/core';
 import { FormregistroComponent } from '../formregistro/formregistro.component';
 import { PuntodonacionComponent } from '../puntodonacion/puntodonacion.component';
 import { ContactoComponent } from '../contacto/contacto.component';
+import { EstadolibroComponent } from '../estadolibro/estadolibro.component';
 
 //Botones principales de la pagina web
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +21,7 @@ import { BooksComponent } from '../books/books.component';
     standalone: true,
     templateUrl: './body.component.html',
     styleUrl: './body.component.css',
-    imports: [ColaboradoresComponent, NosotrosComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent, ContactoComponent]
+    imports: [ColaboradoresComponent, NosotrosComponent, EstadolibroComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent, ContactoComponent]
 })
 export class BodyComponent implements AfterViewInit {
 

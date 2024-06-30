@@ -72,77 +72,7 @@
 .buttonPrincipales button:hover{
     background-color: #36C8F6;
 }
-/* Estilos para las tarjetas (cards) */
-.contenedorEstadoLibros{
-    margin-bottom: 20vh;
-}
-.contenedorEstadoLibros h3 {
-    text-align: center;
-    margin-bottom: 10vh;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #333; /* Color de texto oscuro */
-}
 
-.card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card {
-    width: 45%;
-    padding: 20px;
-    margin: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    opacity: 0;
-    transform: translateY(100px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-    border-bottom: 4px solid #36C8F6;
-}
-.card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-.card-izquierda {
-    align-self: flex-start;
-}
-
-.card-derecha {
-    align-self: flex-end;
-}
-
-.card-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.card-content.reversa {
-    flex-direction: row-reverse;
-}
-.imgDerecha {
-    width: 40%;
-    height: auto;
-    border-radius: 8px;
-    margin-left: 20px;
-    transition: 1s;
-}
-.imgDerecha:hover {
-    transform: scale(1.1);
-    transition: 1s;
-}
-.imgIzquierda {
-    width: 40%;
-    height: auto;
-    border-radius: 8px;
-    margin-right: 20px;
-    transition: 1s;
-}
-.imgIzquierda:hover {
-    transform: scale(1.1);
-    transition: 1s;
-}
 
 /* Media queries para hacer el diseño responsive */
 
