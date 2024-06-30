@@ -2,6 +2,7 @@
     <div class="divDatosContacto">
         <div class="contenedorTexto">
             <h3>Contacta con nosotros</h3>
+            <br>
             <p>Conoce nuestras redes de contacto a través de Instagram, Whatsapp e Email</p>
         </div>
 
@@ -19,23 +20,51 @@
                 <img class="imgFooter" loading="lazy" src="../../../assets/footer_img/email.svg" alt="email">
             </a>
         </div>
+        <div class="imagenContacto">
+            <img src="../../../assets/body_img/contactoNino.png" alt="contactoNino">
+        </div>
     </div>
 
     <div class="divFormularioContacto">
         <form id="contactoForm" (submit)="enviarFormulario($event)">
             <div class="form-group">
-                <label for="nombreInstitucion">Nombre de la Institución</label>
-                <input type="text" id="nombreInstitucion" name="nombreInstitucion" required>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nombre Institucional</mat-label>
+                    <input type="text" matInput [formControl]="institucionFormControl" placeholder="Ej. Colegio Riquelme" [(ngModel)]="institucion" name="institucion">
+                    @if (institucionFormControl.hasError('institucion') && !institucionFormControl.hasError('required')) {
+                      <mat-error>Porfavor ingresa un nombre de institución válido</mat-error>
+                    }
+                    @if (institucionFormControl.hasError('required')) {
+                      <mat-error>Institución es <strong>requerido</strong></mat-error>
+                    }
+                </mat-form-field>
             </div>
 
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                           placeholder="colegio@correo.cl" [(ngModel)]="email" name="email">
+                    @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+                      <mat-error>Porfavor ingresa un correo válido</mat-error>
+                    }
+                    @if (emailFormControl.hasError('required')) {
+                      <mat-error>Email es <strong>requerido</strong></mat-error>
+                    }
+                </mat-form-field>
             </div>
 
             <div class="form-group">
-                <label for="comentario">Comentario</label>
-                <textarea id="comentario" name="comentario" required></textarea>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Comentarios</mat-label>
+                    <textarea matInput [formControl]="comentarioFormControl" rows="5" [(ngModel)]="comentario" name="comentario"></textarea>
+                    @if (comentarioFormControl.hasError('comentario') && !comentarioFormControl.hasError('required')) {
+                      <mat-error>Porfavor ingresa un comentario</mat-error>
+                    }
+                    @if (comentarioFormControl.hasError('required')) {
+                      <mat-error>Comentario es <strong>requerido</strong></mat-error>
+                    }
+                </mat-form-field>
             </div>
 
             <div class="form-actions">
@@ -44,3 +73,26 @@
         </form>
     </div>
 </div>
+
+<!-- <div class="divFormularioContacto">
+    <form id="contactoForm" (submit)="enviarFormulario($event)">
+        <div class="form-group">
+            <label for="nombreInstitucion">Nombre de la Institución</label>
+            <input type="text" id="nombreInstitucion" name="nombreInstitucion" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="comentario">Comentario</label>
+            <textarea id="comentario" name="comentario" required></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" id="enviar">Enviar</button>
+        </div>
+    </form>
+</div> -->

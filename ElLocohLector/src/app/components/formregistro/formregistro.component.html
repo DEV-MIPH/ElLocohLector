@@ -8,7 +8,7 @@
     <mat-card-content class="contenedorform">
       <form id="registroForm" (ngSubmit)="onSubmit()">
         <div class="form_group">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Email</mat-label>
             <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
                    placeholder="colegio@correo.cl" [(ngModel)]="email" name="email">
@@ -22,7 +22,7 @@
         </div>
   
         <div class="form_group">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Teléfono contacto</mat-label>
             <span matTextPrefix>+56 &nbsp;</span>
             <input type="tel" matInput [formControl]="telefonoFormControl" placeholder="912345678" maxlength="9" [(ngModel)]="telefono" name="telefono">
@@ -36,7 +36,7 @@
         </div>
   
         <div class="form_group">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Nombre Institucional</mat-label>
             <input type="text" matInput [formControl]="institucionFormControl" placeholder="Ej. Colegio Riquelme" [(ngModel)]="institucion" name="institucion">
             @if (institucionFormControl.hasError('institucion') && !institucionFormControl.hasError('required')) {
@@ -49,7 +49,7 @@
         </div>
   
         <div class="form_group">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Comentarios</mat-label>
             <textarea matInput [formControl]="comentarioFormControl" rows="5" [(ngModel)]="comentario" name="comentario"></textarea>
             @if (comentarioFormControl.hasError('comentario') && !comentarioFormControl.hasError('required')) {
