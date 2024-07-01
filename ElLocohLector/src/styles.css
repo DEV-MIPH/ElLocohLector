@@ -8,7 +8,7 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 /* Define estilos específicos para encabezados */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, mat-button {
     font-family: 'Poppins', sans-serif;
     font-weight: 700; /* Negrita para los encabezados */
   }

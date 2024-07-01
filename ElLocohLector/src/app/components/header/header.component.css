@@ -13,7 +13,7 @@ header {
     height: 10vh;
     background-color: #C3E2C2;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr auto 1fr; /* Ajustar columnas */
     grid-template-rows: auto; /* Cambiar a 'auto' para permitir que las filas se ajusten según el contenido */
     grid-column-gap: 0px;
     grid-row-gap: 10px; /* Añadir espacio entre filas */
@@ -22,149 +22,54 @@ header {
 
 #logo {
     
-    width: 10vh;
-    height: 10vh;
+    width: 12vh;
+    height: 12vh;
     border-radius: 50%;
-    background: #36C8F6;
-    box-shadow: 5px 5px 10px #2ca4ca, -5px -5px 10px #40ecff;
+    
 }
 
-#textCenter {
-   
-    grid-area: 1 / 2 / 2 / 3;
-    text-align: center;
+.textCenter {
+    grid-column: 2 / 3; /* Centrar la imagen en la segunda columna */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#title {
-    font-family: "Merriweather", serif;
-    font-size: 20px;
-    font-weight: 500;
-    font-style: normal;
+#logotexto {
+    width: 50vh; /* Asegurar que la imagen se ajuste a su contenedor */
+    height: auto;
+    opacity: 0.8; /* Hacer transparente la imagen */
 }
 
-#subtitle {
-    font-family: "Merriweather", serif;
-    font-size: 10px;
-    font-weight: 300;
-    font-style: italic;
+.header-buttons {
+    grid-column: 3 / 4; /* Ubicar los botones en la tercera columna */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
 }
 
-#login {
-    margin-top: 5%;
-    margin-left: 60%; /* Mover el botón de ingresar al extremo derecho */
+#btnIngresar {
+    background-color: #36C8F6;
     color: #fff;
-    background: #36C8F6;
+    transition: background-color 0.3s ease;
 }
 
-#profile{
-    margin-top: 5%;
-    margin-left: 60%; /* Mover el botón de ingresar al extremo derecho */
+#btnIngresar:hover {
+    background-color: #17a2b8;
+}
+
+#btnPerfil {
+    background-color: #36C8F6;
     color: #fff;
-    background: #36C8F6;
+    transition: background-color 0.3s ease;
 }
 
-#logout {
-    margin-top: 5%;
-    margin-left: 60%; /* Mover el botón de ingresar al extremo derecho */
-    color: #fff;
-    background: #36C8F6;
+#btnPerfil:hover {
+    background-color: #17a2b8;
 }
+@media only screen and (min-width: 344px) and (max-width: 480px) {}
 
-/* Media query para dispositivos pequeños (320px y más pequeños) */
-@media only screen and (max-width: 320px) {
-    /* Ajustes para dispositivos pequeños */
-    #logo {
-        width: 30px;
-        height: 30px;
-    }
+@media only screen and (max-width: 768px) {}
 
-    #title {
-        font-size: 12px;
-    }
-
-    #subtitle {
-        font-size: 8px;
-    }
-
-    #login {
-        margin-left: 10%;
-        margin-top: 5%;
-        font-size: 8px;
-    }
-    #profile {
-        margin-left: 10%;
-        margin-top: 5%;
-        font-size: 8px;
-    }
-    #logout {
-        margin-left: 10%;
-        margin-top: 5%;
-        font-size: 8px;
-    }
-}
-
-/* Media query para dispositivos medianos (de 321px a 768px) */
-@media only screen and (min-width: 321px) and (max-width: 768px) {
-    /* Ajustes para dispositivos medianos */
-    #logo {
-        width: 50px;
-        height: 50px;
-    }
-
-    #title {
-        font-size: 14px;
-    }
-
-    #subtitle {
-        font-size: 10px;
-    }
-
-    #login {
-        margin-left: 30%;
-        margin-top: 10%;
-        font-size: 10px;
-    }
-    #profile {
-        margin-left: 30%;
-        margin-top: 10%;
-        font-size: 10px;
-    }
-    #logout {
-        margin-left: 30%;
-        margin-top: 10%;
-        font-size: 10px;
-    }
-}
-
-/* Media query para dispositivos grandes (de 769px en adelante) */
-@media only screen and (min-width: 769px) {
-    /* Ajustes para dispositivos grandes */
-    #logo {
-        width: 60px;
-        height: 60px;
-    }
-
-    #title {
-        font-size: 20px;
-    }
-
-    #subtitle {
-        font-size: 12px;
-    }
-
-    #login {
-        margin-left: 60%;
-        margin-top: 5%;
-        font-size: 12px;
-    }
-    #profile {
-        margin-left: 60%;
-        margin-top: 5%;
-        font-size: 12px;
-    }
-    #logout {
-        margin-left: 60%;
-        margin-top: 5%;
-        font-size: 12px;
-    }
-}
+@media only screen and (max-width: 1025px) {}

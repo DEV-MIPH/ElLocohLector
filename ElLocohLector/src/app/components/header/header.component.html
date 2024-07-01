@@ -12,18 +12,17 @@
 
         </div>
 
-        <div id="textCenter">
-            <h1 id="title">eloKoLector</h1>
-            <h3 id="subtitle">
-                "Dona un libro, ilumina una mente"
-            </h3>
+        <div class="textCenter">
+            <img src="../../../assets/header_img/logoElokolector.png" alt="logoTexto" id="logotexto">
         </div>
 
-        <div>
+        <div class="header-buttons">
             <!-- routerlink actua como href en este caso redirige a login -->
-            <button *ngIf="!isLoggedIn" routerLink="/login" mat-flat-button id="login">Ingresar</button>
+            <!--Si no está logeado aparece el button ingresar-->
+            <button mat-flat-button *ngIf="!isLoggedIn" routerLink="/login" id="btnIngresar">Ingresar</button>
 
-            <button *ngIf="isLoggedIn" id="profile" mat-button [matMenuTriggerFor]="menu" >Mi Perfil</button>
+            <!--Si está logeado aparece el button Mi Perfil-->
+            <button mat-flat-button *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" id="btnPerfil">Mi Perfil</button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
                 <button mat-menu-item routerLink="/pedidos">Mis pedidos</button>
@@ -36,3 +35,14 @@
 </header>
 
 <router-outlet></router-outlet>
+
+<!-- <div>
+        <button *ngIf="!isLoggedIn" routerLink="/login" mat-flat-button id="login">Ingresar</button>
+
+        <button *ngIf="isLoggedIn" id="profile" mat-button [matMenuTriggerFor]="menu" >Mi Perfil</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
+            <button mat-menu-item routerLink="/pedidos">Mis pedidos</button>
+            <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+        </mat-menu>
+</div> -->
