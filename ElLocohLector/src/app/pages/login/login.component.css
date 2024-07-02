@@ -11,7 +11,7 @@
 /* Container estilos*/
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -25,12 +25,20 @@
     flex-wrap: wrap;
 }
 
+#columna1 {
+    width: 50%;
+}
+#columna2 {
+    width: 50%;
+}
 /* Form estilos */
 .form-container {
     padding: 20px;
     max-width: 500px;
-    width: 100%;
+    width: 90%;
     margin: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
 }
 
 .form-title {
@@ -41,7 +49,7 @@
 .form-group {
     position: relative;
     margin-bottom: 20px;
-    width: 80vh;
+    width: 100%;
 }
 
 .form-control {
@@ -94,48 +102,27 @@
 
 /* Image estilos */
 .image-container {
-    display: none; /* Ocultar en pantallas pequeñas */
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%; /* Ajustar el ancho de la columna de la imagen */
+    height: 100%;
 }
 
 .login-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 8px;
+}
+
+small {
+    color: red;
 }
 
 /* Responsive styles */
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-        align-items: flex-start;
-    }
+@media only screen and (min-width: 344px) and (max-width: 480px) {}
 
-    .col {
-        flex: 1;
-    }
+@media only screen and (max-width: 768px) {}
 
-    .image-container {
-        display: block;
-    }
-
-    .form-container {
-        max-width: 100%;
-        margin-right: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .form-container {
-        padding: 20px;
-    }
-
-    .form-title {
-        font-size: 1.2em;
-    }
-
-    #btn {
-        width: 100%;
-    }
-}
+@media only screen and (max-width: 1025px) {}

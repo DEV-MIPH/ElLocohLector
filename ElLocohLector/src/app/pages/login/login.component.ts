@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +14,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent,FooterComponent,FormsModule,MatTooltip,ForgetPasswordComponent],
+  imports: [HeaderComponent,ReactiveFormsModule,CommonModule,FooterComponent,MatTooltip,ForgetPasswordComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,18 +23,33 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
-  
+  loginForm: FormGroup;
 
-  constructor(private router:Router, private authService: AuthService,private snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
+  }
 
-  async onSubmit() {
+ async onSubmit() {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const { email, password } = this.loginForm.value;
+
     try {
-      const login = await this.authService.login(this.email, this.password);
-      console.log(login);
-      if(login) {
+      const login = await this.authService.login(email, password);
+      if (login) {
         this.router.navigate(['/lobby']);
-      }
-      else{
+      } else {
         this.snackBar.open('Error al autenticar. Inténtelo nuevamente.', 'Cerrar', {
           duration: 3000,
         });
