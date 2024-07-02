@@ -53,7 +53,9 @@ export class AdmcomponentComponent {
 /*Visualizar ejemplares*/
   openDialogEjem(): void {
     const dialogRef = this.dialog.open(EjemplaresComponent, {
-      width: '300px'
+      width: '80%',  // Ajusta el ancho del modal según necesites
+    height: 'auto',  // Deja que la altura se ajuste automáticamente
+    maxHeight: '90vh',  // Limita la altura máxima del modal al 90% del viewport
     });
 
     dialogRef.afterClosed().subscribe(result => {

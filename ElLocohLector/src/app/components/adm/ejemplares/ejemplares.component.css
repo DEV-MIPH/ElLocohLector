@@ -1,0 +1,139 @@
+/* Contenedor principal */
+.books-container {
+    max-width: 100%;  /* Asegurar que ocupe todo el ancho del modal */
+    margin-top: 15vh; /* Ajustar según tu diseño */
+    padding: 20px;
+    height: auto;  /* Permitir que el contenedor ajuste su altura */
+    overflow: auto; /* Permitir el desbordamiento si es necesario */
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-container label {
+    margin-right: 10px;
+}
+
+.search-container input {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+/* Lista de libros */
+.books-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Botón de expansión */
+.expand-button {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.expand-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.search-container {
+    display: flex;
+    flex-wrap: wrap;  /* Permitir que los elementos se envuelvan en varias líneas */
+    align-items: center;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.search-container label, .search-container input {
+    flex: 1 1 auto;  /* Permitir que los elementos crezcan y se encojan */
+    margin: 5px;
+}
+
+/* Estilos para las etiquetas de búsqueda */
+.search-container label {
+    font-weight: bold;
+}
+
+/* Estilos para los inputs de búsqueda */
+.search-container input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de búsqueda */
+.search-container button {
+    padding: 8px 16px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #004080;
+}
+table {
+    width: 100%;
+    border-collapse: collapse; /* Colapsar los bordes de la tabla */
+    background-color: #ffffff;
+}
+
+th {
+    background-color: #343a40; /* Cambiar el color de fondo del encabezado de la tabla */
+    color: #000000; /* Cambiar el color del texto del encabezado de la tabla */
+    border-bottom: 1px solid #000000; /* Agregar una línea en la parte inferior */
+}
+
+td {
+    text-align: left; /* Alinear el texto a la izquierda */
+    color: #343a40; /* Color de texto */
+    border-bottom: 1px solid #f8f9fa; /* Línea para separar las filas */
+}
+h2 {
+    color: #343a40; /* Color del texto */
+    font-size: 24px; /* Tamaño de la fuente */
+    margin-bottom: 20px; /* Espacio inferior */
+    border-bottom: 2px solid #343a40; /* Línea decorativa */
+    padding-bottom: 5px; /* Espacio inferior interno */
+    text-align: center; /* Centrar el texto horizontalmente */
+}
+
+/* Estilos para los botones de acciones */
+table button {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    color: #17a2b8;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+table button svg {
+    margin-right: 4px;
+}
+
+table button:hover {
+    background-color: rgba(23, 162, 184, 0.1);
+}
+
+/* Ajustar el tamaño de los iconos SVG */
+table svg {
+    width: 1.2em;
+    height: 1.2em;
+}
+
