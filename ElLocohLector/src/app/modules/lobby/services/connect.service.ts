@@ -157,6 +157,7 @@ export class ConnectService {
 
   }
 
+  //Mensaje de component form Registro
   solicitudRegistro(email: string, Telefono: string, NombreInstitucion : String , Comentario: String) {
     const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -177,6 +178,47 @@ export class ConnectService {
   
 
     console.log('solicitud usuario:', email);
+    const to = "elokolector@gmail.com";
+    const subject = 'Bienvenido a eLokolector';
+    const text = 'Cuerpo del correo en texto plano';
+    const body = {
+      to: to,
+      subject: subject,
+      text: text,
+      html: html
+    };
+    console.log('Body service:', body);
+    this.http.post(this.apiUrlSendMail, body).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        // Realizar acciones adicionales si es necesario
+      },
+      (error) => {
+        console.error('Error al enviar el correo:', error);
+        // Manejar el error de manera adecuada
+      }
+    );
+    
+  }
+
+  //Mensaje de component Contacto
+  mensajeContacto(email: string, NombreInstitucion : String , Comentario: String) {
+    const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Solicitud de Registro</h1>
+        <p style="margin-bottom: 10px;">¡Hola!</p>
+        <p>Se ha recibido un nuevo mensaje con la siguiente información:</p>
+        <ul>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Nombre de la Institución:</strong> ${NombreInstitucion}</li>
+            <li><strong>Comentario:</strong> ${Comentario}</li>
+        </ul>
+        <p>Por favor, revisa el mensaje y toma las acciones necesarias.</p>
+        <p>¡Gracias!</p>
+    </div>
+  `;
+
+  console.log('Mensaje de:', email);
     const to = "elokolector@gmail.com";
     const subject = 'Bienvenido a eLokolector';
     const text = 'Cuerpo del correo en texto plano';
