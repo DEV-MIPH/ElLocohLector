@@ -1,44 +1,39 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-    rel="stylesheet">
-
-
 <div class="contenedorBody">
-<div class="portada">
-    <div id="textoContenedor">
-        <p id="textoTitulo">¿Donde puedo donar mis libros?</p>
-        <p id="textoSubtitulo">Te invitamos a donar un libro en nuestros puntos de donación asignados</p>
+    <div class="imgFondo">
+        <div class="portada">
+            <div id="textoContenedor">
+                <h2 id="textoTitulo">¿Donde puedo donar mis libros?</h2>
+                <p id="textoSubtitulo">Te invitamos a donar un libro en nuestros puntos de donación asignados</p>
+            </div>
+
+            <img src="../../../assets/body_img/portada.jpg" alt="portada" id="imgportada">
+        </div>
+
+        <div class="contenedorPrincipal">
+            <div class="buttonPrincipales">
+                <button mat-button id="libros" (click)="mostrarBooksDonacion()">Libros</button>
+                <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi
+                    institución</button>
+                <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
+                <button mat-button id="contacto" (click)="mostrarContactoDonacion()">Contacto</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        @if(mostrarFormularioRegistro){
+        <app-formregistro></app-formregistro>
+        }
+        @if(mostrarPuntos){
+        <app-puntodonacion></app-puntodonacion>
+        }
+        @if(mostrarBooks){
+        <app-books></app-books>
+        }
+        @if(mostrarContacto){
+        <app-contacto></app-contacto>
+        }
     </div>
 
-    <img src="../../../assets/body_img/portada.jpg" alt="portada" id="imgportada">
-</div>
-
-<div class="contenedorPrincipal">
-    <div class="buttonPrincipales">
-        <button mat-button id="libros" (click)="mostrarBooksDonacion()">Libros</button>
-        <button mat-button id="registrarInstitución" (click)="mostrarFormulario()">Registrar mi institución</button>
-        <button mat-button id="puntoDonacion" (click)="mostrarPuntosDonacion()">Puntos de donación</button>
-        <button mat-button id="contacto" (click)="mostrarContactoDonacion()">Contacto</button>
-    </div>
-</div>
-
-<div>
-    @if(mostrarFormularioRegistro){
-    <app-formregistro></app-formregistro>
-    }
-    @if(mostrarPuntos){
-    <app-puntodonacion></app-puntodonacion>
-    }
-    @if(mostrarBooks){
-    <app-books></app-books>
-    }
-    @if(mostrarContacto){
-    <app-contacto></app-contacto>
-    }
-</div>
-
-<app-estadolibro></app-estadolibro>
+    <app-estadolibro></app-estadolibro>
 
 </div>

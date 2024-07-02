@@ -11,9 +11,17 @@
     justify-content: center;
     align-items: center;
     height: 50vh;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8); /* Color blanco con 80% de opacidad */
     padding: 20px;
     box-sizing: border-box;
+}
+.imgFondo {
+    background-image: url('../../../assets/body_img/fondo.jpg');
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: 100%;
+    height: 100%;
 }
 
 #textoContenedor {
@@ -21,8 +29,7 @@
     margin-right: 20px;
 }
 
-#textoTitulo {
-    font-family: "Merriweather", serif;
+#textoTitulo {  
     font-size: 3em;
     font-weight: 500;
     font-style: normal;
@@ -30,7 +37,6 @@
 }
 
 #textoSubtitulo {
-    font-family: "Merriweather", serif;
     font-weight: 200;
     font-style: normal;
     margin-top: 5vh;
@@ -76,45 +82,120 @@
 
 /* Media queries para hacer el diseño responsive */
 
-/* Para dispositivos con una anchura máxima de 768px (tablets y dispositivos móviles) */
+@media only screen and (min-width: 344px) and (max-width: 480px) {
+    .contenedorBody {
+        padding-top: 15vh; /* Reducir el padding superior */
+    }
+
+    .portada {
+        flex-direction: column; /* Cambiar la dirección de los elementos a columna */
+        height: auto; /* Ajustar la altura para contenido variable */
+        padding: 5px; /* Reducir el padding */
+    }
+
+    #textoContenedor {
+        margin-right: 0; /* Eliminar el margen derecho */
+    }
+
+    #imgportada {
+        max-width: 70%; /* Ajustar el tamaño de la imagen */
+        margin-top: 10px; /* Añadir margen superior para separación */
+    }
+
+    #textoTitulo {
+        font-size: 1.5em; /* Reducir el tamaño del título */
+    }
+
+    #textoSubtitulo {
+        font-size: 0.8em; /* Reducir el tamaño del subtítulo */
+    }
+    
+    .buttonPrincipales {
+        flex-direction: column; /* Cambiar la dirección de los botones a columna */
+        padding: 5px; /* Reducir el padding */
+    }
+
+    .buttonPrincipales button {
+        margin: 5px 0; /* Espacio entre botones en columna */
+        padding: 8px 10px; /* Ajustar padding de los botones */
+    }
+}
+
 @media only screen and (max-width: 768px) {
+    .contenedorBody {
+        padding-top: 20vh; /* Reducir el padding superior */
+    }
+
+    .portada {
+        flex-direction: column; /* Cambiar la dirección de los elementos a columna */
+        height: auto; /* Ajustar la altura para contenido variable */
+        padding: 10px; /* Reducir el padding */
+    }
+
+    #textoContenedor {
+        margin-right: 0; /* Eliminar el margen derecho */
+    }
+
+    #imgportada {
+        max-width: 50%; /* Ajustar el tamaño de la imagen */
+        margin-top: 10px; /* Añadir margen superior para separación */
+    }
+
     #textoTitulo {
         font-size: 2em; /* Reducir el tamaño del título */
     }
 
     #textoSubtitulo {
-        font-size: 1em; /* Reducir el tamaño del subtitulo */
+        font-size: 1em; /* Reducir el tamaño del subtítulo */
     }
-
-    #imgportada {
-        max-width: 50%; /* Reducir el tamaño de la imagen */
+    
+    .buttonPrincipales {
+        flex-direction: column; /* Cambiar la dirección de los botones a columna */
+        padding: 5px; /* Reducir el padding */
     }
 
     .buttonPrincipales button {
-        margin: 0 5px; /* Reducir el espacio entre los botones */
+        margin: 5px 0; /* Espacio entre botones en columna */
+        padding: 10px 15px; /* Ajustar padding de los botones */
     }
 }
 
-/* Para dispositivos con una anchura máxima de 480px (dispositivos móviles) */
-@media only screen and (max-width: 480px) {
-    #textoTitulo {
-        font-size: 1.5em; /* Reducir aún más el tamaño del título */
+@media only screen and (max-width: 1025px) {
+    .contenedorBody {
+        padding-top: 25vh; /* Reducir el padding superior */
     }
 
-    #textoSubtitulo {
-        font-size: 0.8em; /* Reducir aún más el tamaño del subtitulo */
+    .portada {
+        flex-direction: column; /* Cambiar la dirección de los elementos a columna */
+        height: auto; /* Ajustar la altura para contenido variable */
+        padding: 15px; /* Reducir el padding */
+    }
+
+    #textoContenedor {
+        margin-right: 0; /* Eliminar el margen derecho */
     }
 
     #imgportada {
-        max-width: 70%; /* Reducir aún más el tamaño de la imagen */
+        max-width: 40%; /* Ajustar el tamaño de la imagen */
+        margin-top: 10px; /* Añadir margen superior para separación */
     }
 
+    #textoTitulo {
+        font-size: 2.5em; /* Reducir el tamaño del título */
+    }
+
+    #textoSubtitulo {
+        font-size: 1.2em; /* Reducir el tamaño del subtítulo */
+    }
+    
     .buttonPrincipales {
-        flex-direction: column; /* Colocar los botones en columna en dispositivos muy pequeños */
+        flex-direction: column; /* Cambiar la dirección de los botones a columna */
+        padding: 8px; /* Reducir el padding */
     }
 
     .buttonPrincipales button {
-        margin: 5px 0; /* Añadir espacio entre los botones en dispositivos muy pequeños */
+        margin: 5px 0; /* Espacio entre botones en columna */
+        padding: 8px 10px; /* Ajustar padding de los botones */
     }
 }
 
