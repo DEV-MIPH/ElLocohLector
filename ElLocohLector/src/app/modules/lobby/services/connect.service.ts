@@ -205,7 +205,7 @@ export class ConnectService {
   mensajeContacto(email: string, NombreInstitucion : String , Comentario: String) {
     const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Solicitud de Registro</h1>
+        <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Mensaje de Contacto</h1>
         <p style="margin-bottom: 10px;">¡Hola!</p>
         <p>Se ha recibido un nuevo mensaje con la siguiente información:</p>
         <ul>

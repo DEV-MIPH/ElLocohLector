@@ -120,9 +120,40 @@ small {
     color: red;
 }
 
+
 /* Responsive styles */
-@media only screen and (min-width: 344px) and (max-width: 480px) {}
+/* Dispositivos móviles pequeños */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    /* Estilos para dispositivos móviles pequeños */
+    .form-container {
+        /* tus estilos aquí */
+    }
+    /* Otros ajustes */
+}
 
-@media only screen and (max-width: 768px) {}
+/* Dispositivos móviles medianos */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    /* Estilos para dispositivos móviles medianos */
+    .form-container {
+        /* tus estilos aquí */
+    }
+    /* Otros ajustes */
+}
 
-@media only screen and (max-width: 1025px) {}
+/* Tablets y dispositivos medianos */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Estilos para tablets y dispositivos medianos */
+    .form-container {
+        /* tus estilos aquí */
+    }
+    /* Otros ajustes */
+}
+
+/* Laptops y dispositivos grandes */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    /* Estilos para laptops y dispositivos grandes */
+    .form-container {
+        /* tus estilos aquí */
+    }
+    /* Otros ajustes */
+}

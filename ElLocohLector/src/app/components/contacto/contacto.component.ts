@@ -58,13 +58,26 @@ export class ContactoComponent {
   matcher = new MyErrorStateMatcher();
 
   enviarFormulario(event: Event) {
-    event.preventDefault(); // Evita el envío del formulario
+    event.preventDefault(); // Evita el comportamiento por defecto del formulario
 
-  
-   
+    if (this.institucionFormControl.valid && this.emailFormControl.valid && this.comentarioFormControl.valid) {
+      this.connectService.mensajeContacto(this.email, this.institucion, this.comentario);
+      this.snackBar.open('Formulario enviado con éxito', 'Cerrar', {
+        duration: 3000,
+      });
 
-    // Restablecer el formulario
-    const form = event.target as HTMLFormElement;
-    form.reset();
+      // Restablecer el formulario
+      const form = event.target as HTMLFormElement;
+      form.reset();
+
+      // Restablecer los controles del formulario
+      this.institucionFormControl.reset();
+      this.emailFormControl.reset();
+      this.comentarioFormControl.reset();
+    } else {
+      this.snackBar.open('Por favor, completa todos los campos correctamente', 'Cerrar', {
+        duration: 3000,
+      });
+    }
   }
 }
