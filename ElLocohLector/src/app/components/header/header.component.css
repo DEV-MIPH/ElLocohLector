@@ -25,9 +25,11 @@ header {
     width: 12vh;
     height: 12vh;
     border-radius: 50%;
-    
+    transition: box-shadow 0.3s ease; /* Añadir una transición suave */
 }
-
+#logo:hover {
+    box-shadow: 0 0 10px 5px rgba(54, 200, 246, 0.8); /* Iluminar el borde con un color */
+}
 .textCenter {
     grid-column: 2 / 3; /* Centrar la imagen en la segunda columna */
     display: flex;
@@ -36,7 +38,7 @@ header {
 }
 
 #logotexto {
-    width: 50vh; /* Asegurar que la imagen se ajuste a su contenedor */
+    width: 40vh; /* Asegurar que la imagen se ajuste a su contenedor */
     height: auto;
     opacity: 0.8; /* Hacer transparente la imagen */
 }
@@ -68,8 +70,118 @@ header {
 #btnPerfil:hover {
     background-color: #17a2b8;
 }
-@media only screen and (min-width: 344px) and (max-width: 480px) {}
 
-@media only screen and (max-width: 768px) {}
+@media only screen and (min-width: 344px) and (max-width: 480px) {
+    .header-grid {
+        grid-template-columns: 1fr 2fr 1fr; /* Tres columnas, manteniendo la alineación */
+        grid-template-rows: auto; /* Una sola fila */
+        padding: 5px; /* Reducir el padding */
+        height: auto; /* Ajustar la altura automáticamente */
+        background-color: #C3E2C2;
+    }
 
-@media only screen and (max-width: 1025px) {}
+    #logo {
+        width: 8vh;
+        height: 8vh;
+        margin: 0; /* Centrar el logo */
+    }
+
+    .textCenter {
+        grid-column: 2 / 3; /* Centrar la imagen en la segunda columna */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #logotexto {
+        display: none;
+    }
+
+    .header-buttons {
+        grid-column: 3 / 4; /* Ubicar los botones en la tercera columna */
+        display: flex;
+        justify-content: flex-end; /* Mantener alineación a la derecha */
+        align-items: center;
+    }
+
+    #btnIngresar, #btnPerfil {
+        font-size: 0.8em; /* Reducir el tamaño de la fuente */
+        padding: 5px 10px; /* Reducir el padding */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .header-grid {
+        grid-template-columns: 1fr 2fr 1fr; /* Tres columnas, manteniendo la alineación */
+        grid-template-rows: auto; /* Una sola fila */
+        padding: 10px; /* Reducir el padding */
+        height: auto; /* Ajustar la altura automáticamente */
+    }
+
+    #logo {
+        width: 10vh;
+        height: 10vh;
+    }
+
+    .textCenter {
+        grid-column: 2 / 3; /* Centrar la imagen en la segunda columna */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #logotexto {
+        width: 35vh; /* Ajustar el tamaño de la imagen */
+        height: auto;
+    }
+
+    .header-buttons {
+        grid-column: 3 / 4; /* Ubicar los botones en la tercera columna */
+        display: flex;
+        justify-content: flex-end; /* Mantener alineación a la derecha */
+        align-items: center;
+    }
+
+    #btnIngresar, #btnPerfil {
+        font-size: 0.8em; /* Reducir el tamaño de la fuente */
+        padding: 5px 10px; /* Reducir el padding */
+    }
+}
+
+@media only screen and (max-width: 1025px) {
+    .header-grid {
+        grid-template-columns: 1fr 2fr 1fr; /* Tres columnas, manteniendo la alineación */
+        grid-template-rows: auto; /* Una sola fila */
+        padding: 15px; /* Reducir el padding */
+        height: auto; /* Ajustar la altura automáticamente */
+    }
+
+    #logo {
+        width: 12vh;
+        height: 12vh;
+    }
+
+    .textCenter {
+        grid-column: 2 / 3; /* Centrar la imagen en la segunda columna */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #logotexto {
+        width: 40vh; /* Ajustar el tamaño de la imagen */
+        height: auto;
+    }
+
+    .header-buttons {
+        grid-column: 3 / 4; /* Ubicar los botones en la tercera columna */
+        display: flex;
+        justify-content: flex-end; /* Mantener alineación a la derecha */
+        align-items: center;
+    }
+
+    #btnIngresar, #btnPerfil {
+        font-size: 0.9em; /* Reducir el tamaño de la fuente */
+        padding: 5px 10px; /* Reducir el padding */
+    }
+}
