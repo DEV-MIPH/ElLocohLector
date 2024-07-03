@@ -83,6 +83,7 @@ export class ConnectService {
     return this.http.get<any>(this.apiGetAdmins);
   }
 
+  //Rescatar ejemplares
   getEjemplares(): Observable<any> {
     return this.http.get<any>(this.apiUrlEjemplares);
   }
@@ -107,6 +108,12 @@ export class ConnectService {
 
   agregarEdicion(edicion: any): Observable<any> {
     return this.http.post<any>(this.apiUrlEdiciones, edicion);
+  }
+
+  //Agregar ejemplares
+  agregarEjemplar(ejemplar: any): Observable<any> {
+    console.log('Agregando ejemplar connect service:', ejemplar);
+    return this.http.post<any>(this.apiUrlEjemplares, ejemplar);
   }
 
   // Función para agregar un libro al pedido

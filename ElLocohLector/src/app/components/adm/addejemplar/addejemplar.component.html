@@ -1,1 +1,38 @@
-<p>addejemplar works!</p>
+<h2>Añadir Nuevo Ejemplar</h2>
+<form [formGroup]="ejemplarForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="titulo" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Autor</mat-label>
+    <input matInput formControlName="autor" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+    <input matInput formControlName="categoria" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Editorial</mat-label>
+    <input matInput formControlName="editorial" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Edición</mat-label>
+    <input matInput formControlName="edicion" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput formControlName="descripcion" required></textarea>
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit">Añadir Ejemplar</button>
+    <button mat-raised-button color="warn" (click)="onCancel()">Cancelar</button>
+  </div>
+</form>
+

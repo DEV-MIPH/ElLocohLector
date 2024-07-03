@@ -77,12 +77,31 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
     // Lógica para abrir el modal de añadir ejemplar
     console.log('Abrir modal para añadir ejemplar');
     const dialogRef = this.dialog.open(AddejemplarComponent, {
-      width: '250px'
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('El modal ha sido cerrado');
-      // Puedes procesar el resultado del modal aquí
+      if (result) {
+        this.loadEjemplares();
+      }
     });
   }
+
+  private loadEjemplares(): void {
+    this.librosSubscription = this.connectService.getEjemplares().subscribe(
+      response => {
+        console.log('Datos obtenidos:', response);
+        this.libros = response;
+        this.librosFiltrados = response;
+        this.dataSource.data = this.librosFiltrados; // Actualizar dataSource
+      },
+      error => {
+        console.error('Error al obtener datos:', error);
+        this.snackBar.open('Error al cargar los ejemplares. Inténtelo nuevamente.', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    );
+  }
+  
 }
