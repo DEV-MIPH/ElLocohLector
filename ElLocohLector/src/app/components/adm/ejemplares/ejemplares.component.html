@@ -48,19 +48,19 @@
         <!-- Estado Column solicitado, aceptado, rechazado, entregado, disponible -->
         <ng-container matColumnDef="estado">
             <th mat-header-cell *matHeaderCellDef> Estado </th>
-            <td mat-cell *matCellDef="let libro"> {{libro.estado}} </td>
+            <td mat-cell *matCellDef="let libro"> {{libro.Estado}} </td>
         </ng-container>
 
         <!-- Usuario Column -->
         <ng-container matColumnDef="usuario">
             <th mat-header-cell *matHeaderCellDef> Usuario </th>
-            <td mat-cell *matCellDef="let libro"> {{libro.usuario}} </td>
+            <td mat-cell *matCellDef="let libro"> {{libro.Usuario}} </td>
         </ng-container>
 
         <!-- Fecha Column -->
-        <ng-container matColumnDef="usuario">
+        <ng-container matColumnDef="fecha">
             <th mat-header-cell *matHeaderCellDef> Fecha pedido </th>
-            <td mat-cell *matCellDef="let libro"> {{libro.fecha}} </td>
+            <td mat-cell *matCellDef="let libro"> {{libro.fecha_pedido}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

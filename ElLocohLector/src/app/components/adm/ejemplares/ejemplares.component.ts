@@ -27,7 +27,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
   librosFiltrados: any = [];
   searchAuthor: string = '';
   searchTitle: string = '';
-  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion'];
+  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'estado', 'usuario', 'fecha'];
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   
@@ -36,7 +36,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.librosSubscription = this.connectService.getLibrosAdmin().subscribe(
+    this.librosSubscription = this.connectService.getEjemplares().subscribe(
       response => {
         console.log('Datos obtenidos:', response);
         this.libros = response;
@@ -45,7 +45,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error => {
         console.error('Error al obtener datos:', error);
-        this.snackBar.open('Error al cargar los libros. Inténtelo nuevamente.', 'Cerrar', {
+        this.snackBar.open('Error al cargar los ejemplares. Inténtelo nuevamente.', 'Cerrar', {
           duration: 3000,
         });
         }
@@ -64,10 +64,10 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('Filtrando libros');
     console.log('Autor:', this.searchAuthor);
     console.log('Título:', this.searchTitle);
-    this.librosFiltrados = this.libros.filter((book: any) => {
-      return book.Autor.toLowerCase().includes(this.searchAuthor.toLowerCase()) && book.titulo.toLowerCase().includes(this.searchTitle.toLowerCase());
+    this.librosFiltrados = this.libros.filter((ejemplar: any) => {
+      return ejemplar.autor.toLowerCase().includes(this.searchAuthor.toLowerCase()) && ejemplar.titulo.toLowerCase().includes(this.searchTitle.toLowerCase());
     });
-    console.log('Libros filtrados:', this.librosFiltrados);
+    console.log('Ejemplares filtrados:', this.librosFiltrados);
     this.dataSource.data = this.librosFiltrados; // Actualizar dataSource
     this.cdr.detectChanges();
   }

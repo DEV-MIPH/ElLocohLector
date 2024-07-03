@@ -28,6 +28,7 @@ export class ConnectService {
 
   data: any = [];
   apiUrl = 'http://localhost:3000/libros'; // URL de tu API
+  apiUrlEjemplares = 'http://localhost:3000/ejemplares'; // URL de ejemplares
   pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
   apiUrlAllBooks = 'http://localhost:3000/all_libros';
   apiUrlAutores = 'http://localhost:3000/autores';
@@ -80,6 +81,10 @@ export class ConnectService {
 
   getAdmins(): Observable<any> {
     return this.http.get<any>(this.apiGetAdmins);
+  }
+
+  getEjemplares(): Observable<any> {
+    return this.http.get<any>(this.apiUrlEjemplares);
   }
 
   agregarLibro(libro: any): Observable<any> {
