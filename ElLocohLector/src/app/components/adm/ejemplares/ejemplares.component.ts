@@ -12,11 +12,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { AddejemplarComponent } from '../addejemplar/addejemplar.component';
 
 @Component({
   selector: 'app-ejemplares',
   standalone: true,
-  imports: [FormsModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule],
+  imports: [FormsModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent],
   templateUrl: './ejemplares.component.html',
   styleUrl: './ejemplares.component.css'
 })
@@ -27,7 +28,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
   librosFiltrados: any = [];
   searchAuthor: string = '';
   searchTitle: string = '';
-  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'estado', 'usuario', 'fecha'];
+  displayedColumns: string[] = ['Ejemplar', 'titulo', 'autor', 'editorial', 'categoria', 'edicion', 'estado', 'usuario', 'fecha'];
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   
@@ -65,10 +66,23 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('Autor:', this.searchAuthor);
     console.log('Título:', this.searchTitle);
     this.librosFiltrados = this.libros.filter((ejemplar: any) => {
-      return ejemplar.autor.toLowerCase().includes(this.searchAuthor.toLowerCase()) && ejemplar.titulo.toLowerCase().includes(this.searchTitle.toLowerCase());
+      return ejemplar.Autor.toLowerCase().includes(this.searchAuthor.toLowerCase()) && ejemplar.titulo.toLowerCase().includes(this.searchTitle.toLowerCase());
     });
     console.log('Ejemplares filtrados:', this.librosFiltrados);
     this.dataSource.data = this.librosFiltrados; // Actualizar dataSource
     this.cdr.detectChanges();
+  }
+
+  openAddEjemplarModal(): void {
+    // Lógica para abrir el modal de añadir ejemplar
+    console.log('Abrir modal para añadir ejemplar');
+    const dialogRef = this.dialog.open(AddejemplarComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El modal ha sido cerrado');
+      // Puedes procesar el resultado del modal aquí
+    });
   }
 }

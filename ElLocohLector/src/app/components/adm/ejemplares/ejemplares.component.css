@@ -112,6 +112,12 @@ h2 {
     text-align: center; /* Centrar el texto horizontalmente */
 }
 
+/* Contenedor para el botón Añadir Ejemplar */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 /* Estilos para los botones de acciones */
 table button {
     display: flex;
