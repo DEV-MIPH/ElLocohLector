@@ -1,38 +1,78 @@
-<h2>Añadir Nuevo Ejemplar</h2>
-<form [formGroup]="ejemplarForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
-    <mat-label>Título</mat-label>
-    <input matInput formControlName="titulo" required>
-  </mat-form-field>
+<div class="modalAddEjemplar">
+  <h2 mat-dialog-title>Añadir un Ejemplar</h2>
+  <form (ngSubmit)="onSubmit()" #ejemplarForm="ngForm" class="formContenido">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Autor</mat-label>
-    <input matInput formControlName="autor" required>
-  </mat-form-field>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Título</mat-label>
+        <input type="text" matInput [formControl]="tituloControl" [matAutocomplete]="autoTitulo" required>
+        <mat-autocomplete #autoTitulo="matAutocomplete">
+          <mat-option *ngFor="let option of filteredTitulos | async" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Categoría</mat-label>
-    <input matInput formControlName="categoria" required>
-  </mat-form-field>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Autor</mat-label>
+        <input type="text" matInput [formControl]="autorControl" [matAutocomplete]="autoAutor" required>
+        <mat-autocomplete #autoAutor="matAutocomplete">
+          <mat-option *ngFor="let option of filteredAutores | async" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Editorial</mat-label>
-    <input matInput formControlName="editorial" required>
-  </mat-form-field>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Editorial</mat-label>
+        <input type="text" matInput [formControl]="editorialControl" [matAutocomplete]="autoEditorial" required>
+        <mat-autocomplete #autoEditorial="matAutocomplete">
+          <mat-option *ngFor="let option of filteredEditoriales | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Edición</mat-label>
-    <input matInput formControlName="edicion" required>
-  </mat-form-field>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Categoría</mat-label>
+        <input type="text" matInput [formControl]="categoriaControl" [matAutocomplete]="autoCategoria" required>
+        <mat-autocomplete #autoCategoria="matAutocomplete">
+          <mat-option *ngFor="let option of filteredCategorias | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Descripción</mat-label>
-    <textarea matInput formControlName="descripcion" required></textarea>
-  </mat-form-field>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Edición</mat-label>
+        <input type="text" matInput [formControl]="edicionControl" [matAutocomplete]="autoEdicion" required>
+        <mat-autocomplete #autoEdicion="matAutocomplete">
+          <mat-option *ngFor="let option of filteredEdiciones | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
 
-  <div class="button-container">
-    <button mat-raised-button color="primary" type="submit">Añadir Ejemplar</button>
-    <button mat-raised-button color="warn" (click)="onCancel()">Cancelar</button>
-  </div>
-</form>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea matInput [(ngModel)]="nuevoEjemplar.descripcion" name="descripcion" required></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="mat-dialog-actions">
+      <button mat-button id="btnCancelar" type="button" (click)="closeDialog()">Cancelar</button>
+      <button mat-button id="btnAnnadir" type="submit" [disabled]="!ejemplarForm.form.valid">Añadir</button>
+    </div>
+  </form>
+</div>
 
