@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-
+import { AuthService } from '../../../auth.service';
 
 interface Editorial {
   nombre_editorial: string;
@@ -43,16 +43,24 @@ export class ConnectService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { 
+    const savedPedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+    this.pedidosSubject.next(savedPedidos);
+
+    this.authService.isLoggedIn.subscribe(isLoggedIn => {
+      this.isLoggedInSubject.next(isLoggedIn);
+      if (!isLoggedIn) {
+        this.pedidosSubject.next([]);
+        localStorage.removeItem('pedidos');
+      }
+    });
+  }
 
   // Método para actualizar el estado de inicio de sesión
   updateLoginStatus(isLoggedIn: boolean) {
     this.isLoggedInSubject.next(isLoggedIn);
   }
 
-  ngOnInit(): void {
-
-  }
 
   getLibrosAdmin(): Observable<any> {
     return this.http.get<any>(this.apiUrlAdmin);
@@ -118,10 +126,15 @@ export class ConnectService {
 
   // Función para agregar un libro al pedido
   solicitarLibro(libro: any): void {
-    console.log('Libro solicitado:', libro);
-    const pedidos = this.pedidosSubject.getValue(); // Obtener los pedidos actuales del BehaviorSubject
-    pedidos.push(libro); // Agregar el nuevo libro al array de pedidos
-    this.pedidosSubject.next(pedidos); // Emitir el nuevo estado de pedidos a los suscriptores
+    if (this.isLoggedInSubject.getValue()) {
+      console.log('Libro solicitado:', libro);
+      const pedidos = this.pedidosSubject.getValue(); // Obtener los pedidos actuales del BehaviorSubject
+      pedidos.push(libro); // Agregar el nuevo libro al array de pedidos
+      this.pedidosSubject.next(pedidos); // Emitir el nuevo estado de pedidos a los suscriptores
+      localStorage.setItem('pedidos', JSON.stringify(pedidos)); // Guardar en localStorage
+    } else {
+      console.error('Debe iniciar sesión para solicitar libros.');
+    }
   }
 
   // Obtener los pedidos del usuario

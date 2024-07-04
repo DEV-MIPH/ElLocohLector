@@ -15,13 +15,19 @@ export class AuthService {
 
 
   private isLoggedInSubject: BehaviorSubject<boolean>;
-
   public isLoggedIn: Observable<boolean>;
+
+  private pedidosSubject: BehaviorSubject<any[]>; // Nueva propiedad para manejar los pedidos
+  public pedidos$: Observable<any[]>;
 
   constructor() {
     const savedLoginStatus = localStorage.getItem('isLoggedIn') === 'true';
     this.isLoggedInSubject = new BehaviorSubject<boolean>(savedLoginStatus);
     this.isLoggedIn = this.isLoggedInSubject.asObservable();
+
+    const savedPedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+    this.pedidosSubject = new BehaviorSubject<any[]>(savedPedidos);
+    this.pedidos$ = this.pedidosSubject.asObservable();
   }
 
   getAuth() {
@@ -33,6 +39,9 @@ export class AuthService {
     localStorage.setItem('isLoggedIn', value.toString());
     if (email) {
       localStorage.setItem('email', email);
+    }
+    if (!value) {
+      localStorage.removeItem('pedidos'); // Limpiar pedidos al cerrar sesión
     }
   }
 
@@ -97,5 +106,19 @@ export class AuthService {
     this.setLoggedIn(false, undefined); // Cambia el estado de isLoggedIn a false
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('email');
+    localStorage.removeItem('pedidos'); // Limpiar pedidos al cerrar sesión
+  }
+
+   // Método para agregar un libro al pedido
+   solicitarLibro(libro: any) {
+    const pedidos = this.pedidosSubject.getValue();
+    pedidos.push(libro);
+    this.pedidosSubject.next(pedidos);
+    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+  }
+
+  // Método para obtener los pedidos del usuario
+  getPedidos(): Observable<any[]> {
+    return this.pedidos$;
   }
 }

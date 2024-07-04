@@ -12,11 +12,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AfterViewInit } from '@angular/core';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [FormsModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSortModule, MatSnackBarModule,MatButtonModule],
+  imports: [CommonModule,FormsModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSortModule, MatSnackBarModule,MatButtonModule],
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
@@ -27,14 +29,14 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy  {
   librosFiltrados: any = [];
   searchAuthor: string = '';
   searchTitle: string = '';
-  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'cantidad', 'solicitar'];
-  isUserLoggedIn: boolean = false; // Suponemos que esta variable se actualiza según el estado de autenticación
+  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'cantidad'];
+ 
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   isLoggedIn: boolean = false; // Variable para almacenar el estado de inicio de sesión
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar) { }
+  constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.librosSubscription = this.connectService.getLibros().subscribe(
@@ -80,10 +82,25 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy  {
     this.cdr.detectChanges();
   }
   solicitarLibro(libro: any): void {
-    console.log('Libro solicitado:', libro);
-    this.connectService.solicitarLibro(libro);
-    this.snackBar.open('Libro solicitado exitosamente.', 'Cerrar', {
-      duration: 3000,
-    });
+    if (this.isLoggedIn) {
+      console.log('Libro solicitado:', libro);
+      this.connectService.solicitarLibro(libro);
+      this.snackBar.open('Libro solicitado exitosamente.', 'Cerrar', {
+        duration: 3000,
+      });
+    } else {
+      this.snackBar.open('Debe iniciar sesión para solicitar libros.', 'Cerrar', {
+        duration: 3000,
+      });
+    }
+  }
+  updateDisplayedColumns(): void {
+    if (this.isLoggedIn) {
+      if (!this.displayedColumns.includes('solicitar')) {
+        this.displayedColumns.push('solicitar');
+      }
+    } else {
+      this.displayedColumns = this.displayedColumns.filter(column => column !== 'solicitar');
+    }
   }
 }

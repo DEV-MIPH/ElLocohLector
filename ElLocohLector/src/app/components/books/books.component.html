@@ -49,7 +49,7 @@
         </ng-container>
 
          <!-- Solicitar Column -->
-         <ng-container matColumnDef="solicitar">
+         <ng-container matColumnDef="solicitar" *ngIf="isLoggedIn">
             <th mat-header-cell *matHeaderCellDef> Solicitar </th>
             <td mat-cell *matCellDef="let libro"> 
                 <button mat-button (click)="solicitarLibro(libro)">Solicitar</button> 
