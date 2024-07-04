@@ -18,12 +18,21 @@
             <button mat-flat-button *ngIf="!isLoggedIn" routerLink="/login" id="btnIngresar">Ingresar</button>
 
             <!--Si está logeado aparece el button Mi Perfil-->
-            <button mat-flat-button *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" id="btnPerfil">Mi Perfil</button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
-                <button mat-menu-item routerLink="/pedidos">Mis pedidos</button>
-                <button mat-menu-item (click)="logout()">Cerrar sesión</button>
-            </mat-menu>
+            <ng-container *ngIf="isLoggedIn">
+                <button mat-flat-button *ngIf="!isAdmin" [matMenuTriggerFor]="menu" id="btnPerfil">Mi Perfil</button>
+                <button mat-flat-button *ngIf="isAdmin" [matMenuTriggerFor]="adminMenu" id="btnPerfil">Admin</button>
+                
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
+                  <button mat-menu-item routerLink="/pedidos">Mis pedidos</button>
+                  <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+                </mat-menu>
+        
+                <mat-menu #adminMenu="matMenu">
+                  <button mat-menu-item routerLink="/admin">Ir a admin</button>
+                  <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+                </mat-menu>
+              </ng-container>
 
         </div>
 

@@ -23,6 +23,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class HeaderComponent implements OnInit{
   isLoggedIn: boolean = false; // Variable para controlar el estado de inicio de sesión
+  isAdmin: boolean = false; // Variable para controlar si el usuario es administrador
+
+  private adminEmails: string[] = ['admin@admin.cl', 'mi.leivac@duocuc.cl', 'cla.jelvez@duocuc.cl', 'migu.pereira@duocuc.cl'];
 
   constructor(private authService: AuthService, private router: Router) {
     
@@ -31,6 +34,13 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
+
+      if (loggedIn) {
+        const userEmail = localStorage.getItem('email');
+        console.log('User email:', userEmail); // Agrega este log para verificar el correo electrónico del usuario
+        this.isAdmin = this.adminEmails.includes(userEmail || '');
+        console.log('Is Admin:', this.isAdmin); // Agrega este log para verificar si se detecta como admin
+      }
     });
   }
 
