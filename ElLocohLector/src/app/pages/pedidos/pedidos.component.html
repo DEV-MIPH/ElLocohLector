@@ -29,7 +29,15 @@
         <th mat-header-cell *matHeaderCellDef> Editorial </th>
         <td mat-cell *matCellDef="let libro"> {{libro.Editorial}} </td>
       </ng-container>
-  
+      
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let libro"> 
+          <button mat-button (click)="eliminarPedido(libro)">Eliminar</button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

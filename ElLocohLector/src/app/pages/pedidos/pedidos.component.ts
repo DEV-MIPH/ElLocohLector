@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy   } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit   } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { MatTableModule } from '@angular/material/table';
@@ -22,8 +22,8 @@ import { Router } from '@angular/router';
     styleUrl: './pedidos.component.css',
     imports: [MatSnackBarModule,MatButtonModule,MatTooltip,MatTableModule, MatPaginatorModule, MatSortModule, HeaderComponent, FooterComponent]
 })
-export class PedidosComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['titulo', 'autor', 'editorial'];
+export class PedidosComponent implements OnInit, OnDestroy, AfterViewInit {
+  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'acciones'];
   dataSource = new MatTableDataSource<any>([]);
   
   private pedidosSubscription?: Subscription;
@@ -64,6 +64,15 @@ export class PedidosComponent implements OnInit, OnDestroy {
       duration: 3000,
     }).afterDismissed().subscribe(() => {
       this.router.navigate(['/lobby']); // Redirige al componente principal /lobby
+    });
+  }
+
+  eliminarPedido(libro: any): void {
+    this.connectService.eliminarPedido(libro);
+    this.pedidos = this.pedidos.filter(p => p !== libro);
+    this.dataSource.data = this.pedidos;
+    this.snackBar.open('Libro eliminado del pedido.', 'Cerrar', {
+      duration: 3000,
     });
   }
 }

@@ -137,6 +137,17 @@ export class ConnectService {
     }
   }
 
+  // Función para eliminar un libro del pedido
+  eliminarPedido(libro: any): void {
+    const pedidos = this.pedidosSubject.getValue(); // Obtener los pedidos actuales del BehaviorSubject
+    const index = pedidos.findIndex(p => p === libro);
+    if (index !== -1) {
+      pedidos.splice(index, 1); // Eliminar el libro del array de pedidos
+      this.pedidosSubject.next(pedidos); // Emitir el nuevo estado de pedidos a los suscriptores
+      localStorage.setItem('pedidos', JSON.stringify(pedidos)); // Guardar en localStorage
+    }
+  }
+
   // Obtener los pedidos del usuario
   getPedidos(): Observable<any[]> {
     return this.pedidosSubject.asObservable();
