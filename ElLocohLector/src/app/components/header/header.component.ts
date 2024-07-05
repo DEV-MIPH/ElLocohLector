@@ -38,12 +38,12 @@ export class HeaderComponent implements OnInit{
 
       if (loggedIn) {
         const userEmail = localStorage.getItem('email');
-        console.log('User email:', userEmail); // Agrega este log para verificar el correo electrónico del usuario
+        console.log('User email:', userEmail); // Este log es para verificar el correo electrónico del usuario
 
         this.getAdmins().then((adminEmails: string[]) => {
           this.adminEmails = adminEmails;
           this.isAdmin = this.adminEmails.includes(userEmail || '');
-          console.log('Is Admin:', this.isAdmin); // Agrega este log para verificar si se detecta como admin
+          console.log('Is Admin:', this.isAdmin); // Este log es para verificar si se detecta como admin
         });
       }
     });
@@ -57,7 +57,9 @@ export class HeaderComponent implements OnInit{
 
   logout() {
     this.authService.logout(); // Llama al método logout de AuthService
-    this.router.navigate(['/lobby']); // Redirige al usuario a la página de lobby
+    this.router.navigate(['/lobby']).then(() => {
+      window.location.reload(); // Recarga la página después de navegar a /lobby
+    });
   }
 }
 
