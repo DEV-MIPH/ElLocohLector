@@ -11,7 +11,7 @@ header {
     color: black;
     padding: 20px;
     height: 10vh;
-    background-color: #C3E2C2;
+    background: linear-gradient(45deg, #36C8F6, #1E90FF);
     display: grid;
     grid-template-columns: 1fr auto 1fr; /* Ajustar columnas */
     grid-template-rows: auto; /* Cambiar a 'auto' para permitir que las filas se ajusten según el contenido */
@@ -28,7 +28,7 @@ header {
     transition: box-shadow 0.3s ease; /* Añadir una transición suave */
 }
 #logo:hover {
-    box-shadow: 0 0 10px 5px rgba(54, 200, 246, 0.8); /* Iluminar el borde con un color */
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Iluminar el borde con un color */
 }
 .textCenter {
     grid-column: 2 / 3; /* Centrar la imagen en la segunda columna */
@@ -52,24 +52,20 @@ header {
 }
 
 #btnIngresar {
-    background-color: #36C8F6;
-    color: #fff;
+    background-color: #fff;
+    color: #36C8F6;
     transition: background-color 0.3s ease;
 }
 
-#btnIngresar:hover {
-    background-color: #17a2b8;
-}
+
 
 #btnPerfil {
-    background-color: #36C8F6;
-    color: #fff;
+    background-color: #fff;
+    color: #36C8F6;
     transition: background-color 0.3s ease;
 }
 
-#btnPerfil:hover {
-    background-color: #17a2b8;
-}
+
 
 @media only screen and (min-width: 344px) and (max-width: 480px) {
     .header-grid {
