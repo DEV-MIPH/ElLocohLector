@@ -8,13 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConnectService } from '../../../modules/lobby/services/connect.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-editbookmodal',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatAutocompleteModule],
+  imports: [CommonModule, MatSnackBarModule,FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatAutocompleteModule],
   templateUrl: './editbookmodal.component.html',
   styleUrl: './editbookmodal.component.css'
 })
@@ -57,16 +58,16 @@ export class EditbookmodalComponent implements OnInit {
 
   constructor(
     private connectService: ConnectService, public dialogRef: MatDialogRef<EditbookmodalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar
   ) {
     this.libro = { ...data }; // Pre-fill data
   }
   ngOnInit(): void {
     // Set initial values for controls
     this.tituloControl.setValue(this.libro.titulo);
-    this.autorControl.setValue(this.libro.autor);
-    this.editorialControl.setValue(this.libro.editorial);
-    this.categoriaControl.setValue(this.libro.categoria);
+    this.autorControl.setValue(this.libro.Autor);
+    this.editorialControl.setValue(this.libro.Editorial);
+    this.categoriaControl.setValue(this.libro.Categoria);
     this.edicionControl.setValue(this.libro.edicion);
 
     // Initialize filtered options for each control
@@ -105,13 +106,18 @@ export class EditbookmodalComponent implements OnInit {
 
   onSubmit(): void {
     this.libro.titulo = this.tituloControl.value;
-    this.libro.autor = this.autorControl.value;
-    this.libro.editorial = this.editorialControl.value;
-    this.libro.categoria = this.categoriaControl.value;
+    this.libro.Autor = this.autorControl.value;
+    this.libro.Editorial = this.editorialControl.value;
+    this.libro.Categoria = this.categoriaControl.value;
     this.libro.edicion = this.edicionControl.value;
 
     console.log('Libro editado:', this.libro);
     this.dialogRef.close(this.libro);
+
+    // Mostrar Snackbar
+    this.snackBar.open('Los cambios se han guardado exitosamente.', 'Cerrar', {
+      duration: 3000,
+    });
   }
 
   //funcion para autores
