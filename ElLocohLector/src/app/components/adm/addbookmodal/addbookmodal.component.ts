@@ -118,7 +118,10 @@ export class AddbookmodalComponent implements OnInit {
     );
   }
 
-  private _filter(value: string, options: string[]): string[] {
+  private _filter(value: string | null, options: string[]): string[] {
+    if (value === null || value === undefined) {
+      return options;
+    }
     const filterValue = value.toLowerCase();
     return options.filter((option) => option.toLowerCase().includes(filterValue));
   }

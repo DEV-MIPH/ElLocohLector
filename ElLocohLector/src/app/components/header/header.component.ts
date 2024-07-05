@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 //importamos la redireccion
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { ConnectService } from '../../modules/lobby/services/connect.service';
 
 @Component({
   selector: 'app-header',
@@ -24,10 +25,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class HeaderComponent implements OnInit{
   isLoggedIn: boolean = false; // Variable para controlar el estado de inicio de sesión
   isAdmin: boolean = false; // Variable para controlar si el usuario es administrador
+  private adminEmails: string[] = []; // Lista de correos de administradores obtenida del backend
+ 
 
-  private adminEmails: string[] = ['admin@admin.cl', 'mi.leivac@duocuc.cl', 'cla.jelvez@duocuc.cl', 'migu.pereira@duocuc.cl'];
-
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private connectservice: ConnectService) {
     
   }
 
@@ -38,9 +39,19 @@ export class HeaderComponent implements OnInit{
       if (loggedIn) {
         const userEmail = localStorage.getItem('email');
         console.log('User email:', userEmail); // Agrega este log para verificar el correo electrónico del usuario
-        this.isAdmin = this.adminEmails.includes(userEmail || '');
-        console.log('Is Admin:', this.isAdmin); // Agrega este log para verificar si se detecta como admin
+
+        this.getAdmins().then((adminEmails: string[]) => {
+          this.adminEmails = adminEmails;
+          this.isAdmin = this.adminEmails.includes(userEmail || '');
+          console.log('Is Admin:', this.isAdmin); // Agrega este log para verificar si se detecta como admin
+        });
       }
+    });
+  }
+
+  getAdmins(): Promise<string[]> {
+    return this.connectservice.getAdmins().toPromise().then((admins: any) => {
+      return admins.map((admin: any) => admin.email_usuario);
     });
   }
 
@@ -49,3 +60,28 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['/lobby']); // Redirige al usuario a la página de lobby
   }
 }
+
+// isLoggedIn: boolean = false; // Variable para controlar el estado de inicio de sesión
+//   isAdmin: boolean = false; // Variable para controlar si el usuario es administrador
+
+  
+
+//   constructor(private authService: AuthService, private router: Router, private connectservice: ConnectService) {
+    
+//   }
+  
+//   private adminEmails: string[] =[]
+
+//   ngOnInit(): void {
+//     this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
+//       this.isLoggedIn = loggedIn;
+
+//       if (loggedIn) {
+//         const userEmail = localStorage.getItem('email');
+//         console.log('User email:', userEmail); // Agrega este log para verificar el correo electrónico del usuario
+//         this.isAdmin = this.adminEmails.includes(userEmail || '');
+//         console.log('Is Admin:', this.isAdmin); // Agrega este log para verificar si se detecta como admin
+//         // this.adminEmails = this.connectservice.getAdmins();
+//       }
+//     });
+//   }
