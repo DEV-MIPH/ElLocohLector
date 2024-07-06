@@ -24,11 +24,19 @@
    
 }
 
+.DuocInicial p {
+    text-align: center;
+}
+
 .elokolectorDuoc h2 {
     text-align: center;
     margin-bottom: 10px;
     font-size: 1.8em;
    
+}
+
+.elokolectorDuoc p {
+    text-align: center;
 }
 
 .DuocColaborador > div {
