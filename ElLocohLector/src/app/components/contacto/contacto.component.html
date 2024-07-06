@@ -29,7 +29,7 @@
         <form id="contactoForm" (submit)="enviarFormulario($event)">
             <div class="form-group">
                 <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Nombre Institucional</mat-label>
+                    <mat-label>Nombre</mat-label>
                     <input type="text" matInput [formControl]="institucionFormControl" placeholder="Ej. Colegio Riquelme" [(ngModel)]="institucion" name="institucion">
                     @if (institucionFormControl.hasError('institucion') && !institucionFormControl.hasError('required')) {
                       <mat-error>Porfavor ingresa un nombre de institución válido</mat-error>

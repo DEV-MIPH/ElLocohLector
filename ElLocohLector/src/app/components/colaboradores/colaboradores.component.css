@@ -1,0 +1,97 @@
+.DuocColaborador {
+    background-image: url('../../../assets/nosotros_img/nosotros.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-top: 20vh;
+    color: #000;
+    padding: 50px 20px; /* Ajustar según sea necesario */
+    
+}
+
+.DuocInicial, .elokolectorDuoc {
+    max-width: 800px; /* Ajustar según sea necesario */
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para mejorar la legibilidad */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.DuocInicial h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+   
+}
+
+.elokolectorDuoc h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+   
+}
+
+.DuocColaborador > div {
+    margin-bottom: 40px;
+}
+
+.imgColaboracion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #A6ACAF, #D7DBDD);
+    gap: 20px; /* Espacio entre las imágenes */
+}
+
+.imgColaboracion img {
+    width: 150px; /* Ajustar el tamaño según sea necesario */
+    height: auto;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #36C8F6;
+    margin: 10px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .DuocInicial, .elokolectorDuoc, .imgColaboracion {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .imgColaboracion img {
+        width: 120px; /* Ajustar el tamaño según sea necesario */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .DuocInicial, .elokolectorDuoc, .imgColaboracion {
+        padding: 10px;
+    }
+
+    .imgColaboracion {
+        flex-direction: column;
+    }
+
+    .imgColaboracion img {
+        width: 100px; /* Ajustar el tamaño según sea necesario */
+        margin-bottom: 10px; /* Espacio entre imágenes en columna */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .DuocInicial, .elokolectorDuoc, .imgColaboracion {
+        padding: 5px;
+    }
+
+    .imgColaboracion img {
+        width: 80px; /* Ajustar el tamaño según sea necesario */
+    }
+}
