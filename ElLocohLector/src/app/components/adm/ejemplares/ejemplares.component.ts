@@ -30,7 +30,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
   librosFiltrados: any = [];
   searchAuthor: string = '';
   searchTitle: string = '';
-  displayedColumns: string[] = ['Ejemplar', 'titulo', 'autor', 'editorial', 'categoria', 'edicion', 'estado', 'usuario', 'fecha'];
+  displayedColumns: string[] = ['Ejemplar', 'titulo', 'autor', 'editorial', 'categoria', 'edicion', 'estado', 'usuario','id_pedido', 'fecha'];
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   estados: string[] = []; 
@@ -90,7 +90,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
       ejemplaresEditados.forEach(ejemplar => {
         this.actualizarEjemplar(ejemplar);
       });
-    }
+    }console.log('Ejemplares editados:', ejemplaresEditados);
   }
 
   //Actualiza el ejemplar con los nuevos datos

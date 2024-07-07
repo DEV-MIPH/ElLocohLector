@@ -79,6 +79,11 @@
             </td>
         </ng-container>
 
+        <ng-container matColumnDef="id_pedido">
+            <th mat-header-cell *matHeaderCellDef> ID pedido </th>
+            <td mat-cell *matCellDef="let libro"> {{libro.id_pedido}} </td>
+        </ng-container>
+
         <!-- Fecha Column -->
         <ng-container matColumnDef="fecha">
             <th mat-header-cell *matHeaderCellDef> Fecha pedido </th>
