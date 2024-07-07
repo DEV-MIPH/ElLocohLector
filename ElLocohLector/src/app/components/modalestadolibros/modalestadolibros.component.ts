@@ -16,7 +16,5 @@ export class modalestadolibrosComponent {
     @Inject(MAT_DIALOG_DATA) public data: { imageUrl: string }
   ) {}
 
-  close(): void {
-    this.dialogRef.close();
-  }
+ 
 }

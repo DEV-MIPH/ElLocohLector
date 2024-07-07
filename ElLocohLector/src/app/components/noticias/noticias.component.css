@@ -1,0 +1,44 @@
+/* Estilos para la galería */
+.noticias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto; 
+    max-width: 1200px;
+}
+
+.contenedorInicial {
+    grid-column: 1 / -1; 
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contenedorInicial h2 {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.galleria-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.galleria-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.galleria-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.galleria-item:hover img {
+    transform: scale(1.05);
+}

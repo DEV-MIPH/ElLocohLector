@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NosotrosComponent } from '../nosotros/nosotros.component';
 import { ColaboradoresComponent } from '../colaboradores/colaboradores.component';
 import { BooksComponent } from '../books/books.component';
-
+import { NoticiasComponent } from '../noticias/noticias.component';
 
 
 @Component({
@@ -21,7 +21,7 @@ import { BooksComponent } from '../books/books.component';
     standalone: true,
     templateUrl: './body.component.html',
     styleUrl: './body.component.css',
-    imports: [ColaboradoresComponent, NosotrosComponent, EstadolibroComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent, ContactoComponent]
+    imports: [ColaboradoresComponent, NosotrosComponent, NoticiasComponent, EstadolibroComponent, MatButtonModule, MatIconModule, FormregistroComponent, PuntodonacionComponent, BooksComponent, ContactoComponent]
 })
 export class BodyComponent implements AfterViewInit {
 

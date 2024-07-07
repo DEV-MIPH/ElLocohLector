@@ -4,7 +4,12 @@
     padding-top: 30vh;
     font-family: Arial, sans-serif;
 }
-
+.interlineadoUno {
+    margin-top: 30vh;
+}
+.interlineadoDos {
+    margin-top: 30vh;
+}
 /* Estilos para la portada */
 .portada {
     display: flex;
