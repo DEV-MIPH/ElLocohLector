@@ -51,9 +51,11 @@
 
     <!-- Botón para solicitar libros -->
      <!-- SE DEBE HACER UN POST PARA ENVIAR LOS LIBROS SOLICITADOS -->
-    <button mat-button (click)="solicitarPedido()" mat-raised-button color="primary" class="solicitarButton" matTooltip="Solicitar libros a administrador" >
-      Solicitar libros
+    <div class="contenedorBtnSolicitar">
+      <button mat-button (click)="solicitarPedido()" mat-raised-button color="primary" id="solicitarButton" matTooltip="Solicitar libros a administrador" >
+        Solicitar libros
     </button>
+  </div>
   </div>
 </div>
 
