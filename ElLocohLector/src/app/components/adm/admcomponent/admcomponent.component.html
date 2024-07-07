@@ -19,31 +19,44 @@
     </div>
   </mat-toolbar>
 
-
-  <!--SE TRAE COMPONENTE DE LIBROS-->
-  <!--SE TRAE COMPONENTE DE LIBROS-->
+  <div class="contenedorAdminCuerpo">
+  <!--CONTENEDOR QUE DESPLIEGA LBROS DISPONIBLES-->
+  <div class="contenedorLibros">
+  <h2>Libros Disponibles</h2>
   <app-admbooks></app-admbooks>
+  
 
-
-  <!--BUTTON QUE DESPLIEGA MODAL DE AGREGAR LIBRO Y AGREGAR INSTITUCION-->
-  <div class="contenedorBtnAgregar">
-    <div class="btn-group">
-      <button mat-flat-button color="primary" id="buttonAgregar" matTooltip="Haz click para añadir un libro"
+  <!--BUTTON QUE DESPLIEGA MODAL DE AGREGAR LIBRO-->
+  <div class="contenedorAgregarLibro">  
+      <button mat-flat-button color="primary" id="buttonAgregarLibro" matTooltip="Haz click para añadir un libro"
         matTooltipPosition="below" (click)="openDialog()">
         Añadir un libro
-      </button>
-
-      <button mat-flat-button color="primary" id="buttonAgregar" matTooltip="Haz click para añadir una institución"
-        matTooltipPosition="below" (click)="openDialogInst()">
-        Añadir Institución
-      </button>
-
-      <button mat-flat-button color="primary" id="buttonAgregar" matTooltip="Haz click para visualizar ejemplares"
-        matTooltipPosition="below" (click)="openDialogEjem()">
-        Ejemplares
-      </button>
-    </div>
+      </button>  
+  </div>
   </div>
 
+  <!--CONTENEDOR QUE DESPLIEGA MODAL DE VISUALIZAR Y AGREGAR EJEMPLAR-->
+  <div class="contenedorAgregarEjemplar">
+  <h2>Agregar ejemplares</h2>
+  <p>Haz click para visualizar los ejemplares disponibles y agregar un nuevo ejemplar. </p>
+  <div class="button-container">
+  <button mat-flat-button color="primary" id="buttonAgregarEjemplar" matTooltip="Haz click para visualizar ejemplares"
+        matTooltipPosition="below" (click)="openDialogEjem()">
+        Ejemplares
+  </button>
+</div>
+</div>
 
+  <!--CONTENEDOR QUE DESPLIEGA MODAL DE AGREGAR INSTITUCIÓN-->
+  <div class="contenedorAgregarInstitucion">
+  <h2>Agregar institución</h2>
+  <p>Haz click para añadir una nueva institución al sistema de eLokolector. </p>
+  <div class="button-container">
+  <button mat-flat-button color="primary" id="buttonAgregarInst" matTooltip="Haz click para añadir una institución"
+        matTooltipPosition="below" (click)="openDialogInst()">
+        Añadir Institución
+  </button>
+</div>
+</div>
+</div>
 </div>
