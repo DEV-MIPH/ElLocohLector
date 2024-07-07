@@ -29,6 +29,12 @@
         <th mat-header-cell *matHeaderCellDef> Editorial </th>
         <td mat-cell *matCellDef="let libro"> {{libro.Editorial}} </td>
       </ng-container>
+
+      <!-- Editorial Column -->
+      <ng-container matColumnDef="edicion">
+        <th mat-header-cell *matHeaderCellDef> Edicion </th>
+        <td mat-cell *matCellDef="let libro"> {{libro.edicion}} </td>
+      </ng-container>
       
       <!-- Acciones Column -->
       <ng-container matColumnDef="acciones">
@@ -45,7 +51,7 @@
 
     <!-- Botón para solicitar libros -->
      <!-- SE DEBE HACER UN POST PARA ENVIAR LOS LIBROS SOLICITADOS -->
-    <button mat-raised-button color="primary" class="solicitarButton" matTooltip="Solicitar libros a administrador" >
+    <button mat-button (click)="solicitarPedido()" mat-raised-button color="primary" class="solicitarButton" matTooltip="Solicitar libros a administrador" >
       Solicitar libros
     </button>
   </div>

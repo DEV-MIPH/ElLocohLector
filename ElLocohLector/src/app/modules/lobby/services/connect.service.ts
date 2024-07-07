@@ -21,6 +21,24 @@ interface Autor {
 
 }
 
+interface Email {
+  email: string;
+}
+
+interface Pedido {
+  email_usuario: string;
+}
+
+interface PedidoUsuario {
+  nombre_libro: string;
+  autor: string;
+  editorial: string;
+  edicion: string;
+  correo: string;
+  fecha: string;
+  cantidad: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,11 +59,15 @@ export class ConnectService {
   apiUrlAdmin = 'http://localhost:3000/librosadmin';
   apiAddUser = 'http://localhost:3000/addUser';
   apiGetAdmins = 'http://localhost:3000/getAdmins';
+  apiGetUserByEmail = 'http://localhost:3000/getUserIdByEmail';
+  apiPostPedido = 'http://localhost:3000/pedidoo';
+
+
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient, private authService: AuthService) { 
+  constructor(private http: HttpClient, private authService: AuthService) {
     const savedPedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
     this.pedidosSubject.next(savedPedidos);
 
@@ -158,9 +180,29 @@ export class ConnectService {
     }
   }
 
+  // Función para limpiar los pedidos
+  limpiarPedidos(): void {
+    this.pedidosSubject.next([]); // Limpiar los pedidos del BehaviorSubject
+    localStorage.removeItem('pedidos'); // Limpiar los pedidos de localStorage
+  }
+
   // Obtener los pedidos del usuario
   getPedidos(): Observable<any[]> {
     return this.pedidosSubject.asObservable();
+  }
+
+  getUserByEmail(email: string): Observable<any> {
+    let emailObject: Email;
+    emailObject = { email };
+    console.log('Obteniendo usuario por email:', email);
+    return this.http.post<any>(this.apiGetUserByEmail, { email });
+  }
+
+  postPedido(correo: string): Observable<any> {
+    let pedido: Pedido;
+    pedido = { email_usuario: correo };
+    console.log('Posteando pedido:', pedido);
+    return this.http.post<any>(this.apiPostPedido, pedido);
   }
 
   register(email: string, password: string) {
@@ -177,7 +219,6 @@ export class ConnectService {
       <p style="text-align: center; margin-top: 20px;">Atentamente,<br>El equipo de eLoKolector</p>
     </div>
   `;
-  
 
     console.log('Registrando usuario:', email);
     const to = email;
@@ -204,7 +245,7 @@ export class ConnectService {
   }
 
   //Solicitud de registro de component form Registro
-  solicitudRegistro(email: string, Telefono: string, NombreInstitucion : String , Comentario: String) {
+  solicitudRegistro(email: string, Telefono: string, NombreInstitucion: String, Comentario: String) {
     const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Solicitud de Registro</h1>
@@ -220,8 +261,8 @@ export class ConnectService {
         <p>¡Gracias!</p>
     </div>
   `;
-    
-  
+
+
 
     console.log('solicitud usuario:', email);
     const to = "elokolector@gmail.com";
@@ -244,11 +285,11 @@ export class ConnectService {
         // Manejar el error de manera adecuada
       }
     );
-    
+
   }
 
   //Mensaje de component Contacto
-  mensajeContacto(email: string, NombreInstitucion : String , Comentario: String) {
+  mensajeContacto(email: string, NombreInstitucion: String, Comentario: String) {
     const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Mensaje de Contacto</h1>
@@ -264,7 +305,7 @@ export class ConnectService {
     </div>
   `;
 
-  console.log('Mensaje de:', email);
+    console.log('Mensaje de:', email);
     const to = "elokolector@gmail.com";
     const subject = 'Bienvenido a eLokolector';
     const text = 'Cuerpo del correo en texto plano';
@@ -285,11 +326,11 @@ export class ConnectService {
         // Manejar el error de manera adecuada
       }
     );
-    
+
   }
 
-  registerInstitucion(nombre_usuario: any,email_usuario: any,fono_usuario: any,cel_usuario: any) {
-    
+  registerInstitucion(nombre_usuario: any, email_usuario: any, fono_usuario: any, cel_usuario: any) {
+
     const body = {
       nombre_usuario: nombre_usuario,
       email_usuario: email_usuario,
@@ -307,9 +348,60 @@ export class ConnectService {
         console.error('Error al enviar el correo:', error);
       }
     );
-    
-  } 
 
+  }
 
+  correoConPedidos(pedidos: PedidoUsuario[], idPedido: string) {
+    const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h1 style="color: #333; text-align: center; margin-bottom: 20px;">Pedido de Libros</h1>
+        <p style="margin-bottom: 10px;">¡Hola!</p>
+        <p>Se ha recibido un nuevo pedido de libros con la siguiente información:</p>
+        <ul>
+            <li><strong>Correo:</strong> ${pedidos[0].correo}</li>
+            <li><strong>ID Pedido:</strong> ${idPedido}</li>
+            <li><strong>Fecha del Pedido:</strong> ${pedidos[0].fecha}</li>
+        </ul>
+        <p>Detalles de los libros solicitados:</p>
+        <ul style="list-style-type: none; padding-left: 0;">
+        ${pedidos.map(pedido => `
+            <li style="margin-bottom: 10px;">
+                <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                    <p><strong>Libro:</strong> ${pedido.nombre_libro}</p>
+                    <p><strong>Autor:</strong> ${pedido.autor}</p>
+                    <p><strong>Editorial:</strong> ${pedido.editorial}</p>
+                    <p><strong>Edición:</strong> ${pedido.edicion}</p>
+                    <p><strong>Cantidad:</strong> ${pedido.cantidad}</p>
+                </div>
+            </li>
+        `).join('')}
+        </ul>
+        <p>Por favor, revisa el pedido y toma las acciones necesarias.</p>
+        <p>¡Gracias!</p>
+    </div>
+    `;
+
+    console.log('Correo con pedidos:', pedidos);
+    const to = "elokolector@gmail.com";
+    const subject = 'Nuevo Pedido de Libros';
+    const text = 'Se ha recibido un nuevo pedido de libros. Por favor, revisa tu correo electrónico para más detalles.';
+    const body = {
+      to: to,
+      subject: subject,
+      text: text,
+      html: html
+    };
+
+    this.http.post(this.apiUrlSendMail, body).subscribe(
+      (response) => {
+        console.log('Respuesta del servidor:', response);
+        // Realizar acciones adicionales si es necesario
+      },
+      (error) => {
+        console.error('Error al enviar el correo:', error);
+        // Manejar el error de manera adecuada
+      }
+    );
+  }
 
 }
