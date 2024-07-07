@@ -29,6 +29,8 @@ export class ConnectService {
   data: any = [];
   apiUrl = 'http://localhost:3000/libros'; // URL de tu API
   apiUrlEjemplares = 'http://localhost:3000/ejemplares'; // URL de ejemplares
+  apiUrlUsuarios = 'http://localhost:3000/nombres_usuarios'; // URL para obtener los usuarios
+  apiUrlEstado = 'http://localhost:3000/estados'; // URL para obtener los estados
   pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
   apiUrlAllBooks = 'http://localhost:3000/all_libros';
   apiUrlAutores = 'http://localhost:3000/autores';
@@ -89,6 +91,14 @@ export class ConnectService {
 
   getAdmins(): Observable<any> {
     return this.http.get<any>(this.apiGetAdmins);
+  }
+
+  getUsuarios(): Observable<any> {
+    return this.http.get<any>(this.apiUrlUsuarios);
+  }
+
+  getEstados(): Observable<any> {
+    return this.http.get<any>(this.apiUrlEstado);
   }
 
   //Rescatar ejemplares
@@ -246,7 +256,7 @@ export class ConnectService {
         <p>Se ha recibido un nuevo mensaje con la siguiente información:</p>
         <ul>
             <li><strong>Email:</strong> ${email}</li>
-            <li><strong>Nombre de la Institución:</strong> ${NombreInstitucion}</li>
+            <li><strong>Nombre:</strong> ${NombreInstitucion}</li>
             <li><strong>Comentario:</strong> ${Comentario}</li>
         </ul>
         <p>Por favor, revisa el mensaje y toma las acciones necesarias.</p>

@@ -13,11 +13,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AddejemplarComponent } from '../addejemplar/addejemplar.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-ejemplares',
   standalone: true,
-  imports: [FormsModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent],
+  imports: [FormsModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent],
   templateUrl: './ejemplares.component.html',
   styleUrl: './ejemplares.component.css'
 })
@@ -31,6 +32,8 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['Ejemplar', 'titulo', 'autor', 'editorial', 'categoria', 'edicion', 'estado', 'usuario', 'fecha'];
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
+  estados: string[] = []; 
+  usuarios: string[] = []; 
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
@@ -51,7 +54,18 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
         });
         }
     );
+    // Cargar la lista de usuarios ESTO ES NUEVO
+    this.connectService.getUsuarios().subscribe(
+      response => {
+        console.log('Usuarios obtenidos:', response);
+        this.usuarios = response.map((usuario: any) => usuario.nombre_usuario);
+      },
+      error => {
+        console.error('Error al obtener usuarios:', error);
+      }
+    );
   }
+  
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -71,6 +85,17 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('Ejemplares filtrados:', this.librosFiltrados);
     this.dataSource.data = this.librosFiltrados; // Actualizar dataSource
     this.cdr.detectChanges();
+  }
+
+  //ESTO ES NUEVO
+  updateEstado(ejemplar: any): void { 
+    // Lógica para actualizar el estado del libro
+    console.log('Actualizar estado:', ejemplar);
+  }
+
+  updateUsuario(ejemplar: any): void {
+    // Lógica para actualizar el usuario del libro
+    console.log('Actualizar usuario:', ejemplar);
   }
 
   openAddEjemplarModal(): void {
@@ -103,5 +128,5 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
-  
+
 }
