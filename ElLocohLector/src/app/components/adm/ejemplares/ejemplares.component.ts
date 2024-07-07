@@ -14,11 +14,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AddejemplarComponent } from '../addejemplar/addejemplar.component';
 import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ejemplares',
   standalone: true,
-  imports: [FormsModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent],
+  imports: [FormsModule, CommonModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent],
   templateUrl: './ejemplares.component.html',
   styleUrl: './ejemplares.component.css'
 })
@@ -34,7 +35,8 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   estados: string[] = []; 
   usuarios: string[] = []; 
-  
+  isEdited: boolean = false;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   constructor(private connectService: ConnectService, private cdr: ChangeDetectorRef, public dialog: MatDialog, private snackBar: MatSnackBar) { }
@@ -54,7 +56,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
         });
         }
     );
-    // Cargar la lista de usuarios ESTO ES NUEVO
+   // Cargar la lista de usuarios
     this.connectService.getUsuarios().subscribe(
       response => {
         console.log('Usuarios obtenidos:', response);
@@ -64,8 +66,53 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
         console.error('Error al obtener usuarios:', error);
       }
     );
+     // Cargar la lista de estados
+     this.connectService.getEstados().subscribe(
+      response => {
+        console.log('Estados obtenidos:', response);
+        this.estados = response.map((estado: any) => estado.nombre_estado);
+      },
+      error => {
+        console.error('Error al obtener estados:', error);
+      }
+    );
   }
   
+  //Funcion para saber si un ejemplar fue editado asociado a Estado y Usuario
+  markAsEdited(ejemplar: any): void {
+    ejemplar.edited = true;
+    this.isEdited = true;
+  }
+
+  guardarDatos(): void {
+    const ejemplaresEditados = this.librosFiltrados.filter((ejemplar: any) => ejemplar.edited);
+    if (ejemplaresEditados.length > 0) {
+      ejemplaresEditados.forEach(ejemplar => {
+        this.actualizarEjemplar(ejemplar);
+      });
+    }
+  }
+
+  //Actualiza el ejemplar con los nuevos datos
+  actualizarEjemplar(ejemplar: any): void {
+    console.log('Actualizar ejemplar:', ejemplar);
+    this.connectService.actualizarEjemplar(ejemplar).subscribe(
+      response => {
+        console.log('Ejemplar actualizado:', response);
+        this.snackBar.open('Ejemplar actualizado exitosamente', 'Cerrar', {
+          duration: 3000,
+        });
+        ejemplar.edited = false;
+        this.isEdited = this.librosFiltrados.some((e: any) => e.edited);
+      },
+      error => {
+        console.error('Error al actualizar ejemplar:', error);
+        this.snackBar.open('Error al actualizar el ejemplar. Inténtelo nuevamente.', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    );
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

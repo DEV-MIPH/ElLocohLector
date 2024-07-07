@@ -156,6 +156,11 @@ export class ConnectService {
     return this.http.post<any>(this.apiUrlEjemplares, ejemplar);
   }
 
+  //Actualizar Ejemplar con los campos Estado y Usuario
+  actualizarEjemplar(ejemplar: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrlEjemplares}/${ejemplar.id}`, ejemplar);
+  }
+
   // Función para agregar un libro al pedido
   solicitarLibro(libro: any): void {
     if (this.isLoggedInSubject.getValue()) {
