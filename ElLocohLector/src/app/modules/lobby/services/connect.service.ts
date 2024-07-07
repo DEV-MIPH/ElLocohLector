@@ -51,23 +51,23 @@ interface EditEjemplar {
 export class ConnectService {
 
   data: any = [];
-  apiUrl = 'http://localhost:3000/libros'; // URL de tu API
-  apiUrlEjemplares = 'http://localhost:3000/ejemplares'; // URL de ejemplares
-  apiUrlUsuarios = 'http://localhost:3000/nombres_usuarios'; // URL para obtener los usuarios
-  apiUrlEstado = 'http://localhost:3000/estados'; // URL para obtener los estados
+  apiUrl = 'https://ellocohlector-connect.onrender.com/libros'; // URL de tu API
+  apiUrlEjemplares = 'https://ellocohlector-connect.onrender.com/ejemplares'; // URL de ejemplares
+  apiUrlUsuarios = 'https://ellocohlector-connect.onrender.com/nombres_usuarios'; // URL para obtener los usuarios
+  apiUrlEstado = 'https://ellocohlector-connect.onrender.com/estados'; // URL para obtener los estados
   pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
-  apiUrlAllBooks = 'http://localhost:3000/all_libros';
-  apiUrlAutores = 'http://localhost:3000/autores';
-  apiUrlCategorias = 'http://localhost:3000/categorias';
-  apiUrlEditoriales = 'http://localhost:3000/editoriales';
-  apiUrlEdiciones = 'http://localhost:3000/ediciones';
-  apiUrlSendMail = 'http://localhost:3000/send-email';
-  apiUrlAdmin = 'http://localhost:3000/librosadmin';
-  apiAddUser = 'http://localhost:3000/addUser';
-  apiGetAdmins = 'http://localhost:3000/getAdmins';
-  apiGetUserByEmail = 'http://localhost:3000/getUserIdByEmail';
-  apiPostPedido = 'http://localhost:3000/pedidoo';
-  apiModificarEjemplar = 'http://localhost:3000/modificarEjemplar';
+  apiUrlAllBooks = 'https://ellocohlector-connect.onrender.com/all_libros';
+  apiUrlAutores = 'https://ellocohlector-connect.onrender.com/autores';
+  apiUrlCategorias = 'https://ellocohlector-connect.onrender.com/categorias';
+  apiUrlEditoriales = 'https://ellocohlector-connect.onrender.com/editoriales';
+  apiUrlEdiciones = 'https://ellocohlector-connect.onrender.com/ediciones';
+  apiUrlSendMail = 'https://ellocohlector-connect.onrender.com/send-email';
+  apiUrlAdmin = 'https://ellocohlector-connect.onrender.com/librosadmin';
+  apiAddUser = 'https://ellocohlector-connect.onrender.com/addUser';
+  apiGetAdmins = 'https://ellocohlector-connect.onrender.com/getAdmins';
+  apiGetUserByEmail = 'https://ellocohlector-connect.onrender.com/getUserIdByEmail';
+  apiPostPedido = 'https://ellocohlector-connect.onrender.com/pedidoo';
+  apiModificarEjemplar = 'https://ellocohlector-connect.onrender.com/modificarEjemplar';
 
 
 
