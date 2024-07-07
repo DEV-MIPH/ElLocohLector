@@ -44,6 +44,7 @@
 .expand-button:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
+
 .search-container {
     margin-bottom: 20px;
     display: flex;
@@ -80,31 +81,80 @@
 .search-container button:hover {
     background-color: #004080;
 }
+
 table {
     width: 100%;
-    border-collapse: collapse; /* Colapsar los bordes de la tabla */
+    border-collapse: collapse;
+    /* Colapsar los bordes de la tabla */
     background-color: #ffffff;
 }
 
 th {
-    background-color: #343a40; /* Cambiar el color de fondo del encabezado de la tabla */
-    color: #000000; /* Cambiar el color del texto del encabezado de la tabla */
-    border-bottom: 1px solid #000000; /* Agregar una línea en la parte inferior */
+    background-color: #343a40;
+    /* Cambiar el color de fondo del encabezado de la tabla */
+    color: #000000;
+    /* Cambiar el color del texto del encabezado de la tabla */
+    border-bottom: 1px solid #000000;
+    /* Agregar una línea en la parte inferior */
 }
 
 td {
-    text-align: left; /* Alinear el texto a la izquierda */
-    color: #343a40; /* Color de texto */
-    border-bottom: 1px solid #f8f9fa; /* Línea para separar las filas */
+    text-align: left;
+    /* Alinear el texto a la izquierda */
+    color: #343a40;
+    /* Color de texto */
+    border-bottom: 1px solid #f8f9fa;
+    /* Línea para separar las filas */
 }
+
 h2 {
-    color: #343a40; /* Color del texto */
-    font-size: 24px; /* Tamaño de la fuente */
-    margin-bottom: 20px; /* Espacio inferior */
-    border-bottom: 2px solid #343a40; /* Línea decorativa */
-    padding-bottom: 5px; /* Espacio inferior interno */
-    text-align: center; /* Centrar el texto horizontalmente */
+    color: #343a40;
+    /* Color del texto */
+    font-size: 24px;
+    /* Tamaño de la fuente */
+    margin-bottom: 20px;
+    /* Espacio inferior */
+    border-bottom: 2px solid #343a40;
+    /* Línea decorativa */
+    padding-bottom: 5px;
+    /* Espacio inferior interno */
+    text-align: center;
+    /* Centrar el texto horizontalmente */
 }
+
+/* Estilos para hacer la tabla responsiva */
+.mat-table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+.mat-header-cell,
+.mat-cell {
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 600px) {
+
+    .mat-header-cell,
+    .mat-cell {
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mat-header-cell, .mat-cell {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    .mat-header-cell {
+      font-weight: bold;
+    }
+  }
+  
+
 
 @media only screen and (min-width: 344px) and (max-width: 480px) {}
 

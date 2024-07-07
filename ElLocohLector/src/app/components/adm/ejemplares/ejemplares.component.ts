@@ -34,7 +34,7 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   estados: string[] = []; 
-  usuarios: string[] = []; 
+  emails: string[] = []; 
   isEdited: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -60,7 +60,8 @@ export class EjemplaresComponent implements OnInit, AfterViewInit, OnDestroy {
     this.connectService.getUsuarios().subscribe(
       response => {
         console.log('Usuarios obtenidos:', response);
-        this.usuarios = response.map((usuario: any) => usuario.nombre_usuario);
+        this.emails = response.map((usuario: any) => usuario.email_usuario);
+        console.log('Emails:', this.emails);
       },
       error => {
         console.error('Error al obtener usuarios:', error);

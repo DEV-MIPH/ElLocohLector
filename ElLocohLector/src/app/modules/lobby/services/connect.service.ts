@@ -39,6 +39,12 @@ interface PedidoUsuario {
   cantidad: number;
 }
 
+interface EditEjemplar {
+  id_ejemplar: number;
+  estado: string;
+  id_pedido: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -61,6 +67,7 @@ export class ConnectService {
   apiGetAdmins = 'http://localhost:3000/getAdmins';
   apiGetUserByEmail = 'http://localhost:3000/getUserIdByEmail';
   apiPostPedido = 'http://localhost:3000/pedidoo';
+  apiModificarEjemplar = 'http://localhost:3000/modificarEjemplar';
 
 
 
@@ -158,7 +165,10 @@ export class ConnectService {
 
   //Actualizar Ejemplar con los campos Estado y Usuario
   actualizarEjemplar(ejemplar: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrlEjemplares}/${ejemplar.id}`, ejemplar);
+    let ejemplarData: EditEjemplar ;
+    ejemplarData = { id_ejemplar: ejemplar.Ejemplar, estado: ejemplar.Estado, id_pedido: ejemplar.id_pedido };
+    console.log('Actualizando ejemplar:', ejemplarData);
+    return this.http.post<any>(this.apiModificarEjemplar, ejemplarData);
   }
 
   // Función para agregar un libro al pedido
