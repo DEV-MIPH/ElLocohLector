@@ -50,25 +50,27 @@ interface EditEjemplar {
 })
 export class ConnectService {
 
-  data: any = [];
-  apiUrl = 'https://ellocohlector-connect.onrender.com/libros'; // URL de tu API
-  apiUrlEjemplares = 'https://ellocohlector-connect.onrender.com/ejemplares'; // URL de ejemplares
-  apiUrlUsuarios = 'https://ellocohlector-connect.onrender.com/nombres_usuarios'; // URL para obtener los usuarios
-  apiUrlEstado = 'https://ellocohlector-connect.onrender.com/estados'; // URL para obtener los estados
-  pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
-  apiUrlAllBooks = 'https://ellocohlector-connect.onrender.com/all_libros';
-  apiUrlAutores = 'https://ellocohlector-connect.onrender.com/autores';
-  apiUrlCategorias = 'https://ellocohlector-connect.onrender.com/categorias';
-  apiUrlEditoriales = 'https://ellocohlector-connect.onrender.com/editoriales';
-  apiUrlEdiciones = 'https://ellocohlector-connect.onrender.com/ediciones';
-  apiUrlSendMail = 'https://ellocohlector-connect.onrender.com/send-email';
-  apiUrlAdmin = 'https://ellocohlector-connect.onrender.com/librosadmin';
-  apiAddUser = 'https://ellocohlector-connect.onrender.com/addUser';
-  apiGetAdmins = 'https://ellocohlector-connect.onrender.com/getAdmins';
-  apiGetUserByEmail = 'https://ellocohlector-connect.onrender.com/getUserIdByEmail';
-  apiPostPedido = 'https://ellocohlector-connect.onrender.com/pedidoo';
-  apiModificarEjemplar = 'https://ellocohlector-connect.onrender.com/modificarEjemplar';
+  //api = 'https://ellocohlector-connect.onrender.com/'; // URL de tu API
+  api = 'http://localhost:3000/'; // URL de tu API
 
+  data: any = [];
+  apiUrl = this.api + 'libros'; // URL de tu API
+  apiUrlEjemplares = this.api + 'ejemplares'; // URL de ejemplares
+  apiUrlUsuarios = this.api + 'nombres_usuarios'; // URL para obtener los usuarios
+  apiUrlEstado = this.api + 'estados'; // URL para obtener los estados
+  pedidosSubject = new BehaviorSubject<any[]>([]); //para manejar los pedidos del usuario
+  apiUrlAllBooks = this.api + 'all_libros';
+  apiUrlAutores = this.api + 'autores';
+  apiUrlCategorias = this.api + 'categorias';
+  apiUrlEditoriales = this.api + 'editoriales';
+  apiUrlEdiciones = this.api + 'ediciones';
+  apiUrlSendMail = this.api + 'send-email';
+  apiUrlAdmin = this.api + 'librosadmin';
+  apiAddUser = this.api + 'addUser';
+  apiGetAdmins = this.api + 'getAdmins';
+  apiGetUserByEmail = this.api + 'getUserIdByEmail';
+  apiPostPedido = this.api + 'pedidoo';
+  apiModificarEjemplar = this.api + 'modificarEjemplar';
 
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
