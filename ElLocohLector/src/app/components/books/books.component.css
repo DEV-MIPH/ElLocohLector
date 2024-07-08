@@ -2,7 +2,11 @@
 .books-container {
     max-width: 800px;
     margin: 0 auto;
+    margin-top: 5vh;
     padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #E5E7E9, #A6ACAF);
 }
 
 /* Contenedor de búsqueda */
@@ -49,7 +53,7 @@
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    background-color: #17a2b8;
+    background-color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -58,7 +62,7 @@
 .search-container label {
     margin-right: 10px;
     font-weight: bold;
-    color: #fff;
+    
 }
 
 /* Estilos para los inputs de búsqueda */
@@ -67,6 +71,7 @@
     padding: 8px;
     border: none;
     border-radius: 5px;
+    background-color: #f8f9fa;
 }
 
 /* Estilos para el botón de búsqueda */
@@ -157,8 +162,3 @@ h2 {
   
 
 
-@media only screen and (min-width: 344px) and (max-width: 480px) {}
-
-@media only screen and (max-width: 768px) {}
-
-@media only screen and (max-width: 1025px) {}
