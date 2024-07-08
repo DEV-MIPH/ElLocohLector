@@ -69,20 +69,18 @@
         <ng-container matColumnDef="usuario">
             <th mat-header-cell *matHeaderCellDef> Usuario </th>
             <td mat-cell *matCellDef="let libro">
-                <mat-form-field appearance="outline">
-                    <mat-select [(ngModel)]="libro.Usuario" (selectionChange)="markAsEdited(libro)">
-                        <mat-option *ngFor="let usuario of emails" [value]="usuario">
-                            {{usuario}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                {{ libro.Usuario }}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="id_pedido">
             <th mat-header-cell *matHeaderCellDef> ID pedido </th>
-            <td mat-cell *matCellDef="let libro"> {{libro.id_pedido}} </td>
-        </ng-container>
+            <td mat-cell *matCellDef="let libro">
+              <mat-form-field>
+                <input matInput [(ngModel)]="libro.id_pedido" placeholder="ID pedido">
+              </mat-form-field>
+            </td>
+          </ng-container>
 
         <!-- Fecha Column -->
         <ng-container matColumnDef="fecha">

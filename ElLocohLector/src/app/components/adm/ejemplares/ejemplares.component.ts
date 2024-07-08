@@ -14,12 +14,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AddejemplarComponent } from '../addejemplar/addejemplar.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-ejemplares',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent],
+  imports: [FormsModule, CommonModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatPaginatorModule, MatSortModule,MatIconModule,MatButtonModule,AddejemplarComponent, MatInputModule],
   templateUrl: './ejemplares.component.html',
   styleUrl: './ejemplares.component.css'
 })

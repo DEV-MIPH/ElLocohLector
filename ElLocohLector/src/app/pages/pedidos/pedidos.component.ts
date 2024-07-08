@@ -100,6 +100,7 @@ export class PedidosComponent implements OnInit, OnDestroy, AfterViewInit {
     this.snackBar.open('Libro eliminado del pedido.', 'Cerrar', {
       duration: 3000,
     });
+    this.contarLibros(); // Actualizar la lista de pedidos a enviar después de eliminar
   }
 
   solicitarPedido(): void {
