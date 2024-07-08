@@ -23,7 +23,6 @@
                 <button mat-flat-button *ngIf="isAdmin" [matMenuTriggerFor]="adminMenu" id="btnPerfil">Admin</button>
                 
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item routerLink="/perfil">Ir a perfil</button>
                   <button mat-menu-item routerLink="/pedidos">Mis pedidos</button>
                   <button mat-menu-item (click)="logout()">Cerrar sesión</button>
                 </mat-menu>
