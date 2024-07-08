@@ -54,8 +54,8 @@ interface EditLibro{
 })
 export class ConnectService {
 
-  api = 'https://ellocohlector-connect.onrender.com/'; // URL de tu API
-  //api = 'http://localhost:3000/'; // URL de tu API
+  //api = 'https://ellocohlector-connect.onrender.com/'; // URL de tu API
+  api = 'http://localhost:3000/'; // URL de tu API
 
   data: any = [];
   apiUrl = this.api + 'libros'; // URL de tu API
