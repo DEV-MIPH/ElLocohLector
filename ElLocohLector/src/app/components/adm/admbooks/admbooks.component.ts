@@ -29,7 +29,7 @@ export class AdmbooksComponent implements OnInit, AfterViewInit, OnDestroy  {
   librosFiltrados: any = [];
   searchAuthor: string = '';
   searchTitle: string = '';
-  displayedColumns: string[] = ['titulo', 'autor', 'editorial', 'categoria', 'edicion', 'cantidad', 'acciones'];
+  displayedColumns: string[] = ['id','titulo', 'autor', 'editorial', 'categoria', 'edicion', 'cantidad', 'acciones'];
 
   dataSource = new MatTableDataSource<any>(this.librosFiltrados);
   
@@ -83,9 +83,19 @@ export class AdmbooksComponent implements OnInit, AfterViewInit, OnDestroy  {
       width: '400px',
       data: libro
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.connectService.modificarLibro(result).subscribe(
+          response => {
+            console.log('Datos obtenidos:', response);
+          },
+          error => {
+            console.error('Error al obtener datos:', error);
+            this.snackBar.open('Error al cargar los libros. Inténtelo nuevamente.', 'Cerrar', {
+              duration: 3000,
+            });
+          }
+        );
         // Aquí puedes manejar la actualización del libro con los datos editados
         const index = this.libros.findIndex((b: any) => b.id === result.id);
         if (index !== -1) {

@@ -44,6 +44,11 @@ interface EditEjemplar {
   id_pedido: number;
 }
 
+interface EditLibro{
+  libro: any;
+  id_libro: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -70,6 +75,7 @@ export class ConnectService {
   apiGetUserByEmail = this.api + 'getUserIdByEmail';
   apiPostPedido = this.api + 'pedidoo';
   apiModificarEjemplar = this.api + 'modificarEjemplar';
+  apiModificarLibro = this.api + 'modificarLibro';
 
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false); // Inicialmente no logueado
@@ -219,6 +225,12 @@ export class ConnectService {
     pedido = { email_usuario: correo };
     console.log('Posteando pedido:', pedido);
     return this.http.post<any>(this.apiPostPedido, pedido);
+  }
+
+  modificarLibro(libro: any): Observable<any> {
+    
+    console.log('Modificando libro connect service:', libro);
+    return this.http.post<any>(this.apiModificarLibro, libro);
   }
 
   register(email: string, password: string) {
