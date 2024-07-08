@@ -18,7 +18,6 @@ interface Edicion {
 interface Autor {
   nombre_autor: string;
   apellido_autor: string;
-
 }
 
 interface Email {
