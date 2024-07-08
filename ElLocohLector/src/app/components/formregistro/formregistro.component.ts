@@ -70,46 +70,32 @@ export class FormregistroComponent {
   comentarioFormControl = new FormControl('', [Validators.required, this.comentarioValidator()]);
   matcher = new MyErrorStateMatcher();
 
-  onSubmit() {
-    
+  onSubmit(event: Event) {
+    if (this.emailFormControl.valid && 
+        this.telefonoFormControl.valid && 
+        this.institucionFormControl.valid && 
+        this.comentarioFormControl.valid) {
 
-   
+      this.connectService.solicitudRegistro(this.email, this.telefono, this.institucion, this.comentario);
+        this.snackBar.open('Formulario enviado con éxito', 'Cerrar', {
+          duration: 3000,
+        });
 
-    // Realizar la solicitud de registro
-    this.connectService.solicitudRegistro(this.email, this.telefono,this.institucion, this.comentario);
-
-   
-    
+         // Restablecer el formulario
+        const form = event.target as HTMLFormElement;
+        form.reset();
+        
+        // Restablecer los controles del formulario
+      this.institucionFormControl.reset();
+      this.telefonoFormControl.reset();
+      this.emailFormControl.reset();
+      this.comentarioFormControl.reset();
+    } else {
+      this.snackBar.open('Por favor, complete todos los campos correctamente.', 'Cerrar', {
+        duration: 3000,
+      });
+    }
   }
-
-  
 
 }
 
-// onSubmit() {
-//   if (this.emailFormControl.valid && 
-//     this.telefonoFormControl.valid && 
-//     this.institucionFormControl.valid && 
-//     this.comentarioFormControl.valid) {
-//   // Realizar la solicitud de registro
-//   this.connectService.solicitudRegistro(this.email, this.telefono, this.institucion, this.comentario).subscribe(
-//     response => {
-//       // Mostrar el Snackbar de éxito
-//       this.snackBar.open('Formulario enviado con éxito!', 'Cerrar', {
-//         duration: 3000,
-//       });
-//     },
-//     error => {
-//       // Manejar el error aquí
-//       this.snackBar.open('Error al enviar el formulario. Intente nuevamente.', 'Cerrar', {
-//         duration: 3000,
-//       });
-//     }
-//   );
-// } else {
-//   // Mostrar el Snackbar de error si los campos no son válidos
-//   this.snackBar.open('Por favor, complete todos los campos correctamente.', 'Cerrar', {
-//     duration: 3000,
-//   });
-// }
-// }
