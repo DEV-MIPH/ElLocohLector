@@ -13,7 +13,6 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { ConnectService } from '../../modules/lobby/services/connect.service';
 
 
-/** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
